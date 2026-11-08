@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="data:,">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taskboard | Sample project management web app</title>
+<meta name="description" content="Sample web app: a Kanban task board with drag and drop, filters, due dates, progress tracking and saved state. Plain HTML, CSS and JavaScript.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#board">Skip to the board</a>
+<div class="sample-note">Sample project by Tujummal Hussain. Data is stored only in your browser.</div>
+
+<header class="top">
+  <div class="top-row">
+    <div>
+      <h1>Website relaunch</h1>
+      <p class="meta">Sample project board. Drag cards between columns, or use the move buttons on each card.</p>
+    </div>
+    <div class="progress" aria-live="polite">
+      <div class="progress-label"><span id="pctText">0% done</span><span id="countText"></span></div>
+      <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Project completion"><div id="pctBar"></div></div>
+    </div>
+  </div>
+  <div class="tools">
+    <label class="search"><span class="vh">Search tasks</span><input id="q" type="search" placeholder="Search tasks"></label>
+    <label><span class="vh">Filter by owner</span><select id="fOwner"><option value="">All owners</option></select></label>
+    <label><span class="vh">Filter by priority</span>
+      <select id="fPrio"><option value="">All priorities</option><option value="high">High</option><option value="med">Medium</option><option value="low">Low</option></select></label>
+    <button class="btn" id="addBtn">Add task</button>
+    <button class="btn ghost" id="exportBtn">Export JSON</button>
+    <button class="btn ghost" id="resetBtn">Reset sample data</button>
+  </div>
+</header>
+
+<main id="board" class="board" aria-label="Task board"></main>
+
+<dialog id="dlg">
+  <form method="dialog" id="taskForm" novalidate>
+    <h2 id="dlgTitle">Add task</h2>
+    <div class="field"><label for="tTitle">Task</label><input id="tTitle" required><p class="err" id="tTitle-err" role="alert"></p></div>
+    <div class="grid2">
+      <div class="field"><label for="tOwner">Owner</label><input id="tOwner" placeholder="Name"></div>
+      <div class="field"><label for="tDue">Due date</label><input id="tDue" type="date"></div>
+    </div>
+    <div class="grid2">
+      <div class="field"><label for="tPrio">Priority</label>
+        <select id="tPrio"><option value="low">Low</option><option value="med" selected>Medium</option><option value="high">High</option></select></div>
+      <div class="field"><label for="tCol">Column</label>
+        <select id="tCol"></select></div>
+    </div>
+    <div class="dlg-actions">
+      <button class="btn ghost" type="button" id="cancelBtn">Cancel</button>
+      <button class="btn" type="submit" id="saveBtn">Add task</button>
+    </div>
+  </form>
+</dialog>
+
+<p class="vh" id="live" role="status" aria-live="polite"></p>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="data:,">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project Tracker API | Sample Node.js project</title>
+<style>
+:root{--ink:#16202E;--muted:#5B6678;--line:#D3D9E2;--bg:#F4F6F9;--blue:#1F4FC4;--green:#2E7D4F;--red:#B93636;--amber:#A9740F}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+.note{background:#16202E;color:#fff;font-size:.85rem;text-align:center;padding:.4rem 1rem}
+header,main{max-width:1000px;margin:0 auto;padding:0 1.25rem}
+header{padding-top:1.5rem}
+h1{margin:0 0 .25rem;font-size:1.7rem}
+p.sub{margin:0 0 1.25rem;color:var(--muted)}
+code{background:#E6EAF0;padding:.05rem .35rem;border-radius:4px;font-size:.9em}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:1.25rem;padding-bottom:3rem}
+section{background:#fff;border:1px solid var(--line);border-radius:10px;padding:1rem 1.1rem}
+h2{font-size:1.05rem;margin:0 0 .75rem}
+ul{list-style:none;margin:0;padding:0}
+.proj{display:flex;justify-content:space-between;gap:.75rem;align-items:center;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:.7rem .3rem;font:inherit;cursor:pointer;color:inherit}
+.proj:hover,.proj[aria-current="true"]{background:#EEF3FD}
+.proj small{color:var(--muted)}
+.pill{font-size:.75rem;font-weight:600;padding:.1rem .5rem;border-radius:99px;background:#E6EAF0}
+.pill.active,.pill.doing{background:#DCE8FB;color:#173E9A}
+.pill.done{background:#DDF0E4;color:#1D6038}
+.pill.on-hold{background:#F7E9C9;color:#6F4A05}
+.bar{height:.55rem;background:#E6EAF0;border-radius:99px;overflow:hidden;margin:.4rem 0 .2rem}
+.bar i{display:block;height:100%;background:var(--green)}
+form{display:grid;gap:.5rem;margin-top:.9rem}
+input,select,button.go{font:inherit;padding:.5rem .6rem;border:1px solid #98A3B5;border-radius:6px;background:#fff}
+button.go{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:600;cursor:pointer}
+.task{display:flex;gap:.6rem;align-items:center;padding:.5rem 0;border-bottom:1px solid var(--line)}
+.task span.t{flex:1}
+.task .od{color:var(--red);font-size:.8rem;font-weight:600}
+.err{color:var(--red);font-size:.9rem;min-height:1.2em;margin:.3rem 0 0}
+.muted{color:var(--muted)}
+@media (max-width:760px){.layout{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="note">Sample project by Tujummal Hussain. This page is a small front end for the API in this repository.</div>
+<header>
+  <h1>Project Tracker API</h1>
+  <p class="sub">A REST API for projects and tasks, written in plain Node.js. Everything on this page is loaded through <code>/api/projects</code>.</p>
+</header>
+<main class="layout">
+  <section aria-labelledby="ph">
+    <h2 id="ph">Projects</h2>
+    <ul id="projects"></ul>
+    <form id="newProject">
+      <input id="pName" placeholder="New project name" aria-label="New project name" required>
+      <button class="go" type="submit">Add project</button>
+      <p class="err" id="pErr" role="alert"></p>
+    </form>
+  </section>
+  <section aria-labelledby="th">
+    <h2 id="th">Tasks</h2>
+    <div id="detail"><p class="muted">Choose a project to see its tasks.</p></div>
+  </section>
+</main>
+<script>
+(function(){
+  var current=null, $=function(id){return document.getElementById(id)};
+  function api(method,url,body){
+    return fetch(url,{method:method,headers:body?{'Content-Type':'application/json'}:{},body:body?JSON.stringify(body):undefined})
+      .then(function(r){ if(r.status===204) return null; return r.json().then(function(j){ if(!r.ok) throw j.error; return j; }); });
+  }
+  function el(tag,cls,text){var e=document.createElement(tag); if(cls)e.className=cls; if(text!==undefined)e.textContent=text; return e;}
+
+  function loadProjects(){
+    return api('GET','/api/projects?limit=50').then(function(d){
+      var ul=$('projects'); ul.innerHTML='';
+      if(current===null&&d.items.length){current=d.items[0].id; loadDetail();}
+      d.items.forEach(function(p){
+        var li=el('li'); var b=el('button','proj'); b.type='button';
+        if(p.id===current) b.setAttribute('aria-current','true');
+        var left=el('span'); left.appendChild(el('strong','',p.name)); left.appendChild(document.createElement('br'));
+        left.appendChild(el('small','',p.taskCount+' tasks'));
+        b.appendChild(left); b.appendChild(el('span','pill '+p.status,p.status));
+        b.addEventListener('click',function(){current=p.id; loadProjects(); loadDetail();});
+        li.appendChild(b); ul.appendChild(li);
+      });
+    });
+  }
+  function loadDetail(){
+    if(current===null) return;
+    Promise.all([api('GET','/api/projects/'+current),api('GET','/api/projects/'+current+'/summary'),api('GET','/api/projects/'+current+'/tasks')]).then(function(r){
+      var p=r[0], s=r[1], t=r[2].items, box=$('detail'); box.innerHTML='';
+      box.appendChild(el('h3','',p.name)).style.margin='0 0 .25rem';
+      box.appendChild(el('div','muted',s.percentComplete+'% complete, '+s.counts.done+' of '+s.total+' tasks done'+(s.overdue?', '+s.overdue+' overdue':'')));
+      var bar=el('div','bar'); var i=el('i'); i.style.width=s.percentComplete+'%'; bar.appendChild(i); box.appendChild(bar);
+      var ul=el('ul');
+      t.forEach(function(task){
+        var li=el('li','task'); var sel=document.createElement('select'); sel.setAttribute('aria-label','Status of '+task.title);
+        ['todo','doing','done'].forEach(function(v){var o=el('option','',v); o.value=v; if(v===task.status)o.selected=true; sel.appendChild(o);});
+        sel.addEventListener('change',function(){api('PATCH','/api/projects/'+current+'/tasks/'+task.id,{status:sel.value}).then(function(){loadDetail();loadProjects();});});
+        li.appendChild(el('span','t',task.title)); 
+        if(task.status!=='done'&&task.dueDate&&task.dueDate<new Date().toISOString().slice(0,10)) li.appendChild(el('span','od','Overdue'));
+        li.appendChild(sel); ul.appendChild(li);
+      });
+      box.appendChild(ul);
+      var f=document.createElement('form'); var inp=document.createElement('input'); inp.placeholder='New task'; inp.setAttribute('aria-label','New task'); inp.required=true;
+      var btn=el('button','go','Add task'); btn.type='submit'; var err=el('p','err'); err.setAttribute('role','alert');
+      f.appendChild(inp); f.appendChild(btn); f.appendChild(err);
+      f.addEventListener('submit',function(e){e.preventDefault(); err.textContent='';
+        api('POST','/api/projects/'+current+'/tasks',{title:inp.value}).then(function(){loadDetail();loadProjects();}).catch(function(x){err.textContent=x.details?x.details[0].message:x.message;});});
+      box.appendChild(f);
+    });
+  }
+  $('newProject').addEventListener('submit',function(e){
+    e.preventDefault(); $('pErr').textContent='';
+    api('POST','/api/projects',{name:$('pName').value}).then(function(p){$('pName').value=''; current=p.id; loadProjects(); loadDetail();})
+      .catch(function(x){$('pErr').textContent=x.details?x.details[0].message:x.message;});
+  });
+  loadProjects().then(function(){});
+})();
+</script>
+</body>
+</html>

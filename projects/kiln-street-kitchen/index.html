@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="data:,">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kiln Street Kitchen | Sample restaurant website</title>
+<meta name="description" content="Sample restaurant website: responsive layout, filterable menu and a reservation form with validation. A concept project, not a real business.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="sample-note">Sample project by Tujummal Hussain. Kiln Street Kitchen is a fictional restaurant.</div>
+
+<header class="site-head">
+  <div class="wrap head-row">
+    <a class="brand" href="#top" aria-label="Kiln Street Kitchen, home">Kiln Street Kitchen</a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav" aria-label="Main">
+      <a href="#menu">Menu</a>
+      <a href="#story">Our story</a>
+      <a href="#visit">Visit</a>
+      <a class="btn small" href="#book">Book a table</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Fire, salt and good bread.</h1>
+        <p class="lead">A neighbourhood kitchen cooking everything over a wood fire. Small plates to share, a short wine list and a table by the oven if you ask nicely.</p>
+        <div class="actions">
+          <a class="btn" href="#book">Book a table</a>
+          <a class="btn ghost" href="#menu">See the menu</a>
+        </div>
+      </div>
+      <div class="plates" aria-hidden="true">
+        <span class="plate p1"></span><span class="plate p2"></span><span class="plate p3"></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="menu">
+    <div class="wrap">
+      <h2>The menu</h2>
+      <p class="sub">Changes with the market. Tell your server about any allergies.</p>
+      <div class="filters" role="group" aria-label="Filter the menu">
+        <button class="chip on" data-filter="all" aria-pressed="true">All</button>
+        <button class="chip" data-filter="small" aria-pressed="false">Small plates</button>
+        <button class="chip" data-filter="fire" aria-pressed="false">From the fire</button>
+        <button class="chip" data-filter="sweet" aria-pressed="false">Sweet</button>
+        <button class="chip" data-filter="veg" aria-pressed="false">Vegetarian</button>
+      </div>
+      <ul class="menu" id="menuList"></ul>
+      <p class="empty" id="menuEmpty" hidden>Nothing matches that filter. Choose All to see the full menu.</p>
+    </div>
+  </section>
+
+  <section class="block dark" id="story">
+    <div class="wrap story">
+      <h2>One oven, one rule</h2>
+      <div class="story-text">
+        <p>Everything that leaves the kitchen has touched the fire. Bread is proved overnight and baked at the start of service. Vegetables come from two farms within an hour's drive, and the menu is written the morning we taste them.</p>
+        <p>We seat thirty-two people, so a table is a small event. Walk-ins are welcome at the counter.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="visit">
+    <div class="wrap visit">
+      <div>
+        <h2>Visit</h2>
+        <address>
+          14 Kiln Street<br>
+          Riverside District<br>
+          <a href="tel:+10000000000">+1 000 000 0000</a>
+        </address>
+        <p class="sub">Sample address. No real business is listed on this page.</p>
+      </div>
+      <table class="hours" aria-label="Opening hours">
+        <tbody id="hours"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block tint" id="book">
+    <div class="wrap book">
+      <div>
+        <h2>Book a table</h2>
+        <p class="sub">Parties of seven or more, please call us. We hold tables for fifteen minutes.</p>
+      </div>
+      <form id="bookForm" novalidate>
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" name="name" autocomplete="name" required>
+          <p class="err" id="name-err" role="alert"></p>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required>
+          <p class="err" id="email-err" role="alert"></p>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="date">Date</label>
+            <input id="date" name="date" type="date" required>
+            <p class="err" id="date-err" role="alert"></p>
+          </div>
+          <div class="field">
+            <label for="time">Time</label>
+            <select id="time" name="time" required></select>
+            <p class="err" id="time-err" role="alert"></p>
+          </div>
+          <div class="field">
+            <label for="size">Guests</label>
+            <select id="size" name="size">
+              <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="notes">Anything we should know? <span class="opt">Optional</span></label>
+          <textarea id="notes" name="notes" rows="3"></textarea>
+        </div>
+        <button class="btn" type="submit">Request this table</button>
+        <p class="done" id="done" role="status" hidden></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">Kiln Street Kitchen is a fictional restaurant created as a web design sample by Tujummal Hussain.</div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

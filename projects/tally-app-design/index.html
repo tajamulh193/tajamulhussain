@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="data:,">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tally | Mobile app UI design concept</title>
+<meta name="description" content="UI design concept for Tally, a daily habit tracker: logo, colour palette, typography and three mobile screens. A concept project, not a released app.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1B2233;
+  --muted:#667085;
+  --line:#E3E8F0;
+  --bg:#F3F6FA;
+  --violet:#5B4BDB;
+  --violet-d:#4637B8;
+  --violet-l:#ECEAFD;
+  --green:#1F9D68;
+  --green-l:#DDF4EA;
+  --amber:#F5A524;
+  --amber-l:#FDF0D5;
+  --sans:"Manrope",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font:400 1.0625rem/1.6 var(--sans)}
+.note{background:var(--ink);color:#fff;text-align:center;font-size:.85rem;padding:.4rem 1rem}
+.wrap{max-width:1100px;margin:0 auto;padding:0 1.5rem}
+header.hero{padding:clamp(2.5rem,6vw,4.5rem) 0 2rem}
+h1{font:800 clamp(2.6rem,7vw,4.75rem)/1 var(--sans);letter-spacing:-.03em;margin:0 0 1rem;display:flex;align-items:center;gap:1rem}
+.lead{font-size:1.25rem;max-width:36em;margin:0 0 1.25rem;color:#344054}
+.facts{display:flex;gap:2rem;flex-wrap:wrap;margin:0;color:var(--muted);font-size:.95rem}
+.facts b{color:var(--ink)}
+section{padding:clamp(2rem,5vw,3.5rem) 0;border-top:1px solid var(--line)}
+h2{font:700 1.6rem/1.2 var(--sans);letter-spacing:-.01em;margin:0 0 .5rem}
+.sub{color:var(--muted);margin:0 0 2rem;max-width:40em}
+
+/* foundations */
+.found{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem}
+.logo-box{background:var(--violet);border-radius:20px;display:grid;place-items:center;aspect-ratio:1/1;max-width:260px}
+.swatches{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem}
+.sw{border-radius:12px;padding:.8rem;min-height:5.2rem;display:flex;flex-direction:column;justify-content:flex-end;font-size:.85rem;font-weight:600}
+.sw small{font-weight:500;opacity:.85}
+.type-spec .big{font:800 3rem/1 var(--sans);letter-spacing:-.03em}
+.type-spec .row{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:.55rem 0;gap:1rem}
+.type-spec .row span:last-child{color:var(--muted);font-size:.9rem;text-align:right}
+
+/* phones */
+.phones{display:flex;gap:2rem;flex-wrap:wrap;justify-content:center;background:linear-gradient(180deg,#EEF1F8,#E6EAF4);border-radius:24px;padding:2.5rem 1rem}
+.phone{width:290px;height:600px;background:#0F1420;border-radius:42px;padding:10px;box-shadow:0 24px 50px rgba(30,40,80,.25);flex:none}
+.screen{background:var(--bg);width:100%;height:100%;border-radius:33px;overflow:hidden;padding:1.1rem 1rem;position:relative;font-size:.9rem;line-height:1.4}
+.status{display:flex;justify-content:space-between;font-size:.72rem;font-weight:700;margin-bottom:.9rem}
+.screen h3{font:800 1.45rem/1.1 var(--sans);margin:0;letter-spacing:-.02em}
+.screen .date{color:var(--muted);font-size:.8rem;margin:.1rem 0 .9rem}
+.ring-card{background:#fff;border-radius:18px;padding:.9rem;display:flex;gap:.9rem;align-items:center;margin-bottom:.8rem;box-shadow:0 1px 2px rgba(20,30,60,.06)}
+.ring{width:66px;height:66px;flex:none}
+.ring-card b{font-size:1.05rem;display:block;line-height:1.2}
+.ring-card span{color:var(--muted);font-size:.78rem}
+.habit{background:#fff;border-radius:16px;padding:.7rem .8rem;display:flex;align-items:center;gap:.7rem;margin-bottom:.5rem;box-shadow:0 1px 2px rgba(20,30,60,.06)}
+.habit .ic{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;font-size:1.05rem;flex:none}
+.habit .tx{flex:1;min-width:0}
+.habit .tx b{display:block;font-size:.88rem}
+.habit .tx span{font-size:.73rem;color:var(--muted)}
+.chk{width:28px;height:28px;border-radius:50%;border:2px solid #C5CCD9;flex:none;display:grid;place-items:center}
+.chk.on{background:var(--green);border-color:var(--green)}
+.tabs{position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:.6rem 0 .9rem;font-size:.68rem;font-weight:600;color:var(--muted)}
+.tabs .on{color:var(--violet)}
+.back{font-size:.8rem;color:var(--violet);font-weight:700;margin-bottom:.5rem}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin:.8rem 0}
+.stat{background:#fff;border-radius:14px;padding:.7rem}
+.stat b{font-size:1.5rem;line-height:1;display:block;letter-spacing:-.02em}
+.stat span{font-size:.72rem;color:var(--muted)}
+.cal{background:#fff;border-radius:16px;padding:.8rem}
+.cal h4{margin:0 0 .5rem;font-size:.8rem}
+.grid7{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.grid7 i{aspect-ratio:1/1;border-radius:6px;background:#EEF1F6;display:block}
+.grid7 i.d1{background:#BFE9D6}.grid7 i.d2{background:#6CCBA3}.grid7 i.d3{background:var(--green)}
+.grid7 .lab{background:none;font-style:normal;font-size:.62rem;text-align:center;color:var(--muted);aspect-ratio:auto}
+.field{margin-bottom:.75rem}
+.field label{display:block;font-size:.75rem;font-weight:700;margin-bottom:.25rem}
+.input{background:#fff;border:1.5px solid var(--violet);border-radius:12px;padding:.65rem .75rem;font-weight:600}
+.icons{display:flex;gap:.4rem}
+.icons span{width:38px;height:38px;border-radius:12px;background:#fff;display:grid;place-items:center;font-size:1.1rem;border:1.5px solid transparent}
+.icons span.sel{border-color:var(--violet);background:var(--violet-l)}
+.chips{display:flex;gap:.35rem;flex-wrap:wrap}
+.chip{padding:.35rem .7rem;border-radius:99px;background:#fff;font-size:.75rem;font-weight:700;color:var(--muted)}
+.chip.sel{background:var(--violet);color:#fff}
+.btn{position:absolute;left:1rem;right:1rem;bottom:1.2rem;background:var(--violet);color:#fff;text-align:center;font-weight:800;border-radius:14px;padding:.85rem}
+.cap{text-align:center;margin:.9rem 0 0;font-size:.9rem;color:var(--muted);font-weight:600}
+
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2rem}
+.notes h3{font:700 1.1rem var(--sans);margin:0 0 .35rem}
+.notes p{margin:0;color:#344054;font-size:1rem}
+footer{border-top:1px solid var(--line);padding:1.5rem 0 2.5rem;color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+<div class="note">Concept project by Tujummal Hussain. Tally is not a released app.</div>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>
+      <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#5B4BDB"/><path d="M16 33l11 11 21-24" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Tally
+    </h1>
+    <p class="lead">A habit tracker that shows today first. One look tells you what is left, one tap marks it done, and the streak is there when you want it.</p>
+    <p class="facts"><span><b>Deliverable</b> Logo, palette, type, 3 key screens</span><span><b>Platform</b> iOS and Android</span><span><b>Tools</b> HTML and CSS prototype</span></p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>Foundations</h2>
+    <p class="sub">A calm violet for actions, green only for things you finished, and amber for a streak worth protecting.</p>
+    <div class="found">
+      <div>
+        <div class="logo-box" role="img" aria-label="Tally logo: a white check mark on a violet rounded square">
+          <svg width="150" height="150" viewBox="0 0 64 64" aria-hidden="true"><path d="M14 33l12 12 24-27" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <p class="cap" style="text-align:left">Logo: a check mark drawn as a single tally stroke.</p>
+      </div>
+      <div>
+        <div class="swatches">
+          <div class="sw" style="background:#5B4BDB;color:#fff">Violet<small>#5B4BDB</small></div>
+          <div class="sw" style="background:#1F9D68;color:#fff">Done green<small>#1F9D68</small></div>
+          <div class="sw" style="background:#F5A524;color:#2B1B00">Streak amber<small>#F5A524</small></div>
+          <div class="sw" style="background:#1B2233;color:#fff">Ink<small>#1B2233</small></div>
+          <div class="sw" style="background:#F3F6FA;color:#1B2233;border:1px solid #E3E8F0">Background<small>#F3F6FA</small></div>
+          <div class="sw" style="background:#ECEAFD;color:#4637B8">Violet tint<small>#ECEAFD</small></div>
+        </div>
+      </div>
+      <div class="type-spec">
+        <div class="big">Aa</div>
+        <div class="row"><span><b>Manrope</b> 800</span><span>Screen titles, 24 px</span></div>
+        <div class="row"><span><b>Manrope</b> 700</span><span>Habit names, 15 px</span></div>
+        <div class="row"><span><b>Manrope</b> 500</span><span>Supporting text, 13 px</span></div>
+        <div class="row"><span><b>Targets</b></span><span>44 px minimum tap size</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Key screens</h2>
+    <p class="sub">The three screens people use every day: check in, see progress, add a habit.</p>
+    <div class="phones">
+
+      <div>
+        <div class="phone"><div class="screen">
+          <div class="status"><span>9:41</span><span>5G 100%</span></div>
+          <h3>Good morning, Sara</h3>
+          <p class="date">Monday, 9 November</p>
+          <div class="ring-card">
+            <svg class="ring" viewBox="0 0 36 36" role="img" aria-label="3 of 5 habits done"><circle cx="18" cy="18" r="15.5" fill="none" stroke="#E3E8F0" stroke-width="4"/><circle cx="18" cy="18" r="15.5" fill="none" stroke="#5B4BDB" stroke-width="4" stroke-linecap="round" stroke-dasharray="58.4 97.4" transform="rotate(-90 18 18)"/><text x="18" y="22" text-anchor="middle" font-size="11" font-weight="800" fill="#1B2233">3/5</text></svg>
+            <div><b>2 left today</b><span>You are on a 12 day streak</span></div>
+          </div>
+          <div class="habit"><div class="ic" style="background:#DDF4EA">💧</div><div class="tx"><b>Drink water</b><span>8 glasses</span></div><div class="chk on"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 7.5l3.2 3.2L12 3.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+          <div class="habit"><div class="ic" style="background:#ECEAFD">📖</div><div class="tx"><b>Read 20 minutes</b><span>Streak 12 days</span></div><div class="chk on"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 7.5l3.2 3.2L12 3.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+          <div class="habit"><div class="ic" style="background:#FDF0D5">🚶</div><div class="tx"><b>Walk outside</b><span>30 minutes</span></div><div class="chk on"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 7.5l3.2 3.2L12 3.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+          <div class="habit"><div class="ic" style="background:#FDE3E3">🧘</div><div class="tx"><b>Stretch</b><span>10 minutes</span></div><div class="chk"></div></div>
+          <div class="habit"><div class="ic" style="background:#E3EEFD">📝</div><div class="tx"><b>Plan tomorrow</b><span>Evening</span></div><div class="chk"></div></div>
+          <div class="tabs"><span class="on">Today</span><span>Progress</span><span>Habits</span><span>Profile</span></div>
+        </div></div>
+        <p class="cap">Today</p>
+      </div>
+
+      <div>
+        <div class="phone"><div class="screen">
+          <div class="status"><span>9:41</span><span>5G 100%</span></div>
+          <div class="back">&lsaquo; Today</div>
+          <h3>Read 20 minutes</h3>
+          <p class="date">Every day</p>
+          <div class="stats">
+            <div class="stat"><b style="color:#B97700">12</b><span>Day streak</span></div>
+            <div class="stat"><b>27</b><span>Best streak</span></div>
+            <div class="stat"><b>86%</b><span>Last 30 days</span></div>
+            <div class="stat"><b>142</b><span>Total check-ins</span></div>
+          </div>
+          <div class="cal">
+            <h4>November</h4>
+            <div class="grid7">
+              <i class="lab">M</i><i class="lab">T</i><i class="lab">W</i><i class="lab">T</i><i class="lab">F</i><i class="lab">S</i><i class="lab">S</i>
+              <i></i><i></i><i></i><i></i><i></i><i></i><i class="d3"></i>
+              <i class="d3"></i><i class="d2"></i><i class="d3"></i><i class="d3"></i><i class="d1"></i><i class="d3"></i><i class="d3"></i>
+              <i class="d3"></i>
+            </div>
+          </div>
+          <div class="tabs"><span>Today</span><span class="on">Progress</span><span>Habits</span><span>Profile</span></div>
+        </div></div>
+        <p class="cap">Habit detail</p>
+      </div>
+
+      <div>
+        <div class="phone"><div class="screen">
+          <div class="status"><span>9:41</span><span>5G 100%</span></div>
+          <div class="back">Cancel</div>
+          <h3>New habit</h3>
+          <p class="date">Start small. You can change this later.</p>
+          <div class="field"><label>Name</label><div class="input">Stretch</div></div>
+          <div class="field"><label>Icon</label><div class="icons"><span>💧</span><span>📖</span><span class="sel">🧘</span><span>🚶</span><span>📝</span></div></div>
+          <div class="field"><label>How often</label><div class="chips"><span class="chip sel">Every day</span><span class="chip">Weekdays</span><span class="chip">3 times a week</span></div></div>
+          <div class="field"><label>Reminder</label><div class="input" style="border-color:#E3E8F0;background:#fff;font-weight:500">Every day at 7:30 AM</div></div>
+          <div class="btn">Add habit</div>
+        </div></div>
+        <p class="cap">Add a habit</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Design decisions</h2>
+    <div class="notes">
+      <div><h3>Today is the home screen</h3><p>People open a habit app to check in, so the list is first and the ring answers "how am I doing" at a glance.</p></div>
+      <div><h3>Colour carries meaning</h3><p>Green means done, amber means a streak, violet means "tap here". Nothing is coloured only for decoration.</p></div>
+      <div><h3>Easy to tap, easy to read</h3><p>Rows are tall enough to tap comfortably, and every state has a label as well as a colour.</p></div>
+      <div><h3>Short forms</h3><p>Adding a habit takes four fields with sensible defaults, so it never feels like setup work.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">Tally is a concept created as a UI design sample by Tujummal Hussain. Screens are built in HTML and CSS.</div></footer>
+</body>
+</html>

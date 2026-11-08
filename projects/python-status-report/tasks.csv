@@ -1,0 +1,13 @@
+id,task,owner,status,due
+1,Audit current site content,Amna,Done,2026-10-20
+2,Agree sitemap and templates,Bilal,Done,2026-10-27
+3,Design homepage and service pages,Sara,Done,2026-11-03
+4,Design blog and case study pages,Sara,In progress,2026-11-12
+5,Build responsive templates,Hamza,In progress,2026-11-14
+6,Migrate blog posts,Amna,In progress,2026-11-16
+7,Set up redirects for old URLs,Hamza,Blocked,2026-11-06
+8,Connect contact form to email,Hamza,Not started,2026-11-18
+9,Write launch announcement,Bilal,Not started,2026-11-20
+10,Accessibility and speed checks,Sara,Not started,2026-11-19
+11,Client content approval,Bilal,Blocked,2026-11-05
+12,Go-live checklist,Bilal,Not started,2026-11-25
