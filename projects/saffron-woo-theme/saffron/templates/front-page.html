@@ -1,0 +1,25 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","layout":{"type":"constrained"}} -->
+<main class="wp-block-group"><!-- wp:pattern {"slug":"saffron/hero"} /-->
+
+<!-- wp:pattern {"slug":"saffron/categories"} /-->
+
+<!-- wp:heading {"textAlign":"center","align":"wide","style":{"spacing":{"margin":{"top":"5rem"}}},"fontSize":"x-large"} -->
+<h2 class="wp-block-heading alignwide has-text-align-center has-x-large-font-size" style="margin-top:5rem">New this season</h2>
+<!-- /wp:heading -->
+
+<!-- wp:woocommerce/product-collection {"queryId":2,"query":{"perPage":8,"pages":1,"offset":0,"postType":"product","order":"desc","orderBy":"date","inherit":false},"displayLayout":{"type":"flex","columns":4},"align":"wide"} -->
+<div class="wp-block-woocommerce-product-collection alignwide"><!-- wp:woocommerce/product-template -->
+<!-- wp:woocommerce/product-image {"isDescendentOfQueryLoop":true} /-->
+
+<!-- wp:post-title {"textAlign":"center","isLink":true,"fontSize":"medium","__woocommerceNamespace":"woocommerce/product-collection/product-title"} /-->
+
+<!-- wp:woocommerce/product-price {"isDescendentOfQueryLoop":true,"textAlign":"center"} /-->
+
+<!-- wp:woocommerce/product-button {"isDescendentOfQueryLoop":true,"textAlign":"center"} /-->
+<!-- /wp:woocommerce/product-template --></div>
+<!-- /wp:woocommerce/product-collection --></main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->
