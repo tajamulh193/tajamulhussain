@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Doorstep Pantry | Business Plan and Financial Model (sample)</title>
+<meta name="description" content="Sample business plan by Tujummal Hussain: market sizing, competitor analysis and a live 36-month financial model with NPV, IRR and break-even for a fictional grocery delivery start-up.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#172033;--navy:#1B2742;--navy-d:#121B30;--crimson:#8F1D3F;--mist:#EDF0F4;--paper:#fff;--line:#D5DBE4;--slate:#566275;--green:#1E7B4D;--green-l:#DDF1E6;--red:#B3261E;--red-l:#F9DEDC;--teal:#2C7A7B;--gold:#C08A1E;
+--serif:"Source Serif 4",Georgia,serif;--sans:"Public Sans","Segoe UI",system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--sans)}
+a{color:var(--crimson)}
+:focus-visible{outline:3px solid #E0A526;outline-offset:2px}
+.note{background:#FFF8E6;border-bottom:1px solid #F0DFB0;font-size:.85rem;text-align:center;padding:.45rem 1rem;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding:0 1.25rem}
+.hero{background:var(--navy-d);color:#fff;padding:3rem 0 2.5rem}
+.hero .eyebrow{color:#E7B7C5;font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:.8rem;margin:0}
+.hero h1{font:700 clamp(1.9rem,4vw,2.8rem)/1.15 var(--serif);margin:.4rem 0 .8rem;max-width:22ch}
+.hero p.lead{color:#C9D1E0;max-width:62ch;font-size:1.08rem;margin:0}
+.hero .facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;margin-top:2rem}
+.hero .facts div{border-top:3px solid var(--crimson);padding-top:.6rem}
+.hero .facts b{display:block;font:700 1.5rem/1.2 var(--sans);font-variant-numeric:tabular-nums}
+.hero .facts span{color:#B9C3D6;font-size:.85rem}
+nav.toc{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--line)}
+nav.toc .wrap{display:flex;gap:1.25rem;overflow-x:auto;white-space:nowrap;padding-top:.7rem;padding-bottom:.7rem;font-size:.9rem;font-weight:600}
+nav.toc a{color:var(--navy);text-decoration:none}nav.toc a:hover{color:var(--crimson)}
+section{padding:2.75rem 0;border-bottom:1px solid var(--mist)}
+h2{font:700 1.7rem/1.2 var(--serif);color:var(--navy);margin:0 0 .4rem}
+h3{font:600 1.1rem/1.3 var(--sans);color:var(--navy);margin:0 0 .4rem}
+.lede{color:var(--slate);max-width:70ch;margin:0 0 1.5rem}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.box{border:1px solid var(--line);border-radius:8px;padding:1.1rem 1.2rem;background:#fff}
+.box.tint{background:var(--mist);border-color:transparent}
+.box p{margin:.2rem 0 0;color:var(--slate);font-size:.95rem}
+ul.tick{list-style:none;padding:0;margin:0}ul.tick li{padding-left:1.4rem;position:relative;margin:.4rem 0}ul.tick li:before{content:"";position:absolute;left:0;top:.55em;width:.6rem;height:.6rem;background:var(--crimson);border-radius:2px}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{padding:.55rem .6rem;border-bottom:1px solid var(--mist);text-align:left}
+th{font-size:.75rem;text-transform:uppercase;letter-spacing:.04em;color:var(--slate)}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+.funnel div{margin:0 auto .5rem;color:#fff;border-radius:6px;padding:.8rem 1rem;display:flex;justify-content:space-between;gap:1rem;align-items:baseline}
+.funnel b{font-size:1.25rem;font-variant-numeric:tabular-nums}
+.funnel small{opacity:.85}
+/* model */
+.model{display:grid;grid-template-columns:330px 1fr;gap:1.75rem;align-items:start}
+.controls{position:sticky;top:3.5rem;background:var(--mist);border-radius:8px;padding:1rem 1.1rem}
+.seg{display:flex;background:#fff;border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-bottom:1rem}
+.seg button{flex:1;border:0;background:none;padding:.5rem;font:600 .85rem var(--sans);cursor:pointer;color:var(--ink)}
+.seg button[aria-pressed=true]{background:var(--navy);color:#fff}
+.ctl{margin:.6rem 0 .9rem}
+.ctl label{display:flex;justify-content:space-between;font-size:.85rem;font-weight:600}
+.ctl output{font-variant-numeric:tabular-nums;color:var(--crimson)}
+.ctl input{width:100%;accent-color:var(--crimson)}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.9rem;margin-bottom:1.25rem}
+.kpi{border:1px solid var(--line);border-radius:8px;padding:.8rem .9rem;border-top:4px solid var(--navy)}
+.kpi span{display:block;color:var(--slate);font-size:.74rem;text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+.kpi strong{display:block;font:700 1.45rem/1.25 var(--sans);font-variant-numeric:tabular-nums}
+.kpi small{color:var(--slate);font-size:.78rem}
+.kpi.good{border-top-color:var(--green)}.kpi.bad{border-top-color:var(--red)}
+.legend{display:flex;gap:1rem;flex-wrap:wrap;font-size:.8rem;color:var(--slate)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:2px;vertical-align:-1px;margin-right:.35rem}
+.chip{display:inline-block;font-size:.75rem;font-weight:600;padding:.1rem .5rem;border-radius:99px}
+.chip.y{background:var(--green-l);color:var(--green)}.chip.n{background:var(--red-l);color:var(--red)}.chip.m{background:#FCEFD6;color:#8A5300}
+.neg{color:var(--red)}
+footer{padding:2rem 0 3rem;color:var(--slate);font-size:.9rem}
+svg text{font-family:var(--sans)}
+@media (max-width:900px){.model{grid-template-columns:1fr}.controls{position:static}.g2,.g3{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}.hero .facts{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<p class="note">Sample project by <a href="../../">Tujummal Hussain</a>. Doorstep Pantry is a fictional business; market figures are illustrative estimates, not sourced data.</p>
+<header class="hero"><div class="wrap">
+  <p class="eyebrow">Business plan · Seed round · 36-month model</p>
+  <h1>Doorstep Pantry: 30-minute grocery delivery for Islamabad and Rawalpindi</h1>
+  <p class="lead">A dark-store grocery service for busy households. This plan sets out the market, the competition, the go-to-market and a live financial model. Change any assumption and every number on this page updates.</p>
+  <div class="facts" id="heroFacts"></div>
+</div></header>
+<nav class="toc" aria-label="Sections"><div class="wrap"><a href="#summary">Summary</a><a href="#market">Market</a><a href="#competition">Competition</a><a href="#gtm">Go-to-market</a><a href="#model">Financial model</a><a href="#pl">Annual P&amp;L</a><a href="#risks">Risks</a></div></nav>
+
+<main>
+<section id="summary"><div class="wrap g2">
+  <div><h2>Executive summary</h2>
+  <p>Households in the twin cities spend an estimated PKR 290 billion a year on groceries, yet fewer than 3% of orders are placed online. Existing apps compete on discounts and deliver in 2 to 4 hours. Doorstep Pantry will run three small dark stores carrying 2,500 everyday items and deliver in 30 minutes, priced in line with neighbourhood stores.</p>
+  <p>We are raising <b id="askTxt"></b> to open the first three stores, reach operating break-even and build a base of repeat customers. The model below shows the path, and the sensitivity of the result to the four assumptions that matter most.</p></div>
+  <div class="box tint"><h3>The plan in six lines</h3><ul class="tick">
+    <li><b>Problem:</b> unreliable delivery windows and stock-outs on existing apps.</li>
+    <li><b>Solution:</b> curated range, own riders, 30-minute promise, live stock.</li>
+    <li><b>Customer:</b> dual-income households in sectors F, G, E and DHA.</li>
+    <li><b>Revenue:</b> product margin plus a small delivery fee under PKR 2,000 basket.</li>
+    <li><b>Moat:</b> order-density per store and private-label staples from Month 12.</li>
+    <li><b>Team:</b> operations lead, category buyer, product engineer, finance (PhD).</li></ul></div>
+</div></section>
+
+<section id="market"><div class="wrap">
+  <h2>Market sizing</h2>
+  <p class="lede">Top-down estimate cross-checked with a bottom-up count of target households. Each layer narrows to the customers we can realistically serve from three stores.</p>
+  <div class="g2">
+    <div class="funnel" id="funnel"></div>
+    <div class="scroll"><table><thead><tr><th>Bottom-up check</th><th class="n">Value</th></tr></thead><tbody>
+      <tr><td>Households in service radius (3 stores × 3 km)</td><td class="n">185,000</td></tr>
+      <tr><td>Share with income above PKR 250k / month</td><td class="n">34%</td></tr>
+      <tr><td>Target households</td><td class="n">62,900</td></tr>
+      <tr><td>Monthly grocery spend per target household</td><td class="n">PKR 72,000</td></tr>
+      <tr><td>Share we can win by Year 3</td><td class="n">3.5%</td></tr>
+      <tr><td><b>Implied Year-3 revenue</b></td><td class="n"><b>PKR 1.90 bn</b></td></tr>
+    </tbody></table>
+    <p style="color:var(--slate);font-size:.88rem">The financial model's base case reaches a lower run-rate than this, which leaves headroom rather than relying on the top of the range.</p></div>
+  </div>
+</div></section>
+
+<section id="competition"><div class="wrap">
+  <h2>Competitive landscape</h2>
+  <p class="lede">Competitors are described by type, not named. Positioning plots typical delivery time against price compared with a neighbourhood store (100 = same price).</p>
+  <div class="g2">
+    <div id="posmap"></div>
+    <div class="scroll"><table><thead><tr><th></th><th>Speed</th><th>Range</th><th>Price</th><th>Live stock</th></tr></thead><tbody>
+      <tr><td><b>Doorstep Pantry</b></td><td><span class="chip y">30 min</span></td><td><span class="chip m">2,500 SKUs</span></td><td><span class="chip y">At par</span></td><td><span class="chip y">Yes</span></td></tr>
+      <tr><td>Large grocery app</td><td><span class="chip n">2–4 h</span></td><td><span class="chip y">10k+</span></td><td><span class="chip m">+4%</span></td><td><span class="chip n">No</span></td></tr>
+      <tr><td>Hypermarket online</td><td><span class="chip n">Next day</span></td><td><span class="chip y">20k+</span></td><td><span class="chip y">−3%</span></td><td><span class="chip m">Partly</span></td></tr>
+      <tr><td>Food-delivery add-on</td><td><span class="chip y">35 min</span></td><td><span class="chip n">800</span></td><td><span class="chip n">+12%</span></td><td><span class="chip y">Yes</span></td></tr>
+      <tr><td>Corner store (WhatsApp)</td><td><span class="chip m">60 min</span></td><td><span class="chip n">Varies</span></td><td><span class="chip y">At par</span></td><td><span class="chip n">No</span></td></tr>
+    </tbody></table></div>
+  </div>
+</div></section>
+
+<section id="gtm"><div class="wrap">
+  <h2>Go-to-market and operations</h2>
+  <p class="lede">Launch one store at a time and only open the next when the previous one passes 450 orders a day.</p>
+  <div class="g3">
+    <div class="box"><h3>Months 1–6: Prove one store</h3><p>F-7 store. Referral codes through school and office WhatsApp groups, first-order credit, 30-minute promise or delivery free. Target 60% month-2 retention.</p></div>
+    <div class="box"><h3>Months 7–18: Three stores</h3><p>Open DHA and G-11 stores. Shared buying cuts cost of goods by about 2 points. Launch subscriptions for milk, bread and eggs.</p></div>
+    <div class="box"><h3>Months 19–36: Margin</h3><p>Private-label staples, supplier-funded promotions, and route batching at peak times to cut delivery cost per order by a fifth.</p></div>
+  </div>
+</div></section>
+
+<section id="model"><div class="wrap">
+  <h2>Financial model</h2>
+  <p class="lede">36 monthly periods. Revenue = orders × basket size. Contribution = gross margin − delivery − payment fees. Marketing spend scales with new customers acquired. Values in PKR.</p>
+  <div class="model">
+    <form class="controls" id="ctl" onsubmit="return false" aria-label="Model assumptions">
+      <div class="seg" role="group" aria-label="Scenario"><button type="button" data-s="down">Downside</button><button type="button" data-s="base" aria-pressed="true">Base</button><button type="button" data-s="up">Upside</button></div>
+      <div id="sliders"></div>
+    </form>
+    <div>
+      <div class="kpis" id="kpis"></div>
+      <h3>Monthly revenue, EBITDA and cash</h3>
+      <div id="chart"></div>
+      <div class="legend"><span><i style="background:#2C7A7B"></i>Revenue</span><span><i style="background:#8F1D3F"></i>EBITDA</span><span><i style="background:#1B2742;height:3px"></i>Cash balance (right axis)</span></div>
+      <h3 style="margin-top:1.5rem">Unit economics per order (Month 24)</h3>
+      <div id="unit"></div>
+      <h3 style="margin-top:1.5rem">Sensitivity: NPV if one assumption moves ±20%</h3>
+      <div id="tornado"></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="pl"><div class="wrap">
+  <h2>Annual profit and loss</h2>
+  <p class="lede">Rolled up from the monthly model, in PKR millions.</p>
+  <div class="scroll"><table id="pltable"></table></div>
+</div></section>
+
+<section id="risks"><div class="wrap">
+  <h2>Key risks and mitigations</h2>
+  <div class="g3">
+    <div class="box"><h3>Discount war</h3><p>Larger apps subsidise orders. We compete on reliability, and the model sets aside no discount budget beyond the first order.</p></div>
+    <div class="box"><h3>Rider costs rise</h3><p>Fuel is about 40% of delivery cost. A 20% rise lowers NPV by the amount shown in the sensitivity chart; e-bikes in Year 2 are the hedge.</p></div>
+    <div class="box"><h3>Slow repeat rate</h3><p>Orders per customer is the biggest driver after basket size. Monthly cohort tracking gives an early warning by Month 3.</p></div>
+  </div>
+</div></section>
+</main>
+<footer><div class="wrap">Built with plain HTML, CSS and JavaScript. The model is a single function, so every chart and table is recalculated from the same numbers. <a href="../../#projects">Back to the portfolio</a></div></footer>
+
+<script>
+const SC={
+ base:{start:80,growth:9,aov:3400,gm:22,del:210,cac:1100,fixed:3.2,capex:45,disc:24,mult:8},
+ down:{start:60,growth:6.5,aov:3000,gm:20,del:240,cac:1500,fixed:3.4,capex:45,disc:24,mult:6},
+ up:{start:90,growth:10,aov:3600,gm:23,del:195,cac:950,fixed:3.1,capex:45,disc:24,mult:9}
+};
+const DEF=[
+ ["start","Orders per day at launch",30,200,5,v=>v],
+ ["growth","Monthly order growth, Year 1",2,15,.5,v=>v+"%"],
+ ["aov","Average basket (PKR)",2000,5000,50,v=>v.toLocaleString()],
+ ["gm","Gross margin",14,30,.5,v=>v+"%"],
+ ["del","Delivery cost per order (PKR)",120,350,5,v=>v],
+ ["cac","Cost to acquire a customer (PKR)",400,2500,50,v=>v.toLocaleString()],
+ ["fixed","Fixed costs per store / month (PKR m)",2,5,.1,v=>v.toFixed(1)],
+ ["capex","Set-up cost per store (PKR m)",25,80,1,v=>v],
+ ["disc","Discount rate (annual)",12,35,1,v=>v+"%"],
+ ["mult","Exit value (× Year-3 EBITDA)",4,14,.5,v=>v+"×"]
+];
+let A={...SC.base};
+const $=s=>document.querySelector(s);
+
+function model(a){
+  const N=36,rows=[];let cash=0,minCash=0,customers=0,be=null,orders=a.start;
+  const storeOpen=[1,9,15]; // months each store opens
+  for(let t=1;t<=N;t++){
+    const stores=storeOpen.filter(m=>t>=m).length;
+    const g=(t<=12?a.growth:t<=24?a.growth*.7:a.growth*.35)/100;
+    if(t>1)orders=orders*(1+g)+(storeOpen.includes(t)?a.start*1.5:0);
+    const cap=stores*1000; orders=Math.min(orders,cap);
+    const mo=orders*30, rev=mo*a.aov, gp=rev*a.gm/100;
+    const delCost=mo*a.del*(t>18?.82:1), pay=rev*.015;
+    const active=mo/3.2; const newC=Math.max(0,active-customers*0.88); customers=active;
+    const mkt=newC*a.cac+(storeOpen.includes(t)?1.5e6:0);
+    const fixed=stores*a.fixed*1e6+1.8e6; // + head office
+    const ebitda=gp-delCost-pay-mkt-fixed;
+    const capex=storeOpen.includes(t)?a.capex*1e6:0;
+    const tax=ebitda>0&&t>24?ebitda*.29:0;
+    const fcf=ebitda-capex-tax; cash+=fcf; minCash=Math.min(minCash,cash);
+    if(be===null&&ebitda>0&&t>3)be=t;
+    rows.push({t,stores,orders,mo,rev,gp,delCost,pay,mkt,fixed,ebitda,capex,tax,fcf,cash,newC});
+  }
+  const r=Math.pow(1+a.disc/100,1/12)-1;
+  const y3=rows.slice(24).reduce((s,x)=>s+x.ebitda,0);
+  const tv=Math.max(0,y3)*a.mult;
+  const flows=rows.map(x=>x.fcf); flows[N-1]+=tv;
+  const npv=flows.reduce((s,f,i)=>s+f/Math.pow(1+r,i+1),0);
+  let irr=null;{let lo=-.99,hi=1,f=x=>flows.reduce((s,v,i)=>s+v/Math.pow(1+x,i+1),0);
+    if(f(lo)*f(hi)<0){for(let i=0;i<200;i++){const m=(lo+hi)/2;(f(m)>0)?lo=m:hi=m}irr=Math.pow(1+(lo+hi)/2,12)-1}}
+  const last=rows[23], contrib=(last.gp-last.delCost-last.pay)/last.mo;
+  const ltv=contrib*3.2*14; // ~14 months average life
+  return {rows,minCash,be,npv,irr,y3,tv,contrib,ltv,ask:Math.ceil(-minCash*1.2/5e7)*5e7};
+}
+const m=v=>(v/1e6).toFixed(1), fmt=v=>(v<0?"−":"")+"PKR "+Math.abs(v/1e6).toFixed(1)+"m";
+const bn=v=>"PKR "+(v/1e9).toFixed(2)+"bn";
+
+function sliders(){
+  $("#sliders").innerHTML=DEF.map(([k,l,mn,mx,st,f])=>`<div class="ctl"><label for="s_${k}">${l}<output id="o_${k}">${f(A[k])}</output></label><input type="range" id="s_${k}" min="${mn}" max="${mx}" step="${st}" value="${A[k]}" data-k="${k}"></div>`).join("");
+}
+$("#ctl").addEventListener("input",e=>{const k=e.target.dataset.k;if(!k)return;A[k]=+e.target.value;$("#o_"+k).textContent=DEF.find(d=>d[0]===k)[5](A[k]);document.querySelectorAll(".seg button").forEach(b=>b.setAttribute("aria-pressed","false"));draw()});
+document.querySelectorAll(".seg button").forEach(b=>b.onclick=()=>{A={...SC[b.dataset.s]};document.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed",x===b));sliders();draw()});
+
+function draw(){
+  const R=model(A), rows=R.rows;
+  const y3rev=rows.slice(24).reduce((s,x)=>s+x.rev,0);
+  $("#askTxt").textContent="PKR "+(R.ask/1e6).toFixed(0)+" million";
+  $("#heroFacts").innerHTML=[[`PKR ${(R.ask/1e6).toFixed(0)}m`,"Seed raise"],[R.be?"Month "+R.be:"Not in 36 months","Operating break-even"],[bn(y3rev),"Year-3 revenue"],[R.irr===null?"n/a":(R.irr*100).toFixed(0)+"%","Investor IRR (with exit)"]].map(([b,s])=>`<div><b>${b}</b><span>${s}</span></div>`).join("");
+  $("#kpis").innerHTML=[
+    ["NPV",fmt(R.npv),`at ${A.disc}% incl. exit value`,R.npv>0?"good":"bad"],
+    ["IRR",R.irr===null?"n/a":(R.irr*100).toFixed(0)+"%","annualised",R.irr>A.disc/100?"good":"bad"],
+    ["Break-even",R.be?"Month "+R.be:"None","first month EBITDA > 0",R.be&&R.be<=24?"good":"bad"],
+    ["Peak funding need",fmt(-R.minCash),"lowest cash point",""],
+  ].map(([l,v,s,c])=>`<div class="kpi ${c}"><span>${l}</span><strong>${v}</strong><small>${s}</small></div>`).join("");
+  chart(rows); unit(R); tornado(); pl(rows);
+}
+
+function chart(rows){
+  const W=780,H=300,P={l:56,r:62,t:12,b:28},iw=W-P.l-P.r,ih=H-P.t-P.b;
+  const maxR=Math.max(...rows.map(r=>r.rev)),minE=Math.min(0,...rows.map(r=>r.ebitda));
+  const top=Math.ceil(maxR/5e7)*5e7, bot=Math.floor(minE/5e7)*5e7;
+  const y=v=>P.t+ih*(top-v)/(top-bot);
+  const cmax=Math.max(0,...rows.map(r=>r.cash)),cmin=Math.min(0,...rows.map(r=>r.cash));
+  const ct=Math.ceil(cmax/1e8)*1e8||1e8, cb=Math.floor(cmin/1e8)*1e8;
+  const yc=v=>P.t+ih*(ct-v)/(ct-cb);
+  const bw=iw/36, x=i=>P.l+i*bw;
+  let g="";
+  for(let v=bot;v<=top;v+=5e7){g+=`<line x1="${P.l}" x2="${W-P.r}" y1="${y(v)}" y2="${y(v)}" stroke="${v===0?"#8A94A6":"#EEF1F5"}"/><text x="${P.l-6}" y="${y(v)+4}" font-size="10.5" text-anchor="end" fill="#566275">${v/1e6}m</text>`}
+  for(let v=cb;v<=ct;v+=1e8)g+=`<text x="${W-P.r+6}" y="${yc(v)+4}" font-size="10.5" fill="#1B2742">${v/1e6}m</text>`;
+  rows.forEach((r,i)=>{g+=`<rect x="${x(i)+bw*.12}" y="${y(r.rev)}" width="${bw*.38}" height="${y(0)-y(r.rev)}" fill="#2C7A7B"><title>M${r.t} revenue ${fmt(r.rev)}</title></rect>`;
+    const e=r.ebitda;g+=`<rect x="${x(i)+bw*.5}" y="${y(Math.max(0,e))}" width="${bw*.38}" height="${Math.abs(y(e)-y(0))}" fill="#8F1D3F"><title>M${r.t} EBITDA ${fmt(e)}</title></rect>`;
+    if((i+1)%6===0||i===0)g+=`<text x="${x(i)+bw/2}" y="${H-8}" font-size="10.5" text-anchor="middle" fill="#566275">M${r.t}</text>`});
+  g+=`<path d="${rows.map((r,i)=>(i?"L":"M")+(x(i)+bw/2).toFixed(1)+","+yc(r.cash).toFixed(1)).join(" ")}" fill="none" stroke="#1B2742" stroke-width="2.5"/>`;
+  $("#chart").innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Monthly revenue and EBITDA bars with cash balance line over 36 months">${g}</svg>`;
+}
+
+function unit(R){
+  const r=R.rows[23],per=v=>v/r.mo;
+  const items=[["Basket",per(r.rev),"#2C7A7B"],["Cost of goods",-per(r.rev-r.gp),"#8A94A6"],["Delivery",-per(r.delCost),"#C08A1E"],["Payment fees",-per(r.pay),"#B9C3D6"],["Contribution",R.contrib,R.contrib>0?"#1E7B4D":"#B3261E"]];
+  const max=items[0][1];
+  $("#unit").innerHTML=`<div class="scroll"><table><tbody>${items.map(([l,v,c])=>`<tr><td style="width:140px">${l}</td><td><div style="height:14px;width:${Math.abs(v)/max*100}%;background:${c};border-radius:3px"></div></td><td class="n ${v<0?"neg":""}" style="width:110px">PKR ${Math.round(v).toLocaleString()}</td></tr>`).join("")}<tr><td colspan="2">Lifetime value per customer ÷ acquisition cost</td><td class="n"><b>${(R.ltv/A.cac).toFixed(1)}×</b></td></tr></tbody></table></div>`;
+}
+
+function tornado(){
+  const base=model(A).npv, keys=[["aov","Basket size"],["gm","Gross margin"],["growth","Order growth"],["del","Delivery cost"],["cac","Acquisition cost"],["fixed","Fixed costs"]];
+  const res=keys.map(([k,l])=>{const lo=model({...A,[k]:A[k]*.8}).npv-base,hi=model({...A,[k]:A[k]*1.2}).npv-base;return {l,lo,hi,span:Math.abs(hi-lo)}}).sort((a,b)=>b.span-a.span);
+  const mx=Math.max(...res.flatMap(r=>[Math.abs(r.lo),Math.abs(r.hi)]))||1;
+  const W=780,rowH=34,H=res.length*rowH+30,c=W/2+60,sc=(W/2-90)/mx;
+  let g=`<line x1="${c}" x2="${c}" y1="0" y2="${H-24}" stroke="#8A94A6"/>`;
+  res.forEach((r,i)=>{const yy=i*rowH+6;
+    [[r.lo,"#B9C3D6","−20%"],[r.hi,"#1B2742","+20%"]].forEach(([v,col])=>{const w=Math.abs(v)*sc;g+=`<rect x="${v<0?c-w:c}" y="${yy}" width="${w}" height="${rowH-12}" fill="${col}" rx="2"><title>${r.l}: ${fmt(v)}</title></rect>`});
+    g+=`<text x="8" y="${yy+16}" font-size="12" fill="#172033">${r.l}</text>`;
+    g+=`<text x="${c-Math.abs(r.lo)*sc*(r.lo<0?1:0)-4}" y="${yy+16}" font-size="10.5" text-anchor="end" fill="#566275">${r.lo<0?fmt(r.lo):""}</text>`;
+    g+=`<text x="${c+Math.max(r.hi,0)*sc+4}" y="${yy+16}" font-size="10.5" fill="#566275">${r.hi>0?"+"+fmt(r.hi).replace("PKR ",""):""}</text>`});
+  g+=`<text x="${c}" y="${H-6}" font-size="11" text-anchor="middle" fill="#566275">Change in NPV from base (${fmt(base)}) · light = assumption −20%, dark = +20%</text>`;
+  $("#tornado").innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Tornado chart of NPV sensitivity">${g}</svg>`;
+}
+
+function pl(rows){
+  const yr=i=>rows.slice(i*12,i*12+12), sum=(a,k)=>a.reduce((s,x)=>s+x[k],0);
+  const lines=[["Orders (thousands)",a=>(sum(a,"mo")/1000).toFixed(0)],["Revenue",a=>m(sum(a,"rev")),1],["Gross profit",a=>m(sum(a,"gp"))],["Gross margin",a=>(sum(a,"gp")/sum(a,"rev")*100).toFixed(1)+"%"],["Delivery and payment costs",a=>"("+m(sum(a,"delCost")+sum(a,"pay"))+")"],["Marketing",a=>"("+m(sum(a,"mkt"))+")"],["Fixed costs",a=>"("+m(sum(a,"fixed"))+")"],["EBITDA",a=>m(sum(a,"ebitda")),1],["EBITDA margin",a=>(sum(a,"ebitda")/sum(a,"rev")*100).toFixed(1)+"%"],["Store set-up (capex)",a=>"("+m(sum(a,"capex"))+")"],["Tax",a=>"("+m(sum(a,"tax"))+")"],["Free cash flow",a=>m(sum(a,"fcf")),1],["Closing cash (before raise)",a=>m(a[11].cash),1]];
+  $("#pltable").innerHTML=`<thead><tr><th>PKR millions</th><th class="n">Year 1</th><th class="n">Year 2</th><th class="n">Year 3</th></tr></thead><tbody>`+lines.map(([l,f,b])=>`<tr>${b?`<td><b>${l}</b></td>`:`<td>${l}</td>`}${[0,1,2].map(i=>{const v=f(yr(i));return `<td class="n ${String(v).startsWith("-")?"neg":""}">${b?"<b>"+v+"</b>":v}</td>`}).join("")}</tr>`).join("")+"</tbody>";
+}
+
+// market funnel (static, illustrative)
+$("#funnel").innerHTML=[["TAM","Twin-cities grocery spend","PKR 290bn",100,"#1B2742"],["SAM","Online-ready households, served area","PKR 54bn",78,"#2F4A7A"],["SOM","Realistic share, three stores, Year 3","PKR 1.9bn",56,"#8F1D3F"]].map(([a,l,v,w,c])=>`<div style="width:${w}%;background:${c}"><span><small>${a}</small><br>${l}</span><b>${v}</b></div>`).join("");
+
+// positioning map
+(function(){const W=520,H=340,P=46;const pts=[["Doorstep Pantry",30,100,"#8F1D3F",1],["Large grocery app",180,104,"#566275"],["Hypermarket online",1000,97,"#566275"],["Food-delivery add-on",35,112,"#566275"],["Corner store (WhatsApp)",60,100,"#566275"]];
+ const x=v=>P+(W-P*2)*Math.log10(v/20)/Math.log10(1500/20), y=v=>H-P-(H-P*2)*(v-92)/24;
+ let g=`<rect x="${P}" y="${P/2}" width="${W-P*2}" height="${H-P*1.5}" fill="#F6F8FB"/>`;
+ [30,60,120,240,480,1000].forEach(v=>g+=`<line x1="${x(v)}" x2="${x(v)}" y1="${P/2}" y2="${H-P}" stroke="#E6EAF0"/><text x="${x(v)}" y="${H-P+16}" font-size="11" text-anchor="middle" fill="#566275">${v<60?v+"m":(v>=1000?"1 day":v/60+"h")}</text>`);
+ [95,100,105,110,115].forEach(v=>g+=`<text x="${P-6}" y="${y(v)+4}" font-size="11" text-anchor="end" fill="#566275">${v}</text>`);
+ g+=`<text x="${W/2}" y="${H-6}" font-size="11.5" text-anchor="middle" fill="#172033">Typical delivery time (log scale) →</text><text transform="translate(12 ${H/2}) rotate(-90)" font-size="11.5" text-anchor="middle" fill="#172033">Price index →</text>`;
+ g+=`<text x="${x(22)}" y="${y(94)}" font-size="11" fill="#1E7B4D" font-weight="600">Fast and fair-priced</text>`;
+ pts.forEach(([n,d,p,c,us])=>{g+=`<circle cx="${x(d)}" cy="${y(p)}" r="${us?9:7}" fill="${c}"/><text x="${x(d)+(d>500?-12:12)}" y="${y(p)+(n.startsWith("Corner")?16:4)}" font-size="12" ${d>500?'text-anchor="end"':""} fill="${c}" font-weight="${us?700:500}">${n}</text>`});
+ $("#posmap").innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Positioning map of delivery time against price">${g}</svg>`;})();
+
+sliders();draw();
+</script>
+</body>
+</html>
