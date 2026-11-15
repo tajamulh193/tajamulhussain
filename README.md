@@ -20,6 +20,10 @@ Portfolio of Tujummal Hussain, project manager and web developer (PhD, Finance a
 | `projects/project-tracker-api` | Sample Node.js REST API with 13 tests |
 | `projects/python-status-report` | Sample Python tool with 11 tests |
 | `projects/tally-app-design` | Sample mobile app UI design |
+| `projects/programme-dashboard` | Sample programme dashboard: earned value, Gantt, RAID log, RACI |
+| `projects/business-plan-model` | Sample business plan with a live 36-month financial model |
+| `projects/survey-analysis` | Sample Python statistical analysis with 12 tests |
+| `projects/beam-analysis` | Sample engineering beam analysis tool |
 | `tools/check_links.py` | Checks every link and asset on the site |
 
 All sample projects use fictional businesses and are not client work.
