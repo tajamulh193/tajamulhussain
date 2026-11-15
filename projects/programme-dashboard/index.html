@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harbourline WMS Rollout | Programme Dashboard (sample)</title>
+<meta name="description" content="Sample programme dashboard by Tujummal Hussain: earned value, schedule, RAID log and RACI for a fictional warehouse system rollout.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#172033;--navy:#1B2742;--navy-d:#121B30;--crimson:#8F1D3F;--mist:#EDF0F4;--paper:#fff;--line:#D5DBE4;--slate:#566275;
+--green:#1E7B4D;--green-l:#DDF1E6;--amber:#B26B00;--amber-l:#FCEFD6;--red:#B3261E;--red-l:#F9DEDC;--blue:#2F5DA8;--blue-l:#DFE8F7;
+--serif:"Source Serif 4",Georgia,serif;--sans:"Public Sans","Segoe UI",system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--mist);color:var(--ink);font:400 15px/1.55 var(--sans)}
+a{color:var(--crimson)}
+:focus-visible{outline:3px solid #E0A526;outline-offset:2px}
+.top{background:var(--navy-d);color:#fff}
+.top .in{max-width:1280px;margin:0 auto;padding:1rem 1.25rem;display:flex;flex-wrap:wrap;gap:.75rem 2rem;align-items:center;justify-content:space-between}
+.top h1{font:700 1.35rem/1.2 var(--serif);margin:0}
+.top p{margin:.15rem 0 0;color:#B9C3D6;font-size:.9rem}
+.meta{display:flex;gap:1.5rem;flex-wrap:wrap;font-size:.85rem;color:#B9C3D6}
+.meta b{display:block;color:#fff;font-size:1rem}
+.pill{display:inline-block;padding:.15rem .6rem;border-radius:99px;font-weight:600;font-size:.8rem}
+.pill.g{background:var(--green-l);color:var(--green)}.pill.a{background:var(--amber-l);color:var(--amber)}.pill.r{background:var(--red-l);color:var(--red)}.pill.b{background:var(--blue-l);color:var(--blue)}
+.note{background:#FFF8E6;border-bottom:1px solid #F0DFB0;font-size:.85rem;text-align:center;padding:.45rem 1rem}
+main{max-width:1280px;margin:0 auto;padding:1.25rem;display:grid;gap:1.25rem;grid-template-columns:repeat(12,minmax(0,1fr))}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:1.1rem 1.2rem;min-width:0}
+.card h2{font:700 1.1rem/1.3 var(--serif);margin:0 0 .2rem;color:var(--navy)}
+.card .sub{margin:0 0 .9rem;color:var(--slate);font-size:.85rem}
+.span12{grid-column:span 12}.span8{grid-column:span 8}.span4{grid-column:span 4}.span7{grid-column:span 7}.span5{grid-column:span 5}.span6{grid-column:span 6}
+.kpis{grid-column:span 12;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1rem}
+.kpi{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:.9rem 1rem;border-top:4px solid var(--navy)}
+.kpi.g{border-top-color:var(--green)}.kpi.a{border-top-color:var(--amber)}.kpi.r{border-top-color:var(--red)}
+.kpi span{display:block;color:var(--slate);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+.kpi strong{display:block;font:700 1.6rem/1.2 var(--sans);margin:.25rem 0 .1rem;font-variant-numeric:tabular-nums}
+.kpi small{color:var(--slate);font-size:.8rem}
+svg text{font-family:var(--sans)}
+.legend{display:flex;gap:1rem;flex-wrap:wrap;font-size:.8rem;color:var(--slate);margin-top:.5rem}
+.legend i{display:inline-block;width:14px;height:3px;vertical-align:middle;margin-right:.35rem}
+/* gantt */
+.gantt{overflow-x:auto}
+.gantt table{border-collapse:collapse;width:100%;min-width:820px;font-size:.84rem}
+.gantt th,.gantt td{border-bottom:1px solid var(--mist);padding:.35rem .5rem;text-align:left;white-space:nowrap}
+.gantt th{font-weight:600;color:var(--slate);font-size:.75rem;text-transform:uppercase;letter-spacing:.03em}
+.gantt td.tl{position:relative;width:60%;padding:0}
+.gantt tr.ws td{background:#F6F8FB;font-weight:700;color:var(--navy)}
+.track{position:relative;height:30px}
+.bar{position:absolute;top:8px;height:14px;border-radius:3px;background:var(--blue-l);overflow:hidden}
+.bar b{display:block;height:100%;background:var(--blue)}
+.bar.late b{background:var(--red)}.bar.late{background:var(--red-l)}
+.bar.done b{background:var(--green)}
+.ms{position:absolute;top:8px;width:13px;height:13px;transform:translateX(-6px) rotate(45deg);background:var(--crimson)}
+.ms.hit{background:var(--green)}
+.today{position:absolute;top:0;bottom:0;width:2px;background:var(--crimson);opacity:.55}
+.months{display:flex;position:relative;height:22px}
+.months span{flex:1;font-size:.72rem;color:var(--slate);border-left:1px solid var(--line);padding-left:4px}
+/* raid */
+.tabs{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.75rem}
+.tabs button{font:600 .82rem var(--sans);border:1px solid var(--line);background:#fff;padding:.35rem .75rem;border-radius:99px;cursor:pointer;color:var(--ink)}
+.tabs button[aria-pressed=true]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.tbl{overflow-x:auto}
+.tbl table{border-collapse:collapse;width:100%;font-size:.84rem;min-width:640px}
+.tbl th,.tbl td{text-align:left;padding:.5rem .5rem;border-bottom:1px solid var(--mist);vertical-align:top}
+.tbl th{font-size:.73rem;text-transform:uppercase;letter-spacing:.03em;color:var(--slate)}
+.tbl th button{all:unset;cursor:pointer}
+.tbl th button:after{content:" ↕";opacity:.4}
+.tbl td:first-child{white-space:nowrap}
+.score{display:inline-block;min-width:2rem;text-align:center;font-weight:700;border-radius:4px;padding:.05rem .3rem}
+/* heatmap */
+.heat{display:grid;grid-template-columns:28px repeat(5,1fr);gap:4px;font-size:.75rem}
+.heat .c{aspect-ratio:1.4;display:flex;align-items:center;justify-content:center;border-radius:4px;font-weight:700;font-size:.95rem;border:2px solid transparent;cursor:pointer;background:none;font-family:var(--sans)}
+.heat .c[aria-pressed=true]{border-color:var(--navy)}
+.heat .ax{display:flex;align-items:center;justify-content:center;color:var(--slate)}
+/* raci */
+.raci td.r{background:var(--crimson);color:#fff;font-weight:700;text-align:center}
+.raci td.a{background:var(--navy);color:#fff;font-weight:700;text-align:center}
+.raci td.c{background:var(--blue-l);color:var(--blue);font-weight:700;text-align:center}
+.raci td.i{background:var(--mist);color:var(--slate);text-align:center}
+.bars .row{display:grid;grid-template-columns:140px 1fr 70px;gap:.6rem;align-items:center;font-size:.84rem;margin:.45rem 0}
+.bars .t{height:12px;background:var(--mist);border-radius:6px;overflow:hidden;position:relative}
+.bars .t b{position:absolute;inset:0 auto 0 0;background:var(--navy);border-radius:6px}
+.bars .t i{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--crimson)}
+ul.dec{margin:0;padding-left:1.1rem}ul.dec li{margin:.35rem 0}
+footer{max-width:1280px;margin:0 auto;padding:0 1.25rem 2rem;color:var(--slate);font-size:.85rem}
+@media (max-width:1000px){.kpis{grid-template-columns:repeat(3,1fr)}.span8,.span4,.span7,.span5,.span6{grid-column:span 12}}
+@media (max-width:560px){.kpis{grid-template-columns:repeat(2,1fr)}main{padding:.75rem;gap:.75rem}.bars .row{grid-template-columns:100px 1fr 56px}}
+</style>
+</head>
+<body>
+<p class="note">Sample project by <a href="../../">Tujummal Hussain</a>. Harbourline Logistics is a fictional company and all figures are invented.</p>
+<header class="top"><div class="in">
+  <div><h1>Harbourline Logistics: Warehouse Management System rollout</h1>
+  <p>Programme dashboard · Steering committee pack · Reporting period: Month 7 of 12</p></div>
+  <div class="meta"><div>Overall status<b><span class="pill a">Amber</span></b></div><div>Sponsor<b>COO</b></div><div>Budget (BAC)<b id="bac"></b></div><div>Go-live target<b>3 sites, Month 11</b></div></div>
+</div></header>
+
+<main>
+  <section class="kpis" aria-label="Key indicators" id="kpis"></section>
+
+  <section class="card span8">
+    <h2>Earned value: cost and schedule</h2>
+    <p class="sub">Cumulative planned value (PV), earned value (EV) and actual cost (AC). The forecast line projects spend to completion at the current cost performance.</p>
+    <div id="scurve"></div>
+    <div class="legend"><span><i style="background:#8A94A6"></i>Planned value</span><span><i style="background:#2F5DA8"></i>Earned value</span><span><i style="background:#8F1D3F"></i>Actual cost</span><span><i style="background:repeating-linear-gradient(90deg,#8F1D3F 0 4px,transparent 4px 7px)"></i>Forecast (EAC)</span></div>
+  </section>
+
+  <section class="card span4">
+    <h2>Budget by workstream</h2>
+    <p class="sub">Spend to date against budget. The red tick marks where spend should be if work is on plan.</p>
+    <div class="bars" id="wsbars"></div>
+  </section>
+
+  <section class="card span12">
+    <h2>Integrated schedule</h2>
+    <p class="sub">Bars fill with % complete. Red bars are behind their planned progress at today's date; diamonds are milestones (green = achieved). The vertical line is today.</p>
+    <div class="gantt" id="gantt"></div>
+  </section>
+
+  <section class="card span8">
+    <h2>RAID log</h2>
+    <p class="sub">Risks, assumptions, issues and dependencies. Score = probability × impact (1 to 25). Click a column to sort, or a heat-map cell to filter.</p>
+    <div class="tabs" id="raidTabs" role="group" aria-label="Filter by type"></div>
+    <div class="tbl"><table id="raid"><thead><tr><th><button data-k="id">ID</button></th><th><button data-k="type">Type</button></th><th>Description and response</th><th><button data-k="owner">Owner</button></th><th><button data-k="score">Score</button></th><th><button data-k="due">Review</button></th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section class="card span4">
+    <h2>Risk heat map</h2>
+    <p class="sub">Open risks by probability (rows) and impact (columns).</p>
+    <div class="heat" id="heat"></div>
+    <p class="sub" style="margin-top:.6rem" id="heatNote">Showing all items.</p>
+    <h2 style="margin-top:1.2rem">Decisions needed this month</h2>
+    <ul class="dec">
+      <li><b>Approve £18k contingency draw</b> for extra RF scanner hardware at the Leeds site (risk R-03).</li>
+      <li><b>Confirm cut-over weekend</b> for Bristol: preferred 14–15 Sept, outside peak season.</li>
+      <li><b>Agree data-migration freeze</b> on legacy item master from Month 9.</li>
+    </ul>
+  </section>
+
+  <section class="card span12">
+    <h2>RACI: who does what</h2>
+    <p class="sub">R = responsible, A = accountable, C = consulted, I = informed.</p>
+    <div class="tbl"><table class="raci" id="raci"></table></div>
+  </section>
+</main>
+<footer>Built with plain HTML, CSS and JavaScript, no libraries. Every chart is drawn as SVG from the data object at the top of the script, so a new month's figures update the whole page. <a href="../../#projects">Back to the portfolio</a></footer>
+
+<script>
+const DATA={
+  bac:480000, month:7, months:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+  pv:[22,58,104,152,205,262,318,370,412,446,470,480],
+  ev:[20,52,96,138,181,226,272],
+  ac:[24,60,108,157,206,262,316],
+  workstreams:[
+    {name:"Discovery & design",budget:62000,spent:64500,pct:100},
+    {name:"Configuration & build",budget:148000,spent:121000,pct:72},
+    {name:"Integrations (ERP, carriers)",budget:96000,spent:71500,pct:58},
+    {name:"Data migration",budget:54000,spent:22000,pct:35},
+    {name:"Testing",budget:58000,spent:19000,pct:25},
+    {name:"Training & change",budget:38000,spent:9000,pct:18},
+    {name:"Deployment & hypercare",budget:24000,spent:9000,pct:5}
+  ],
+  schedule:[
+    {ws:"Discovery & design",tasks:[
+      {t:"Current-state process mapping",o:"BA lead",s:0,e:1.5,p:100},
+      {t:"Solution design sign-off",o:"Architect",s:1,e:2.6,p:100},
+      {m:"Design authority approval",at:2.6,hit:true}]},
+    {ws:"Build",tasks:[
+      {t:"Core WMS configuration",o:"Vendor",s:2.5,e:6.5,p:90},
+      {t:"ERP order interface",o:"Integration lead",s:3,e:7.5,p:62},
+      {t:"Carrier label APIs",o:"Integration lead",s:4,e:7.8,p:50}]},
+    {ws:"Data",tasks:[
+      {t:"Item master cleansing",o:"Data analyst",s:4.5,e:8.5,p:35},
+      {t:"Trial migrations (x3)",o:"Data analyst",s:6.5,e:9.3,p:10}]},
+    {ws:"Test & train",tasks:[
+      {t:"System integration testing",o:"Test manager",s:6.5,e:8.8,p:20},
+      {t:"User acceptance testing",o:"Ops managers",s:8.6,e:9.8,p:0},
+      {t:"Super-user training",o:"Change lead",s:8.5,e:10.4,p:0},
+      {m:"Go / no-go decision",at:10,hit:false}]},
+    {ws:"Deploy",tasks:[
+      {t:"Pilot site go-live (Bristol)",o:"PMO",s:9.8,e:10.5,p:0},
+      {t:"Rollout: Leeds and Glasgow",o:"PMO",s:10.5,e:11.6,p:0},
+      {m:"Programme close",at:11.85,hit:false}]}
+  ],
+  raid:[
+    {id:"R-01",type:"Risk",d:"ERP interface vendor may miss the Month 8 test window.",r:"Weekly joint stand-up; stub service so testing can start without the live API.",owner:"Integration lead",p:4,i:4,due:"Week 30",st:"Open"},
+    {id:"R-02",type:"Risk",d:"Item master data quality below 95% target for migration.",r:"Daily cleansing sprints; ops supervisors validate top 2,000 SKUs first.",owner:"Data analyst",p:3,i:5,due:"Week 31",st:"Open"},
+    {id:"R-03",type:"Risk",d:"Leeds site RF coverage insufficient for handheld scanners.",r:"Site survey done; request contingency for 6 extra access points.",owner:"IT infrastructure",p:4,i:3,due:"Week 29",st:"Open"},
+    {id:"R-04",type:"Risk",d:"Peak-season volume overlaps the Glasgow cut-over.",r:"Hold Glasgow until January if peak forecast is above 120% of normal.",owner:"Sponsor",p:2,i:5,due:"Week 34",st:"Open"},
+    {id:"R-05",type:"Risk",d:"Key super-users unavailable for training due to shift patterns.",r:"Split training into 2-hour blocks across all three shifts.",owner:"Change lead",p:3,i:2,due:"Week 33",st:"Open"},
+    {id:"R-06",type:"Risk",d:"Vendor licence cost increase at renewal.",r:"Price locked for 3 years in contract schedule 4.",owner:"Procurement",p:1,i:3,due:"Closed",st:"Closed"},
+    {id:"I-01",type:"Issue",d:"Configuration build 3 weeks behind plan (SPI 0.85).",r:"Two extra vendor consultants funded from contingency for 6 weeks.",owner:"PMO",p:5,i:3,due:"Week 29",st:"Open"},
+    {id:"I-02",type:"Issue",d:"Barcode format differs between Bristol and Leeds suppliers.",r:"Mapping table built; supplier comms sent for new labels.",owner:"Ops manager",p:5,i:2,due:"Week 30",st:"Open"},
+    {id:"A-01",type:"Assumption",d:"Legacy WMS stays available read-only for 90 days after go-live.",r:"Confirmed in writing with legacy provider.",owner:"IT manager",p:2,i:3,due:"Week 36",st:"Open"},
+    {id:"A-02",type:"Assumption",d:"Carrier APIs keep current label formats until year end.",r:"Monitor carrier release notes monthly.",owner:"Integration lead",p:2,i:2,due:"Week 32",st:"Open"},
+    {id:"D-01",type:"Dependency",d:"ERP upgrade (separate programme) must finish before SIT.",r:"Shared milestone tracked in both plans; weekly PMO sync.",owner:"PMO",p:3,i:4,due:"Week 31",st:"Open"},
+    {id:"D-02",type:"Dependency",d:"New handheld devices delivered to all sites by Month 9.",r:"Order placed; supplier confirms shipment Week 33.",owner:"Procurement",p:2,i:4,due:"Week 33",st:"Open"}
+  ],
+  raci:{roles:["Sponsor","Programme manager","Vendor","Ops managers","IT","Change lead"],
+    rows:[["Approve scope and budget","A","R","I","C","C","I"],["Solution design","I","A","R","C","C","I"],["Configuration and build","I","A","R","C","C","I"],["Data migration","I","A","C","R","R","I"],["User acceptance testing","I","A","C","R","C","I"],["Training and adoption","I","A","C","C","I","R"],["Go / no-go decision","A","R","C","C","C","C"]]}
+};
+
+const $=s=>document.querySelector(s);
+const gbp=n=>"£"+Math.round(n).toLocaleString("en-GB");
+const k=n=>"£"+(n/1000).toFixed(0)+"k";
+
+// ---- KPIs (earned value) ----
+const m=DATA.month-1, PV=DATA.pv[m]*1000, EV=DATA.ev[m]*1000, AC=DATA.ac[m]*1000;
+const CPI=EV/AC, SPI=EV/PV, EAC=DATA.bac/CPI, VAC=DATA.bac-EAC, TCPI=(DATA.bac-EV)/(DATA.bac-AC);
+const rag=(v,g,a)=>v>=g?"g":v>=a?"a":"r";
+$("#bac").textContent=gbp(DATA.bac);
+const kp=[
+  ["% complete",(EV/DATA.bac*100).toFixed(0)+"%","Earned value ÷ budget","b"],
+  ["Cost (CPI)",CPI.toFixed(2),CPI<1?"Over budget for work done":"Under budget",rag(CPI,.98,.92)],
+  ["Schedule (SPI)",SPI.toFixed(2),SPI<1?Math.round((1-SPI)*100)+"% behind plan":"On plan",rag(SPI,.98,.9)],
+  ["Forecast cost (EAC)",k(EAC),"At current CPI",rag(DATA.bac/EAC,.98,.93)],
+  ["Variance at completion",(VAC<0?"−":"+")+k(Math.abs(VAC)),VAC<0?"Forecast overspend":"Forecast underspend",rag(DATA.bac/EAC,.98,.93)],
+  ["To-complete index",TCPI.toFixed(2),"CPI needed to finish on budget",rag(2-TCPI,.98,.9)]
+];
+$("#kpis").innerHTML=kp.map(([l,v,s,c])=>`<div class="kpi ${c}"><span>${l}</span><strong>${v}</strong><small>${s}</small></div>`).join("");
+
+// ---- S-curve ----
+(function(){
+  const W=760,H=300,P={l:52,r:16,t:14,b:30},iw=W-P.l-P.r,ih=H-P.t-P.b;
+  const maxY=Math.ceil(EAC/1000/50)*50;
+  const x=i=>P.l+iw*(i+1)/12, y=v=>P.t+ih-ih*v/maxY;
+  const path=a=>"M"+P.l+","+y(0)+" "+a.map((v,i)=>"L"+x(i).toFixed(1)+","+y(v).toFixed(1)).join(" ");
+  let g="";
+  for(let v=0;v<=maxY;v+=100){g+=`<line x1="${P.l}" x2="${W-P.r}" y1="${y(v)}" y2="${y(v)}" stroke="#E6EAF0"/><text x="${P.l-8}" y="${y(v)+4}" font-size="11" text-anchor="end" fill="#566275">£${v}k</text>`}
+  DATA.months.forEach((mm,i)=>g+=`<text x="${x(i)}" y="${H-10}" font-size="11" text-anchor="middle" fill="#566275">${mm}</text>`);
+  const fc=[DATA.ac[m]];for(let i=m+1;i<12;i++){fc.push(DATA.ac[m]+(EAC/1000-DATA.ac[m])*(DATA.pv[i]-DATA.pv[m])/(DATA.bac/1000-DATA.pv[m]))}
+  const fpath="M"+fc.map((v,j)=>x(m+j).toFixed(1)+","+y(v).toFixed(1)).join(" L");
+  g+=`<line x1="${P.l}" x2="${W-P.r}" y1="${y(DATA.bac/1000)}" y2="${y(DATA.bac/1000)}" stroke="#1B2742" stroke-dasharray="2 4"/><text x="${P.l+6}" y="${y(DATA.bac/1000)-6}" font-size="11" fill="#1B2742">Budget ${k(DATA.bac)}</text>`;
+  g+=`<line x1="${x(m)}" x2="${x(m)}" y1="${P.t}" y2="${P.t+ih}" stroke="#8F1D3F" opacity=".35"/><text x="${x(m)+5}" y="${P.t+12}" font-size="11" fill="#8F1D3F">Today</text>`;
+  g+=`<path d="${path(DATA.pv)}" fill="none" stroke="#8A94A6" stroke-width="2.5"/>`;
+  g+=`<path d="${fpath}" fill="none" stroke="#8F1D3F" stroke-width="2" stroke-dasharray="5 4"/>`;
+  g+=`<path d="${path(DATA.ac)}" fill="none" stroke="#8F1D3F" stroke-width="2.5"/>`;
+  g+=`<path d="${path(DATA.ev)}" fill="none" stroke="#2F5DA8" stroke-width="2.5"/>`;
+  [["ev","#2F5DA8"],["ac","#8F1D3F"]].forEach(([s,c])=>g+=`<circle cx="${x(m)}" cy="${y(DATA[s][m])}" r="4" fill="${c}"/>`);
+  g+=`<text x="${x(11)}" y="${y(EAC/1000)-8}" font-size="11" text-anchor="end" fill="#8F1D3F">EAC ${k(EAC)}</text>`;
+  $("#scurve").innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Earned value S-curve. At month ${DATA.month}: planned ${k(PV)}, earned ${k(EV)}, actual ${k(AC)}.">${g}</svg>`;
+})();
+
+// ---- workstream bars ----
+$("#wsbars").innerHTML=DATA.workstreams.map(w=>{const s=w.spent/w.budget*100, over=w.spent>w.budget*w.pct/100*1.05;
+  return `<div class="row"><span>${w.name}</span><span class="t" title="${gbp(w.spent)} of ${gbp(w.budget)}"><b style="width:${Math.min(s,100)}%;background:${over?"var(--red)":"var(--navy)"}"></b><i style="left:${w.pct}%"></i></span><span style="text-align:right;font-variant-numeric:tabular-nums">${s.toFixed(0)}%</span></div>`}).join("");
+
+// ---- Gantt ----
+(function(){
+  const pos=v=>(v/12*100).toFixed(2)+"%", today=DATA.month-0.5;
+  let h=`<table><thead><tr><th>Activity</th><th>Owner</th><th>Done</th><th class="tl"><div class="months">${DATA.months.map(x=>`<span>${x}</span>`).join("")}</div></th></tr></thead><tbody>`;
+  DATA.schedule.forEach(ws=>{
+    h+=`<tr class="ws"><td colspan="3">${ws.ws}</td><td class="tl"><div class="track"><span class="today" style="left:${pos(today)}"></span></div></td></tr>`;
+    ws.tasks.forEach(t=>{
+      if(t.m){h+=`<tr><td>◆ ${t.m}</td><td>Milestone</td><td>${t.hit?'<span class="pill g">Met</span>':'<span class="pill b">Due</span>'}</td><td class="tl"><div class="track"><span class="today" style="left:${pos(today)}"></span><span class="ms ${t.hit?"hit":""}" style="left:${pos(t.at)}" title="${t.m}"></span></div></td></tr>`;return}
+      const exp=Math.max(0,Math.min(1,(today-t.s)/(t.e-t.s)))*100, late=t.p<exp-10, done=t.p===100;
+      h+=`<tr><td>${t.t}</td><td>${t.o}</td><td>${t.p}%</td><td class="tl"><div class="track"><span class="today" style="left:${pos(today)}"></span><span class="bar ${done?"done":late?"late":""}" style="left:${pos(t.s)};width:${pos(t.e-t.s)}" title="${t.t}: ${t.p}% done, ${exp.toFixed(0)}% planned by today"><b style="width:${t.p}%"></b></span></div></td></tr>`;
+    });
+  });
+  $("#gantt").innerHTML=h+"</tbody></table>";
+})();
+
+// ---- RAID ----
+const state={type:"All",cell:null,sort:"score",dir:-1};
+const sc=r=>r.p*r.i, scCol=s=>s>=15?["var(--red-l)","var(--red)"]:s>=8?["var(--amber-l)","var(--amber)"]:["var(--green-l)","var(--green)"];
+const types=["All","Risk","Issue","Assumption","Dependency"];
+$("#raidTabs").innerHTML=types.map(t=>`<button data-t="${t}" aria-pressed="${t==="All"}">${t} <span>${t==="All"?DATA.raid.length:DATA.raid.filter(r=>r.type===t).length}</span></button>`).join("");
+$("#raidTabs").onclick=e=>{const b=e.target.closest("button");if(!b)return;state.type=b.dataset.t;state.cell=null;drawRaid()};
+document.querySelectorAll("#raid th button").forEach(b=>b.onclick=()=>{const kk=b.dataset.k;state.dir=state.sort===kk?-state.dir:(kk==="score"?-1:1);state.sort=kk;drawRaid()});
+function drawRaid(){
+  document.querySelectorAll("#raidTabs button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.t===state.type));
+  let rows=DATA.raid.filter(r=>(state.type==="All"||r.type===state.type)&&(!state.cell||(r.type==="Risk"&&r.st==="Open"&&r.p===state.cell[0]&&r.i===state.cell[1])));
+  rows.sort((a,b)=>{const va=state.sort==="score"?sc(a):a[state.sort],vb=state.sort==="score"?sc(b):b[state.sort];return (va>vb?1:va<vb?-1:0)*state.dir});
+  $("#raid tbody").innerHTML=rows.map(r=>{const s=sc(r),[bg,fg]=scCol(s);return `<tr${r.st==="Closed"?' style="opacity:.55"':""}><td><b>${r.id}</b></td><td>${r.type}</td><td>${r.d}<br><span style="color:var(--slate)">Response: ${r.r}</span></td><td>${r.owner}</td><td><span class="score" style="background:${bg};color:${fg}">${s}</span></td><td>${r.due}</td></tr>`}).join("")||`<tr><td colspan="6">No items match.</td></tr>`;
+  drawHeat();
+}
+function drawHeat(){
+  const open=DATA.raid.filter(r=>r.type==="Risk"&&r.st==="Open");
+  let h="";
+  for(let p=5;p>=1;p--){h+=`<div class="ax">${p}</div>`;
+    for(let i=1;i<=5;i++){const n=open.filter(r=>r.p===p&&r.i===i).length,[bg,fg]=scCol(p*i),on=state.cell&&state.cell[0]===p&&state.cell[1]===i;
+      h+=`<button class="c" style="background:${bg};color:${fg}" data-p="${p}" data-i="${i}" aria-pressed="${!!on}" aria-label="Probability ${p}, impact ${i}: ${n} risks">${n||""}</button>`}}
+  h+=`<div></div>`+[1,2,3,4,5].map(i=>`<div class="ax">${i}</div>`).join("");
+  $("#heat").innerHTML=h;
+  $("#heatNote").textContent=state.cell?`Filtered: probability ${state.cell[0]}, impact ${state.cell[1]}. Click again to clear.`:"Probability ↑ · Impact →. Showing all items.";
+}
+$("#heat").onclick=e=>{const b=e.target.closest(".c");if(!b)return;const c=[+b.dataset.p,+b.dataset.i];state.cell=state.cell&&state.cell[0]===c[0]&&state.cell[1]===c[1]?null:c;if(state.cell)state.type="All";drawRaid()};
+drawRaid();
+
+// ---- RACI ----
+$("#raci").innerHTML=`<thead><tr><th>Activity</th>${DATA.raci.roles.map(r=>`<th style="text-align:center">${r}</th>`).join("")}</tr></thead><tbody>`+DATA.raci.rows.map(r=>`<tr><td>${r[0]}</td>${r.slice(1).map(c=>`<td class="${c.toLowerCase()}">${c}</td>`).join("")}</tr>`).join("")+"</tbody>";
+</script>
+</body>
+</html>
