@@ -1,0 +1,23 @@
+/*
+Theme Name: Saffron
+Theme URI: https://tajamulh193.github.io/tajamulhussain/projects/saffron-woo-theme/
+Author: Tujummal Hussain
+Author URI: https://tajamulh193.github.io/tajamulhussain/
+Description: A WooCommerce-ready block theme for small fashion and craft shops. Full Site Editing templates, a warm design system in theme.json, and ready-made patterns for hero banners, category tiles and newsletter sign-up.
+Requires at least: 6.4
+Tested up to: 6.8
+Requires PHP: 7.4
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: saffron
+Tags: e-commerce, block-patterns, full-site-editing, wide-blocks, custom-colors
+*/
+
+/* Small refinements that theme.json cannot express. */
+.wp-block-button__link{transition:background-color .2s ease,transform .2s ease}
+.wp-block-button__link:hover{transform:translateY(-1px)}
+.saffron-card img{transition:transform .6s ease}
+.saffron-card:hover img{transform:scale(1.04)}
+.wc-block-components-product-badge{border-radius:99px!important}
+:where(.wp-site-blocks) :focus-visible{outline:2px solid var(--wp--preset--color--saffron);outline-offset:3px}
