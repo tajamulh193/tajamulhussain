@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Halden &amp; Moss | Architecture and Interiors</title>
+<meta name="description" content="Sample architecture studio website by Tujummal Hussain: sun-path study, renovation slider, interactive floor plan, filterable projects. Halden & Moss is a fictional studio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F4EFE6;--paper2:#EAE3D6;--ink:#1E1C19;--mute:#6B655B;--line:#D3CABA;--clay:#B5603A;--moss:#4F5D44;--stone:#8C8578;
+--serif:"Fraunces",Georgia,serif;--sans:"Manrope",system-ui,sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.65 var(--sans);overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--clay);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 1.5rem}
+.note{background:var(--ink);color:#CFC6B6;font-size:.8rem;text-align:center;padding:.4rem 1rem;margin:0}
+.note a{color:#fff}
+header.top{position:sticky;top:0;z-index:30;background:rgba(244,239,230,.88);backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s}
+header.top.s{border-bottom-color:var(--line)}
+header.top .wrap{display:flex;justify-content:space-between;align-items:center;height:72px}
+.brand{font:400 1.45rem var(--serif);text-decoration:none;letter-spacing:-.01em}
+.brand i{font-style:italic;color:var(--clay)}
+header nav{display:flex;gap:2rem;font-size:.92rem;font-weight:500}
+header nav a{text-decoration:none;position:relative}
+header nav a:after{content:"";position:absolute;left:0;right:100%;bottom:-4px;height:1px;background:var(--ink);transition:right .3s}
+header nav a:hover:after{right:0}
+/* hero */
+.hero{min-height:calc(100vh - 100px);display:grid;grid-template-columns:1.05fr 1fr;align-items:center;gap:3rem;padding:3rem 0}
+.kicker{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);font-weight:600}
+h1{font:300 clamp(3rem,7vw,6.4rem)/.95 var(--serif);letter-spacing:-.035em;margin:1rem 0 1.5rem}
+h1 em{font-style:italic;color:var(--clay)}
+.hero p{max-width:44ch;color:var(--mute);font-size:1.1rem}
+.line-in span{display:inline-block;transform:translateY(105%);animation:rise 1s cubic-bezier(.2,.7,.2,1) forwards}
+.line-in{display:block;overflow:hidden}
+.line-in:nth-child(2) span{animation-delay:.12s}.line-in:nth-child(3) span{animation-delay:.24s}
+@keyframes rise{to{transform:none}}
+.btn{display:inline-flex;align-items:center;gap:.6rem;padding:.9rem 1.5rem;border-radius:99px;border:1px solid var(--ink);text-decoration:none;font-weight:600;font-size:.95rem;transition:background .25s,color .25s;background:none;cursor:pointer;font-family:var(--sans);color:var(--ink)}
+.btn:hover,.btn.dark{background:var(--ink);color:var(--paper)}
+.btn.dark:hover{background:var(--clay);border-color:var(--clay)}
+.heroart{position:relative;aspect-ratio:4/5;border-radius:4px;overflow:hidden;background:linear-gradient(#D9CDB8,#EEE6D8)}
+.heroart svg{position:absolute;inset:0;width:100%;height:100%}
+.heroart .layer{will-change:transform}
+.caption{position:absolute;left:1rem;bottom:1rem;background:var(--paper);padding:.5rem .8rem;font-size:.8rem;border-radius:2px}
+/* sections */
+section{padding:7rem 0}
+.shead{display:flex;justify-content:space-between;align-items:end;gap:2rem;flex-wrap:wrap;margin-bottom:3rem}
+h2{font:300 clamp(2.2rem,4.5vw,3.8rem)/1.02 var(--serif);letter-spacing:-.03em;margin:.6rem 0 0}
+h2 em{font-style:italic;color:var(--clay)}
+.lede{color:var(--mute);max-width:48ch;margin:0}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+/* projects */
+.filters{display:flex;gap:.5rem;flex-wrap:wrap}
+.filters button{border:1px solid var(--line);background:none;padding:.5rem 1rem;border-radius:99px;font:600 .85rem var(--sans);cursor:pointer;color:var(--ink);transition:all .2s}
+.filters button[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.pgrid{display:grid;grid-template-columns:repeat(12,1fr);gap:2.5rem 1.5rem;align-items:start}
+.proj{grid-column:span 4;cursor:pointer;text-align:left;background:none;border:0;padding:0;font:inherit;color:inherit;transition:opacity .4s,transform .4s}
+.proj.big{grid-column:span 8}
+.proj.hide{display:none}
+.proj .img{position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:3px}
+.proj.big .img{aspect-ratio:16/9.2}
+.proj .img svg{width:100%;height:100%;display:block;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.proj:hover .img svg,.proj:focus-visible .img svg{transform:scale(1.05)}
+.proj .meta{display:flex;justify-content:space-between;gap:1rem;margin-top:.9rem}
+.proj h3{font:400 1.45rem/1.2 var(--serif);margin:0}
+.proj small{color:var(--mute);font-size:.85rem;white-space:nowrap}
+.view{position:absolute;right:1rem;bottom:1rem;background:var(--paper);border-radius:99px;padding:.4rem .9rem;font-size:.8rem;font-weight:600;opacity:0;transform:translateY(8px);transition:all .35s}
+.proj:hover .view,.proj:focus-visible .view{opacity:1;transform:none}
+/* modal */
+dialog{border:0;padding:0;max-width:min(980px,94vw);width:100%;background:var(--paper);color:var(--ink);border-radius:4px}
+dialog::backdrop{background:rgba(30,28,25,.7);backdrop-filter:blur(4px)}
+dialog[open]{animation:pop .45s cubic-bezier(.2,.7,.2,1)}
+@keyframes pop{from{opacity:0;transform:translateY(30px) scale(.98)}}
+.mgrid{display:grid;grid-template-columns:1.2fr 1fr}
+.mgrid .img svg{width:100%;height:100%;display:block}
+.mbody{padding:2rem}
+.mbody h3{font:400 2rem/1.1 var(--serif);margin:.3rem 0 1rem}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:.8rem 1.5rem;margin:1.5rem 0;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem}
+.facts span{display:block;color:var(--mute);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase}
+.close{position:absolute;top:.8rem;right:.8rem;width:40px;height:40px;border-radius:50%;border:0;background:var(--paper);cursor:pointer;font-size:1.3rem;z-index:2}
+/* sun study */
+.sun{background:var(--ink);color:var(--paper)}
+.sun .lede{color:#B9B0A0}
+.sunbox{display:grid;grid-template-columns:2fr 1fr;gap:2rem;align-items:center}
+.scene{position:relative;border-radius:4px;overflow:hidden;aspect-ratio:16/10}
+.scene svg{width:100%;height:100%;display:block}
+.ctrl label{display:flex;justify-content:space-between;font-size:.85rem;color:#B9B0A0;margin-bottom:.5rem}
+.ctrl output{color:#fff;font-weight:700}
+.ctrl input{width:100%;accent-color:var(--clay)}
+.ctrl .seg{display:flex;gap:.4rem;margin:1.4rem 0}
+.ctrl .seg button{flex:1;padding:.5rem;border-radius:99px;border:1px solid #4A453D;background:none;color:var(--paper);font:600 .82rem var(--sans);cursor:pointer}
+.ctrl .seg button[aria-pressed=true]{background:var(--paper);color:var(--ink)}
+.readout{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.4rem}
+.readout div{border-top:1px solid #4A453D;padding-top:.6rem}
+.readout b{display:block;font:300 1.8rem var(--serif)}
+.readout span{font-size:.78rem;color:#B9B0A0}
+.playbtn{margin-top:1rem;border-color:var(--paper);color:var(--paper)}
+.playbtn:hover{background:var(--paper);color:var(--ink)}
+/* before after */
+.ba{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:4px;user-select:none;touch-action:pan-y;cursor:ew-resize}
+.ba svg{position:absolute;inset:0;width:100%;height:100%}
+.ba .after{clip-path:inset(0 0 0 var(--pos,50%))}
+.ba .handle{position:absolute;top:0;bottom:0;left:var(--pos,50%);width:2px;background:#fff;transform:translateX(-1px)}
+.ba .knob{position:absolute;top:50%;left:50%;width:54px;height:54px;border-radius:50%;background:#fff;transform:translate(-50%,-50%);display:grid;place-items:center;box-shadow:0 6px 20px rgba(0,0,0,.25);font-weight:700;color:var(--ink);border:0;cursor:ew-resize}
+.ba .lab{position:absolute;top:1rem;padding:.3rem .7rem;background:rgba(30,28,25,.75);color:#fff;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;border-radius:2px}
+/* plan */
+.planbox{display:grid;grid-template-columns:1.4fr 1fr;gap:2.5rem;align-items:start}
+.plan svg{width:100%;height:auto;display:block}
+.room{fill:#FBF8F2;stroke:var(--ink);stroke-width:3;cursor:pointer;transition:fill .25s}
+.room:hover,.room.on{fill:#EBC9B4}
+.room:focus-visible{outline:none;fill:#EBC9B4}
+.rlabel{font:600 13px var(--sans);fill:var(--ink);pointer-events:none}
+.rarea{font:400 11px var(--sans);fill:var(--mute);pointer-events:none}
+.info{border:1px solid var(--line);border-radius:4px;padding:1.6rem;background:#FBF8F2;position:sticky;top:96px}
+.info h3{font:400 1.9rem var(--serif);margin:0 0 .3rem}
+.info .area{color:var(--clay);font-weight:700}
+.info ul{padding-left:1.1rem;color:var(--mute);margin:.8rem 0 0}
+.totals{display:flex;gap:2rem;margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--line)}
+.totals b{display:block;font:300 1.8rem var(--serif)}
+.totals span{font-size:.78rem;color:var(--mute)}
+/* process */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;counter-reset:s}
+.step{border-top:1px solid var(--ink);padding-top:1.2rem}
+.step:before{counter-increment:s;content:"0" counter(s);font:300 2.6rem var(--serif);color:var(--clay);display:block;line-height:1}
+.step h3{font:400 1.35rem var(--serif);margin:.8rem 0 .4rem}
+.step p{color:var(--mute);margin:0;font-size:.95rem}
+/* contact */
+.contact{background:var(--paper2)}
+.cgrid{display:grid;grid-template-columns:1fr 1.2fr;gap:4rem}
+form .row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.field{margin-bottom:1.2rem}
+.field label,.field legend{display:block;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:.4rem;font-weight:600}
+.field input,.field textarea,.field select{width:100%;padding:.8rem 0;border:0;border-bottom:1px solid var(--stone);background:none;font:400 1.05rem var(--sans);color:var(--ink);border-radius:0}
+.field input:focus,.field textarea:focus{outline:none;border-bottom-color:var(--clay)}
+.field [aria-invalid=true]{border-bottom-color:#B3261E}
+.err{color:#B3261E;font-size:.82rem;min-height:1.1em;margin:.25rem 0 0}
+fieldset{border:0;padding:0;margin:0 0 1.2rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem}
+.chips label{position:relative;text-transform:none;letter-spacing:0;font-size:.9rem;color:var(--ink);margin:0}
+.chips input{position:absolute;opacity:0;left:0;top:0;width:1px;height:1px}
+.chips span{display:inline-block;border:1px solid var(--stone);border-radius:99px;padding:.45rem .95rem;cursor:pointer;transition:all .2s}
+.chips input:checked+span{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chips input:focus-visible+span{outline:2px solid var(--clay);outline-offset:2px}
+.budget output{font:300 1.6rem var(--serif)}
+.budget input{width:100%;accent-color:var(--clay)}
+.sent{padding:2rem;border:1px solid var(--moss);border-radius:4px;background:#E6EADF}
+footer{padding:3rem 0;font-size:.9rem;color:var(--mute)}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+@media (max-width:960px){.hero,.sunbox,.planbox,.cgrid,.mgrid{grid-template-columns:1fr}.hero{min-height:0}.heroart{aspect-ratio:4/3}.proj,.proj.big{grid-column:span 12}.steps{grid-template-columns:1fr 1fr}.info{position:static}header nav{display:none}}
+@media (max-width:560px){section{padding:4.5rem 0}.steps,form .row{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.line-in span{transform:none}}
+</style>
+</head>
+<body>
+<p class="note">Sample website by <a href="../../">Tujummal Hussain</a>. Halden &amp; Moss is a fictional studio; projects and illustrations are invented.</p>
+<header class="top" id="hdr"><div class="wrap">
+  <a class="brand" href="#">Halden <i>&amp;</i> Moss</a>
+  <nav aria-label="Main"><a href="#work">Work</a><a href="#light">Light</a><a href="#renovation">Renovation</a><a href="#plan">Plans</a><a href="#contact">Contact</a></nav>
+  <a class="btn" href="#contact">Start a project</a>
+</div></header>
+
+<main>
+<div class="wrap hero">
+  <div>
+    <p class="kicker">Architecture · Interiors · Landscape</p>
+    <h1><span class="line-in"><span>Buildings</span></span> <span class="line-in"><span>shaped by</span></span> <span class="line-in"><span><em>light</em>.</span></span></h1>
+    <p>We design homes, studios and public spaces around how the sun moves across a site. Calm materials, honest structure, rooms that change through the day.</p>
+    <p style="margin-top:2rem"><a class="btn dark" href="#work">See our work →</a></p>
+  </div>
+  <div class="heroart" id="heroart" aria-hidden="true">
+    <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice">
+      <defs><linearGradient id="hsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E9C9A6"/><stop offset="1" stop-color="#F4EFE6"/></linearGradient></defs>
+      <rect width="400" height="500" fill="url(#hsky)"/>
+      <circle class="layer" data-d="0.15" cx="300" cy="120" r="46" fill="#F2A66B" opacity=".85"/>
+      <g class="layer" data-d="0.35"><path d="M0 330 L80 280 L160 310 L260 260 L400 300 V500 H0Z" fill="#A9A08F" opacity=".5"/></g>
+      <g class="layer" data-d="0.6">
+        <rect x="70" y="210" width="260" height="190" fill="#EFE7DA"/>
+        <rect x="70" y="200" width="290" height="16" fill="#1E1C19"/>
+        <rect x="95" y="240" width="90" height="160" fill="#2C2A26"/><rect x="95" y="240" width="90" height="160" fill="#F2A66B" opacity=".25"/>
+        <rect x="205" y="240" width="40" height="60" fill="#2C2A26"/><rect x="255" y="240" width="40" height="60" fill="#2C2A26"/>
+        <rect x="205" y="320" width="100" height="80" fill="#B5603A"/>
+        <path d="M70 216 L330 216 L330 240 L70 240Z" fill="#000" opacity=".12"/>
+      </g>
+      <g class="layer" data-d="0.85"><path d="M0 400 H400 V500 H0Z" fill="#4F5D44"/><path d="M0 400 Q100 385 200 400 T400 395 V410 H0Z" fill="#3E4A35"/>
+        <g fill="#2F3A28"><circle cx="40" cy="380" r="34"/><circle cx="20" cy="360" r="24"/><circle cx="370" cy="372" r="40"/></g></g>
+    </svg>
+    <span class="caption">Courtyard House, Murree Hills · 2025</span>
+  </div>
+</div>
+
+<section id="work"><div class="wrap">
+  <div class="shead reveal"><div><p class="kicker">Selected work</p><h2>Twelve years, <em>forty</em> buildings.</h2></div>
+    <div class="filters" role="group" aria-label="Filter projects" id="filters"></div></div>
+  <div class="pgrid" id="pgrid"></div>
+</div></section>
+
+<dialog id="modal" aria-labelledby="mTitle"><button class="close" id="mClose" aria-label="Close">×</button><div class="mgrid"><div class="img" id="mImg"></div><div class="mbody" id="mBody"></div></div></dialog>
+
+<section class="sun" id="light"><div class="wrap">
+  <div class="shead reveal"><div><p class="kicker" style="color:#B9B0A0">Sun-path study</p><h2>Design for the <em>whole</em> day.</h2></div>
+    <p class="lede">Every project starts with a sun study. Drag through the day and the seasons to see how a deep roof overhang shades summer sun but lets winter sun deep into the room.</p></div>
+  <div class="sunbox reveal">
+    <div class="scene" id="scene"></div>
+    <div class="ctrl">
+      <label for="hour">Time of day <output id="hOut"></output></label>
+      <input type="range" id="hour" min="6" max="19" step="0.1" value="12.5">
+      <div class="seg" role="group" aria-label="Season"><button data-s="winter" aria-pressed="true">Winter</button><button data-s="equinox" aria-pressed="false">Equinox</button><button data-s="summer" aria-pressed="false">Summer</button></div>
+      <div class="readout"><div><b id="alt">–</b><span>Sun altitude</span></div><div><b id="depth">–</b><span>Sunlight reaches into room</span></div></div>
+      <button class="btn playbtn" id="play" type="button">▶ Play the day</button>
+    </div>
+  </div>
+</div></section>
+
+<section id="renovation"><div class="wrap">
+  <div class="shead reveal"><div><p class="kicker">Renovation</p><h2>Before, <em>and</em> after.</h2></div>
+    <p class="lede">A 1970s terrace opened up: the back wall replaced with a steel frame and full-height glazing, the kitchen moved to face the garden. Drag the handle, or focus it and use the arrow keys.</p></div>
+  <div class="ba reveal" id="ba" style="--pos:50%">
+    <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <rect width="1600" height="900" fill="#CFC5B3"/><rect y="700" width="1600" height="200" fill="#8C7B66"/>
+      <rect x="0" y="0" width="1600" height="700" fill="#D8CEBC"/>
+      <rect x="560" y="210" width="260" height="300" fill="#7E8A77"/><rect x="560" y="210" width="260" height="300" fill="none" stroke="#5A4E40" stroke-width="18"/><line x1="690" y1="210" x2="690" y2="510" stroke="#5A4E40" stroke-width="12"/>
+      <rect x="980" y="260" width="150" height="440" fill="#6E5E4B"/><circle cx="1105" cy="480" r="8" fill="#C9B79C"/>
+      <rect x="120" y="470" width="360" height="230" fill="#A39279"/><rect x="120" y="455" width="380" height="22" fill="#8D7C64"/>
+      <rect x="150" y="300" width="300" height="110" fill="#B9AB93"/><rect x="1300" y="380" width="160" height="320" fill="#9A8A72"/>
+      <rect x="0" y="0" width="1600" height="900" fill="#3A3226" opacity=".28"/>
+    </svg>
+    <svg class="after" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs><linearGradient id="gard" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CFE0C3"/><stop offset="1" stop-color="#7E9B6C"/></linearGradient></defs>
+      <rect width="1600" height="900" fill="#F1ECE3"/>
+      <rect x="380" y="90" width="1100" height="610" fill="url(#gard)"/>
+      <g fill="#5E7A4E"><circle cx="560" cy="430" r="120"/><circle cx="760" cy="470" r="90"/><circle cx="1260" cy="420" r="150"/><circle cx="1050" cy="520" r="70"/></g>
+      <rect x="380" y="560" width="1100" height="140" fill="#9DB386"/>
+      <g stroke="#1E1C19" stroke-width="14" fill="none"><rect x="380" y="90" width="1100" height="610"/><line x1="747" y1="90" x2="747" y2="700"/><line x1="1113" y1="90" x2="1113" y2="700"/></g>
+      <rect x="0" y="700" width="1600" height="200" fill="#CBB89C"/>
+      <rect x="60" y="560" width="520" height="160" fill="#EDE6DA"/><rect x="40" y="540" width="560" height="26" fill="#B5603A"/>
+      <g fill="#1E1C19"><rect x="120" y="610" width="10" height="110"/><rect x="510" y="610" width="10" height="110"/></g>
+      <rect x="1180" y="620" width="260" height="22" fill="#6B4E36"/><rect x="1195" y="642" width="10" height="70" fill="#6B4E36"/><rect x="1415" y="642" width="10" height="70" fill="#6B4E36"/>
+      <path d="M380 700 L180 900 H1700 L1480 700Z" fill="#F7E3C5" opacity=".55"/>
+      <circle cx="300" cy="200" r="34" fill="#F2A66B" opacity=".9"/><line x1="300" y1="0" x2="300" y2="166" stroke="#1E1C19" stroke-width="3"/>
+    </svg>
+    <span class="lab" style="left:1rem">Before</span><span class="lab" style="right:1rem">After</span>
+    <div class="handle"><button class="knob" id="knob" role="slider" aria-label="Before and after comparison" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">⟷</button></div>
+  </div>
+</div></section>
+
+<section id="plan" style="padding-top:2rem"><div class="wrap">
+  <div class="shead reveal"><div><p class="kicker">Floor plan</p><h2>Explore the <em>Courtyard</em> House.</h2></div>
+    <p class="lede">Hover or tap a room to see its size and what makes it work. Every room opens onto the central courtyard.</p></div>
+  <div class="planbox reveal">
+    <div class="plan" id="plansvg"></div>
+    <div class="info" id="info" aria-live="polite"></div>
+  </div>
+</div></section>
+
+<section style="padding-top:2rem"><div class="wrap">
+  <div class="shead reveal"><div><p class="kicker">How we work</p><h2>Four stages, <em>one</em> team.</h2></div></div>
+  <div class="steps reveal">
+    <div class="step"><h3>Listen</h3><p>A site visit, a sun study and a brief written in your words, not ours.</p></div>
+    <div class="step"><h3>Sketch</h3><p>Three design options as models and drawings, with honest cost ranges.</p></div>
+    <div class="step"><h3>Detail</h3><p>Planning approval, structural design and every junction drawn before building starts.</p></div>
+    <div class="step"><h3>Build</h3><p>We visit site weekly and stay on call through the first year of living there.</p></div>
+  </div>
+</div></section>
+
+<section class="contact" id="contact"><div class="wrap cgrid">
+  <div class="reveal"><p class="kicker">Contact</p><h2>Tell us about <em>your</em> site.</h2><p class="lede" style="margin-top:1rem">We reply to every enquiry within two working days. Studio visits by appointment.</p>
+    <p style="margin-top:2rem;font-size:.95rem">studio@halden-moss.example<br>Studio 4, Kohsar Block, Islamabad (fictional)</p></div>
+  <div class="reveal" id="formWrap">
+  <form id="cform" novalidate>
+    <div class="row"><div class="field"><label for="nm">Name</label><input id="nm" autocomplete="name"><p class="err" id="e_nm"></p></div>
+    <div class="field"><label for="em">Email</label><input id="em" type="email" autocomplete="email"><p class="err" id="e_em"></p></div></div>
+    <fieldset class="field"><legend>Project type</legend><div class="chips" id="types">
+      <label><input type="checkbox" value="New home"><span>New home</span></label><label><input type="checkbox" value="Renovation"><span>Renovation</span></label><label><input type="checkbox" value="Interior"><span>Interior</span></label><label><input type="checkbox" value="Workplace"><span>Workplace</span></label><label><input type="checkbox" value="Landscape"><span>Landscape</span></label></div><p class="err" id="e_types"></p></fieldset>
+    <div class="field budget"><label for="bud">Approximate budget</label><output id="budOut"></output><input type="range" id="bud" min="0" max="5" value="2"></div>
+    <div class="field"><label for="msg">About the site</label><textarea id="msg" rows="3" placeholder="Where is it, and what would you like to change?"></textarea><p class="err" id="e_msg"></p></div>
+    <button class="btn dark" type="submit">Send enquiry →</button>
+  </form></div>
+</div></section>
+</main>
+<footer><div class="wrap"><span>© 2026 Halden &amp; Moss (fictional). Designed and built by Tujummal Hussain.</span><a href="../../#projects">Back to the portfolio</a></div></footer>
+
+<script>
+"use strict";
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+addEventListener("scroll",()=>{$("#hdr").classList.toggle("s",scrollY>10);
+  if(!reduce){const r=$("#heroart").getBoundingClientRect();if(r.bottom>0)$$("#heroart .layer").forEach(l=>l.style.transform=`translateY(${-r.top*(+l.dataset.d)*.25}px)`)}},{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
+const watch=()=>$$(".reveal:not(.in)").forEach(el=>io.observe(el));
+
+// ---------- generated architectural illustrations ----------
+function art(p,w=800,h=600){
+  const {sky,ground,body,acc,kind}=p; let g=`<rect width="${w}" height="${h}" fill="${sky}"/>`;
+  g+=`<circle cx="${w*.78}" cy="${h*.22}" r="${h*.08}" fill="#F7D8B5" opacity=".9"/>`;
+  g+=`<rect y="${h*.72}" width="${w}" height="${h*.28}" fill="${ground}"/>`;
+  if(kind==="house"){g+=`<rect x="${w*.18}" y="${h*.42}" width="${w*.6}" height="${h*.3}" fill="${body}"/><rect x="${w*.14}" y="${h*.38}" width="${w*.7}" height="${h*.05}" fill="#1E1C19"/><rect x="${w*.24}" y="${h*.48}" width="${w*.22}" height="${h*.24}" fill="#2B2925"/><rect x="${w*.52}" y="${h*.48}" width="${w*.2}" height="${h*.1}" fill="#2B2925"/><rect x="${w*.52}" y="${h*.6}" width="${w*.2}" height="${h*.12}" fill="${acc}"/>`}
+  if(kind==="tower"){for(let i=0;i<7;i++)g+=`<rect x="${w*.36}" y="${h*(.12+i*.085)}" width="${w*.28}" height="${h*.07}" fill="${i%2?body:"#2B2925"}"/>`;g+=`<rect x="${w*.34}" y="${h*.1}" width="${w*.32}" height="${h*.02}" fill="#1E1C19"/><rect x="${w*.64}" y="${h*.12}" width="${w*.02}" height="${h*.6}" fill="${acc}"/>`}
+  if(kind==="museum"){g+=`<path d="M${w*.1} ${h*.72} L${w*.1} ${h*.45} Q${w*.5} ${h*.2} ${w*.9} ${h*.45} L${w*.9} ${h*.72}Z" fill="${body}"/>`;for(let i=0;i<9;i++)g+=`<rect x="${w*(.16+i*.08)}" y="${h*.5}" width="${w*.018}" height="${h*.22}" fill="#2B2925"/>`;g+=`<rect x="${w*.44}" y="${h*.58}" width="${w*.12}" height="${h*.14}" fill="${acc}"/>`}
+  if(kind==="pavilion"){g+=`<rect x="${w*.08}" y="${h*.4}" width="${w*.84}" height="${h*.04}" fill="#1E1C19"/>`;for(let i=0;i<6;i++)g+=`<rect x="${w*(.12+i*.15)}" y="${h*.44}" width="${w*.012}" height="${h*.28}" fill="#1E1C19"/>`;g+=`<rect x="${w*.3}" y="${h*.5}" width="${w*.4}" height="${h*.22}" fill="${body}" opacity=".7"/><rect x="${w*.08}" y="${h*.72}" width="${w*.84}" height="${h*.03}" fill="${acc}"/>`}
+  if(kind==="office"){g+=`<rect x="${w*.12}" y="${h*.3}" width="${w*.5}" height="${h*.42}" fill="${body}"/><rect x="${w*.55}" y="${h*.46}" width="${w*.35}" height="${h*.26}" fill="${acc}"/>`;for(let r=0;r<4;r++)for(let c=0;c<5;c++)g+=`<rect x="${w*(.15+c*.09)}" y="${h*(.34+r*.09)}" width="${w*.06}" height="${h*.05}" fill="#2B2925"/>`}
+  if(kind==="cabin"){g+=`<path d="M${w*.25} ${h*.72} V${h*.5} L${w*.5} ${h*.26} L${w*.75} ${h*.5} V${h*.72}Z" fill="${body}"/><path d="M${w*.22} ${h*.52} L${w*.5} ${h*.24} L${w*.78} ${h*.52}" stroke="#1E1C19" stroke-width="${w*.018}" fill="none"/><path d="M${w*.42} ${h*.72} V${h*.48} L${w*.5} ${h*.4} L${w*.58} ${h*.48} V${h*.72}Z" fill="${acc}"/>`;for(let i=0;i<5;i++)g+=`<path d="M${w*(.02+i*.05)} ${h*.72} l${w*.03} ${-h*.2} l${w*.03} ${h*.2}Z" fill="#3E4A35"/>`}
+  if(kind==="terrace"){for(let i=0;i<4;i++){const x0=w*(.1+i*.2);g+=`<path d="M${x0} ${h*.72} V${h*.44} L${x0+w*.1} ${h*.3} L${x0+w*.2} ${h*.44} V${h*.72}Z" fill="${i%2?body:"#D9C2A6"}" stroke="#1E1C19" stroke-width="3"/><rect x="${x0+w*.06}" y="${h*.5}" width="${w*.08}" height="${h*.22}" fill="#2B2925"/>`}g+=`<circle cx="${w*.06}" cy="${h*.6}" r="${h*.1}" fill="${acc}"/><circle cx="${w*.94}" cy="${h*.58}" r="${h*.12}" fill="${acc}"/>`}
+  g+=`<rect y="${h*.72}" width="${w}" height="${h*.01}" fill="#000" opacity=".12"/>`;
+  return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration of ${p.name}">${g}</svg>`;
+}
+const PROJECTS=[
+  {name:"Courtyard House",cat:"Residential",place:"Murree Hills",year:2025,big:1,kind:"house",sky:"#E9D3B8",ground:"#6E7D5F",body:"#EFE7DA",acc:"#B5603A",area:"420 m²",text:"A single-storey family home wrapped around a planted courtyard. Deep roof overhangs shade the glazing in summer and let low winter sun warm the stone floors.",mat:"Local stone, lime render, oak"},
+  {name:"Salt Range Gallery",cat:"Cultural",place:"Khewra",year:2024,kind:"museum",sky:"#D9D3C7",ground:"#A08E77",body:"#E7DCCB",acc:"#B5603A",area:"1,850 m²",text:"A vaulted gallery cut into the hillside. Thin columns filter daylight across the exhibition floor without any direct sun on the artworks.",mat:"Rammed earth, steel, glass"},
+  {name:"Canal Studios",cat:"Workplace",place:"Lahore",year:2023,kind:"office",sky:"#DCE0DC",ground:"#7F8C83",body:"#D6CFC2",acc:"#4F5D44",area:"3,200 m²",text:"Flexible studios for a design collective. A planted terrace on the lower block gives every floor a garden at lunch.",mat:"Brick, timber, green roof"},
+  {name:"Juniper Cabin",cat:"Residential",place:"Hunza Valley",year:2022,kind:"cabin",sky:"#CFD8DC",ground:"#58654D",body:"#3B3631",acc:"#E1A56B",area:"86 m²",text:"A compact retreat built in six weeks from prefabricated timber panels. One wide window frames the valley from the bed.",mat:"Cross-laminated timber, larch"},
+  {name:"Riverside Pavilion",cat:"Cultural",place:"Islamabad",year:2024,kind:"pavilion",sky:"#E8DCCB",ground:"#8FA27B",body:"#BFD3D6",acc:"#B5603A",area:"640 m²",text:"An open public pavilion for markets and music. A single steel roof on slim columns, with no walls at all in the dry season.",mat:"Weathering steel, terrazzo"},
+  {name:"Vertical Garden Flats",cat:"Workplace",place:"Karachi",year:2025,kind:"tower",sky:"#E2D6C4",ground:"#7A7F73",body:"#E9E1D3",acc:"#4F5D44",area:"5,400 m²",text:"A mixed-use tower with shared garden floors every third level and cross-ventilated flats that need no air conditioning for half the year.",mat:"Concrete, perforated brick, planting"},
+  {name:"Orchard Lane Houses",cat:"Residential",place:"Abbottabad",year:2023,big:1,kind:"terrace",sky:"#D8DFD2",ground:"#7D8A63",body:"#E3D3BF",acc:"#4F5D44",area:"6 × 140 m²",text:"Six terraced family homes set among an existing apple orchard. Every house keeps two of the original trees in its garden.",mat:"Brick, clay tile, recycled timber"}
+];
+let filter="All";
+const CATS=["All","Residential","Cultural","Workplace"];
+$("#filters").innerHTML=CATS.map(c=>`<button aria-pressed="${c==="All"}" data-c="${c}">${c}</button>`).join("");
+$("#filters").onclick=e=>{const b=e.target.closest("button");if(!b)return;filter=b.dataset.c;$$("#filters button").forEach(x=>x.setAttribute("aria-pressed",x===b));renderProjects()};
+function renderProjects(){
+  $("#pgrid").innerHTML=PROJECTS.map((p,i)=>({p,i})).filter(o=>filter==="All"||o.p.cat===filter).map(({p,i},k)=>`<button class="proj ${(filter==="All"?p.big:k===0)?"big":""} reveal" data-i="${i}"><div class="img">${art(p)}<span class="view">View project</span></div><div class="meta"><h3>${p.name}</h3><small>${p.cat} · ${p.year}</small></div></button>`).join("");
+  watch();
+}
+renderProjects();
+$("#pgrid").onclick=e=>{const b=e.target.closest(".proj");if(!b)return;const p=PROJECTS[+b.dataset.i];
+  $("#mImg").innerHTML=art(p,800,800);
+  $("#mBody").innerHTML=`<p class="kicker">${p.cat} · ${p.place}</p><h3 id="mTitle">${p.name}</h3><p>${p.text}</p><div class="facts"><div><span>Year</span>${p.year}</div><div><span>Area</span>${p.area}</div><div><span>Materials</span>${p.mat}</div><div><span>Status</span>${p.year>=2025?"Completed 2025":"Completed"}</div></div><a class="btn dark" href="#contact" id="mCta">Discuss a similar project</a>`;
+  $("#modal").showModal();$("#mCta").onclick=()=>$("#modal").close()};
+$("#mClose").onclick=()=>$("#modal").close();
+$("#modal").addEventListener("click",e=>{if(e.target===$("#modal"))$("#modal").close()});
+
+// ---------- sun study ----------
+const SEASON={winter:{max:43,rise:7.2,set:17.1},equinox:{max:56.5,rise:6.1,set:18.1},summer:{max:80,rise:5.1,set:19.1}}; // ~33.7°N
+let season="winter",playing=null;
+function sunAlt(h){const s=SEASON[season];if(h<=s.rise||h>=s.set)return -5;const t=(h-s.rise)/(s.set-s.rise);return s.max*Math.sin(Math.PI*t)}
+function sky(alt){if(alt<0)return["#20263A","#3A3550"];if(alt<12)return["#F0A877","#F7D7B0"];if(alt<30)return["#9EC1D8","#F2DFC4"];return["#8DB8DA","#E4EEF2"]}
+function drawSun(){
+  const h=+$("#hour").value,alt=sunAlt(h),W=800,H=500,s=SEASON[season];
+  const hh=Math.floor(h),mm=Math.round((h-hh)*60)%60;$("#hOut").textContent=`${String(hh).padStart(2,"0")}:${String(mm).padStart(2,"0")}`;
+  const [c1,c2]=sky(alt), t=Math.max(0,Math.min(1,(h-s.rise)/(s.set-s.rise)));
+  const sx=60+t*680, sy=400-Math.max(alt,-5)/90*360;
+  // room section: floor y=400, glazing at x=380 from 250 to 400, overhang from x=380 out to 470 at y=240
+  const glassX=380,floorY=400,headY=250,ohX=470,ohY=240;
+  let poly="",depthM=0;
+  if(alt>0){const tan=Math.tan(alt*Math.PI/180);
+    // light enters from the right through glass; overhang casts top edge
+    const topEntry=Math.max(headY,ohY+(ohX-glassX)*tan); // height on glass where unshaded light starts
+    if(topEntry<floorY){const reachTop=glassX-(floorY-topEntry)/tan,reachBot=glassX;
+      const x1=Math.max(120,reachTop);poly=`${glassX},${topEntry} ${glassX},${floorY} ${x1},${floorY}`;
+      depthM=Math.max(0,(glassX-x1)/52)}}
+  let g=`<defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></linearGradient><radialGradient id="glow"><stop offset="0" stop-color="#FFE7B8" stop-opacity=".9"/><stop offset="1" stop-color="#FFE7B8" stop-opacity="0"/></radialGradient></defs>`;
+  g+=`<rect width="${W}" height="${H}" fill="url(#sk)"/>`;
+  g+=`<path d="M60 400 Q400 ${400-s.max/90*720} 740 400" fill="none" stroke="#fff" stroke-opacity=".35" stroke-dasharray="4 6"/>`;
+  if(alt>0)g+=`<circle cx="${sx}" cy="${sy}" r="60" fill="url(#glow)"/><circle cx="${sx}" cy="${sy}" r="18" fill="#FFD48A"/>`;
+  else g+=`<circle cx="620" cy="90" r="16" fill="#E8E4D8"/><circle cx="628" cy="84" r="14" fill="${c1}"/>`;
+  g+=`<rect y="${floorY}" width="${W}" height="${H-floorY}" fill="#4A4238"/><rect x="${glassX}" y="${floorY}" width="${W-glassX}" height="${H-floorY}" fill="#5E6B4F"/>`;
+  g+=`<rect x="100" y="230" width="${ohX-100}" height="14" fill="#1E1C19"/><rect x="100" y="244" width="20" height="156" fill="#1E1C19"/>`;
+  g+=`<rect x="120" y="244" width="${glassX-120}" height="156" fill="${alt>0?"#E7DCCB":"#3A342C"}"/>`;
+  if(poly)g+=`<polygon points="${poly}" fill="#FFE2A8" opacity=".75"/>`;
+  g+=`<line x1="${glassX}" y1="${headY}" x2="${glassX}" y2="${floorY}" stroke="#9FC6D8" stroke-width="5"/>`;
+  g+=`<rect x="150" y="370" width="90" height="30" fill="#B5603A"/><rect x="270" y="340" width="10" height="60" fill="#6B4E36"/><rect x="250" y="335" width="50" height="8" fill="#6B4E36"/>`;
+  if(alt<=0)g+=`<rect x="150" y="260" width="30" height="8" fill="#FFD48A"/><polygon points="150,268 180,268 200,380 130,380" fill="#FFD48A" opacity=".18"/>`;
+  g+=`<text x="20" y="${H-20}" fill="#fff" font-family="Manrope" font-size="14" opacity=".8">Section through living room · overhang 1.7 m · latitude 33.7° N</text>`;
+  $("#scene").innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Sun study at ${$("#hOut").textContent}, ${season}">${g}</svg>`;
+  $("#alt").textContent=alt>0?alt.toFixed(0)+"°":"Below horizon";
+  $("#depth").textContent=alt>0?(depthM>0?depthM.toFixed(1)+" m":"Shaded"):"–";
+}
+$("#hour").oninput=drawSun;
+$$(".ctrl .seg button").forEach(b=>b.onclick=()=>{season=b.dataset.s;$$(".ctrl .seg button").forEach(x=>x.setAttribute("aria-pressed",x===b));drawSun()});
+$("#play").onclick=()=>{if(playing){clearInterval(playing);playing=null;$("#play").textContent="▶ Play the day";return}
+  $("#play").textContent="❚❚ Pause";if(+$("#hour").value>=18.9)$("#hour").value=6;
+  playing=setInterval(()=>{let v=+$("#hour").value+.06;if(v>19){v=19;clearInterval(playing);playing=null;$("#play").textContent="▶ Play the day"}$("#hour").value=v;drawSun()},30)};
+drawSun();
+
+// ---------- before / after ----------
+(function(){const ba=$("#ba"),k=$("#knob");let drag=false;
+  const set=p=>{p=Math.max(0,Math.min(100,p));ba.style.setProperty("--pos",p+"%");k.setAttribute("aria-valuenow",Math.round(p))};
+  const fromX=x=>{const r=ba.getBoundingClientRect();set((x-r.left)/r.width*100)};
+  ba.addEventListener("pointerdown",e=>{drag=true;ba.setPointerCapture(e.pointerId);fromX(e.clientX)});
+  ba.addEventListener("pointermove",e=>{if(drag)fromX(e.clientX)});
+  ba.addEventListener("pointerup",()=>drag=false);
+  k.addEventListener("keydown",e=>{const v=+k.getAttribute("aria-valuenow");if(e.key==="ArrowLeft"){set(v-5);e.preventDefault()}if(e.key==="ArrowRight"){set(v+5);e.preventDefault()}if(e.key==="Home")set(0);if(e.key==="End")set(100)});
+})();
+
+// ---------- floor plan ----------
+const ROOMS=[
+  {id:"living",n:"Living room",x:20,y:20,w:260,h:180,a:38,notes:["Full-height glazing to the courtyard","Winter sun reaches 4 m into the room","Built-in oak shelving along the north wall"]},
+  {id:"kitchen",n:"Kitchen and dining",x:280,y:20,w:220,h:180,a:31,notes:["Island faces the courtyard","Larder and utility behind a pocket door","Clerestory window for morning light"]},
+  {id:"court",n:"Courtyard",x:150,y:200,w:350,h:170,a:41,notes:["Planted with a single shade tree","Rain from all roofs collected here","Every room opens onto it"],court:1},
+  {id:"bed1",n:"Main bedroom",x:500,y:20,w:180,h:210,a:28,notes:["East-facing for morning light","Walk-through wardrobe to the bathroom","Private garden window"]},
+  {id:"bath",n:"Bathroom",x:500,y:230,w:180,h:140,a:15,notes:["Skylight over the shower","Stone floor with underfloor heating","Window screened by planting"]},
+  {id:"study",n:"Study",x:20,y:200,w:130,h:170,a:16,notes:["Quiet corner away from the kitchen","Desk at the courtyard window","Can become a guest room"]},
+  {id:"bed2",n:"Children's rooms",x:20,y:370,w:370,h:130,a:34,notes:["Two rooms with a sliding partition","Shared play alcove","Low windows at child height"]},
+  {id:"entry",n:"Entrance",x:390,y:370,w:290,h:130,a:22,notes:["Covered porch and boot room","Long view through to the courtyard","Storage for bikes and garden tools"]}
+];
+let sel="living";
+function drawPlan(){
+  let g=`<rect x="10" y="10" width="680" height="500" fill="#E9E2D5"/>`;
+  ROOMS.forEach(r=>{g+=`<rect class="room ${r.id===sel?"on":""}" ${r.court?'style="fill:#D7E0C8"':""} x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" tabindex="0" role="button" aria-label="${r.n}, ${r.a} square metres" data-id="${r.id}"/>`;
+    g+=`<text class="rlabel" x="${r.x+r.w/2}" y="${r.y+r.h/2}" text-anchor="middle">${r.n}</text><text class="rarea" x="${r.x+r.w/2}" y="${r.y+r.h/2+17}" text-anchor="middle">${r.a} m²</text>`});
+  g+=`<circle cx="325" cy="270" r="34" fill="#4F5D44" opacity=".7" pointer-events="none"/><path d="M430 500 h60" stroke="#F4EFE6" stroke-width="8"/>`;
+  g+=`<g transform="translate(655 470)"><circle r="16" fill="none" stroke="#1E1C19"/><path d="M0 -12 L5 4 L0 0 L-5 4Z" fill="#1E1C19"/><text y="-20" text-anchor="middle" font-size="11" font-family="Manrope">N</text></g>`;
+  $("#plansvg").innerHTML=`<svg viewBox="0 0 700 520" aria-label="Interactive floor plan">${g}</svg>`;
+  const r=ROOMS.find(x=>x.id===sel),tot=ROOMS.filter(x=>!x.court).reduce((s,x)=>s+x.a,0);
+  $("#info").innerHTML=`<p class="kicker">Selected room</p><h3>${r.n}</h3><span class="area">${r.a} m²</span><ul>${r.notes.map(n=>`<li>${n}</li>`).join("")}</ul><div class="totals"><div><b>${tot} m²</b><span>Internal floor area</span></div><div><b>${ROOMS.length-1}</b><span>Rooms</span></div><div><b>1</b><span>Courtyard</span></div></div>`;
+}
+const pick=e=>{const t=e.target.closest(".room");if(t&&t.dataset.id!==sel){sel=t.dataset.id;const f=document.activeElement===t;drawPlan();if(f)$(`.room[data-id="${sel}"]`).focus()}};
+$("#plansvg").addEventListener("pointerover",pick);$("#plansvg").addEventListener("click",pick);
+$("#plansvg").addEventListener("focusin",pick);
+drawPlan();
+
+// ---------- contact form ----------
+const BUD=["Under PKR 5m","PKR 5–15m","PKR 15–40m","PKR 40–100m","PKR 100–250m","Over PKR 250m"];
+$("#bud").oninput=()=>$("#budOut").textContent=BUD[$("#bud").value];$("#bud").oninput();
+$("#cform").onsubmit=e=>{e.preventDefault();let first=null;
+  const err=(id,m,field)=>{$("#e_"+id).textContent=m;if(field)field.setAttribute("aria-invalid",!!m);if(m&&!first)first=field||$("#types input")};
+  const nm=$("#nm"),em=$("#em"),msg=$("#msg"),types=$$("#types input:checked").map(i=>i.value);
+  err("nm",nm.value.trim().length<2?"Please tell us your name.":"",nm);
+  err("em",!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em.value.trim())?"Enter an email address we can reply to.":"",em);
+  err("types",types.length?"":"Choose at least one project type.");
+  err("msg",msg.value.trim().length<15?"A sentence or two about the site helps us reply properly.":"",msg);
+  if(first){first.focus();return}
+  const safe=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  $("#formWrap").innerHTML=`<div class="sent" role="status" tabindex="-1" id="sent"><h3 style="font:400 1.8rem var(--serif);margin:0 0 .5rem">Thank you, ${safe(nm.value.trim().split(" ")[0])}.</h3><p style="margin:0">Your enquiry about a ${safe(types.join(", ").toLowerCase())} project (${BUD[$("#bud").value]}) is noted. This is a demo, so nothing was sent.</p></div>`;$("#sent").focus()};
+watch();
+</script>
+</body>
+</html>
