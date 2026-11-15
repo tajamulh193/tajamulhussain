@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beam Analysis Tool | Engineering sample</title>
+<meta name="description" content="Sample engineering tool by Tujummal Hussain: shear force, bending moment, deflection and stress checks for beams, verified against textbook formulas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#172033;--navy:#1B2742;--navy-d:#121B30;--crimson:#8F1D3F;--mist:#EDF0F4;--line:#D5DBE4;--slate:#566275;--blue:#2F5DA8;--teal:#2C7A7B;--green:#1E7B4D;--green-l:#DDF1E6;--red:#B3261E;--red-l:#F9DEDC;--amber:#8A5300;--amber-l:#FCEFD6;
+--serif:"Source Serif 4",Georgia,serif;--sans:"Public Sans","Segoe UI",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--mist);color:var(--ink);font:400 15px/1.55 var(--sans)}
+a{color:var(--crimson)}
+:focus-visible{outline:3px solid #E0A526;outline-offset:2px}
+.note{background:#FFF8E6;border-bottom:1px solid #F0DFB0;font-size:.85rem;text-align:center;padding:.45rem 1rem;margin:0}
+header{background:var(--navy-d);color:#fff}
+header .in{max-width:1320px;margin:0 auto;padding:1.1rem 1.25rem}
+header h1{font:700 1.45rem/1.2 var(--serif);margin:0}
+header p{margin:.2rem 0 0;color:#B9C3D6;font-size:.9rem}
+.app{max-width:1320px;margin:0 auto;padding:1.25rem;display:grid;grid-template-columns:340px 1fr;gap:1.25rem;align-items:start}
+.panel,.card{background:#fff;border:1px solid var(--line);border-radius:8px}
+.panel{padding:1rem 1.1rem;position:sticky;top:1rem}
+.panel h2,.card h2{font:700 1.05rem/1.3 var(--serif);color:var(--navy);margin:0 0 .6rem}
+.panel h2{margin-top:1rem}.panel h2:first-child{margin-top:0}
+.f{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+label{display:block;font-size:.78rem;font-weight:600;color:var(--slate);margin-bottom:.15rem}
+input,select{width:100%;font:500 .92rem var(--sans);padding:.42rem .5rem;border:1px solid var(--line);border-radius:5px;background:#fff;color:var(--ink)}
+input[aria-invalid=true]{border-color:var(--red);background:var(--red-l)}
+.seg{display:flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.seg button{flex:1;border:0;background:#fff;padding:.45rem;font:600 .85rem var(--sans);cursor:pointer;color:var(--ink)}
+.seg button[aria-pressed=true]{background:var(--navy);color:#fff}
+.load{display:grid;grid-template-columns:76px 1fr 1fr 1fr 28px;gap:.35rem;align-items:end;margin:.35rem 0}
+.load button.x{border:0;background:none;color:var(--slate);font-size:1.2rem;cursor:pointer;padding:.3rem 0}
+.add{display:flex;gap:.4rem;margin-top:.4rem}
+.add button,.btn{flex:1;border:1px dashed var(--slate);background:#fff;padding:.4rem;border-radius:5px;font:600 .82rem var(--sans);cursor:pointer;color:var(--navy)}
+.err{color:var(--red);font-size:.82rem;margin:.4rem 0 0;min-height:1em}
+.main{display:grid;gap:1.25rem;min-width:0}
+.card{padding:1rem 1.2rem;min-width:0}
+.kpis{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:.8rem}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:8px;padding:.75rem .85rem;border-top:4px solid var(--navy)}
+.kpi span{display:block;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--slate)}
+.kpi strong{display:block;font:700 1.3rem/1.25 var(--sans);font-variant-numeric:tabular-nums}
+.kpi small{color:var(--slate);font-size:.78rem}
+.kpi.ok{border-top-color:var(--green)}.kpi.warn{border-top-color:#C08A1E}.kpi.fail{border-top-color:var(--red)}
+.pill{display:inline-block;font-size:.75rem;font-weight:700;padding:.1rem .5rem;border-radius:99px}
+.pill.ok{background:var(--green-l);color:var(--green)}.pill.fail{background:var(--red-l);color:var(--red)}.pill.warn{background:var(--amber-l);color:var(--amber)}
+.diag svg{display:block;width:100%;height:auto}
+svg text{font-family:var(--sans)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+table{border-collapse:collapse;width:100%;font-size:.86rem}
+th,td{padding:.45rem .5rem;border-bottom:1px solid var(--mist);text-align:left}
+th{font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--slate)}
+td.n{text-align:right;font-family:var(--mono);font-size:.82rem;white-space:nowrap}
+.scroll{overflow-x:auto}
+.method{font-size:.88rem;color:var(--slate)}
+.method code{font-family:var(--mono);font-size:.8rem;background:var(--mist);padding:.05rem .3rem;border-radius:3px;color:var(--ink)}
+footer{max-width:1320px;margin:0 auto;padding:0 1.25rem 2rem;color:var(--slate);font-size:.85rem}
+@media (max-width:1100px){.kpis{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:900px){.app{grid-template-columns:1fr}.panel{position:static}.g2{grid-template-columns:1fr}}
+@media (max-width:520px){.kpis{grid-template-columns:repeat(2,1fr)}.app{padding:.75rem}}
+</style>
+</head>
+<body>
+<p class="note">Engineering sample by <a href="../../">Tujummal Hussain</a>. For learning and early sizing only, not a substitute for a design check by a qualified engineer.</p>
+<header><div class="in"><h1>Beam analysis: shear, bending, deflection and stress</h1><p>Set up a beam, add loads and choose a section. Diagrams and design checks update as you type.</p></div></header>
+
+<div class="app">
+<form class="panel" id="form" onsubmit="return false" novalidate aria-label="Beam inputs">
+  <h2>1. Beam and supports</h2>
+  <div class="seg" role="group" aria-label="Support type"><button type="button" data-sup="ss" aria-pressed="true">Simply supported</button><button type="button" data-sup="cant" aria-pressed="false">Cantilever</button></div>
+  <div class="f" style="margin-top:.6rem"><div><label for="L">Span L (m)</label><input id="L" type="number" step="0.1" min="0.5" max="30" value="6"></div>
+  <div><label for="lim">Deflection limit L /</label><input id="lim" type="number" step="10" min="100" max="1000" value="360"></div></div>
+
+  <h2>2. Material and section</h2>
+  <div class="f"><div><label for="mat">Material</label><select id="mat"></select></div><div><label for="sec">Section shape</label><select id="sec"></select></div></div>
+  <div class="f" id="dims" style="margin-top:.5rem"></div>
+  <label style="margin-top:.6rem;display:flex;gap:.4rem;align-items:center;font-weight:500;color:var(--ink)"><input type="checkbox" id="sw" checked style="width:auto"> Include self-weight</label>
+
+  <h2>3. Loads <span style="font:400 .78rem var(--sans);color:var(--slate)">(downward positive)</span></h2>
+  <div id="loads"></div>
+  <div class="add"><button type="button" id="addP">+ Point load</button><button type="button" id="addU">+ Distributed load</button></div>
+  <p class="err" id="err" role="alert"></p>
+</form>
+
+<div class="main">
+  <section class="kpis" id="kpis" aria-label="Results"></section>
+  <section class="card diag"><h2>Loading diagram</h2><div id="dLoad"></div></section>
+  <section class="card diag"><h2>Shear force V (kN)</h2><div id="dV"></div></section>
+  <section class="card diag"><h2>Bending moment M (kN·m)</h2><div id="dM"></div></section>
+  <section class="card diag"><h2>Deflected shape δ (mm)</h2><div id="dD"></div></section>
+  <div class="g2">
+    <section class="card"><h2>Section properties</h2><div id="secProps"></div></section>
+    <section class="card"><h2>Design checks</h2><div id="checks"></div></section>
+  </div>
+  <section class="card"><h2>Verification against textbook formulas</h2>
+    <p class="method">Each time the page loads, the solver is run on standard cases and compared with closed-form results. All must agree within 0.1%.</p>
+    <div class="scroll"><table id="verify"></table></div>
+  </section>
+  <section class="card method"><h2>Method</h2>
+    <p>Reactions come from equilibrium (<code>ΣF = 0</code>, <code>ΣM = 0</code>). Shear and moment are summed exactly at 801 points along the beam. Deflection is found by integrating <code>M / EI</code> twice with the trapezoidal rule, then applying the boundary conditions: <code>δ(0) = δ(L) = 0</code> for a simply supported beam, or <code>δ(0) = θ(0) = 0</code> for a cantilever fixed at the left. Bending stress is <code>σ = M·y / I</code>; average shear stress is <code>V / A<sub>web</sub></code> for I-sections and <code>1.5 V / A</code> for solid rectangles.</p>
+  </section>
+</div>
+</div>
+<footer>Plain JavaScript, no libraries. <a href="https://github.com/tajamulh193/tajamulhussain/tree/main/projects/beam-analysis">View source</a> · <a href="../../#projects">Back to the portfolio</a></footer>
+
+<script>
+"use strict";
+// ---------- data ----------
+const MATS={
+  steel:{n:"Structural steel (S275)",E:210000,fy:275,rho:7850},
+  steel355:{n:"Structural steel (S355)",E:210000,fy:355,rho:7850},
+  alu:{n:"Aluminium 6061-T6",E:69000,fy:240,rho:2700},
+  timber:{n:"Softwood timber C24",E:11000,fy:24,rho:420}
+}; // E and fy in MPa (N/mm²), rho kg/m³
+const SECS={
+  ibeam:{n:"I-section",d:[["h","Depth h",300],["b","Flange width b",150],["tf","Flange t",10.7],["tw","Web t",7.1]]},
+  rect:{n:"Solid rectangle",d:[["b","Width b",100],["h","Depth h",250]]},
+  rhs:{n:"Hollow rectangle",d:[["b","Width b",100],["h","Depth h",200],["t","Wall t",8]]},
+  chs:{n:"Round tube",d:[["D","Outside dia D",168.3],["t","Wall t",8]]}
+};
+let S={sup:"ss",L:6,lim:360,mat:"steel",sec:"ibeam",dims:{},sw:true,
+  loads:[{k:"P",P:40,a:2,b:0},{k:"U",w:6,a:0,b:6}]};
+
+// ---------- section properties (mm) ----------
+function props(sec,d){
+  let A,I,ymax,Aw;
+  if(sec==="ibeam"){const hw=d.h-2*d.tf;A=2*d.b*d.tf+hw*d.tw;I=(d.b*d.h**3-(d.b-d.tw)*hw**3)/12;ymax=d.h/2;Aw=d.h*d.tw;
+    if(hw<=0||d.tw>=d.b)throw "Flange and web sizes do not fit inside the depth and width.";}
+  else if(sec==="rect"){A=d.b*d.h;I=d.b*d.h**3/12;ymax=d.h/2;Aw=A/1.5}
+  else if(sec==="rhs"){const bi=d.b-2*d.t,hi=d.h-2*d.t;if(bi<=0||hi<=0)throw "Wall thickness is too large for this box.";A=d.b*d.h-bi*hi;I=(d.b*d.h**3-bi*hi**3)/12;ymax=d.h/2;Aw=2*d.t*d.h}
+  else {const Di=d.D-2*d.t;if(Di<0)throw "Wall thickness is more than half the diameter.";A=Math.PI/4*(d.D**2-Di**2);I=Math.PI/64*(d.D**4-Di**4);ymax=d.D/2;Aw=A/2}
+  return {A,I,Z:I/ymax,ymax,Aw};
+}
+
+// ---------- solver (units: N, mm) ----------
+function solve(sup,Lm,loads,EI,n=800){
+  const L=Lm*1000, Ls=loads.map(l=>l.k==="P"?{k:"P",P:l.P*1000,a:l.a*1000}:{k:"U",w:l.w,a:l.a*1000,b:l.b*1000}); // kN/m == N/mm
+  let F=0,Mo=0; // total load and moment about x=0
+  Ls.forEach(l=>{if(l.k==="P"){F+=l.P;Mo+=l.P*l.a}else{const len=l.b-l.a;F+=l.w*len;Mo+=l.w*len*(l.a+len/2)}});
+  let R1,R2,M0=0;
+  if(sup==="ss"){R2=Mo/L;R1=F-R2}else{R1=F;R2=0;M0=-Mo} // cantilever fixed at x=0: hogging moment
+  const xs=[],V=[],M=[];
+  for(let i=0;i<=n;i++){const x=L*i/n;let v=R1,m=R1*x+M0;
+    Ls.forEach(l=>{if(l.k==="P"){if(x>l.a||(x===l.a&&i===n)){v-=l.P;m-=l.P*(x-l.a)}}
+      else if(x>l.a){const e=Math.min(x,l.b),len=e-l.a;v-=l.w*len;m-=l.w*len*(x-(l.a+len/2))}});
+    xs.push(x);V.push(v);M.push(m)}
+  // integrate curvature twice
+  const th=[0],y=[0];
+  for(let i=1;i<=n;i++){const h=xs[i]-xs[i-1];th.push(th[i-1]+h*(M[i]+M[i-1])/(2*EI));y.push(y[i-1]+h*(th[i]+th[i-1])/2)}
+  if(sup==="ss"){const c=-y[n]/L;for(let i=0;i<=n;i++)y[i]+=c*xs[i]}
+  return {xs,V,M,y,R1,R2,M0,F};
+}
+
+// ---------- verification cases ----------
+function verify(){
+  const E=210000,I=8e7,EI=E*I,L=5,P=20,w=6,Lmm=L*1000;
+  const cases=[
+    ["Simply supported, central point load","PL³/48EI","ss",[{k:"P",P,a:L/2}],P*1e3*Lmm**3/(48*EI),"PL/4",P*L/4],
+    ["Simply supported, full UDL","5wL⁴/384EI","ss",[{k:"U",w,a:0,b:L}],5*w*Lmm**4/(384*EI),"wL²/8",w*L*L/8],
+    ["Cantilever, end point load","PL³/3EI","cant",[{k:"P",P,a:L}],P*1e3*Lmm**3/(3*EI),"PL",P*L],
+    ["Cantilever, full UDL","wL⁴/8EI","cant",[{k:"U",w,a:0,b:L}],w*Lmm**4/(8*EI),"wL²/2",w*L*L/2]
+  ];
+  let all=true;
+  const rows=cases.map(([name,fd,sup,loads,dRef,fm,mRef])=>{
+    const r=solve(sup,L,loads,EI), d=Math.max(...r.y.map(Math.abs)), m=Math.max(...r.M.map(Math.abs))/1e6;
+    const ed=Math.abs(d-dRef)/dRef*100, em=Math.abs(m-mRef)/mRef*100, ok=ed<.1&&em<.1; all=all&&ok;
+    return `<tr><td>${name}</td><td>${fd}</td><td class="n">${dRef.toFixed(3)}</td><td class="n">${d.toFixed(3)}</td><td class="n">${ed.toFixed(4)}%</td><td>${fm}</td><td class="n">${mRef.toFixed(2)}</td><td class="n">${m.toFixed(2)}</td><td>${ok?'<span class="pill ok">Pass</span>':'<span class="pill fail">Fail</span>'}</td></tr>`});
+  document.getElementById("verify").innerHTML=`<thead><tr><th>Case (L = 5 m, EI = 16.8 MN·m²)</th><th>δ formula</th><th>Exact δ (mm)</th><th>Solver δ</th><th>Error</th><th>M formula</th><th>Exact M (kN·m)</th><th>Solver M</th><th></th></tr></thead><tbody>${rows.join("")}</tbody>`;
+  return all;
+}
+
+// ---------- UI ----------
+const $=id=>document.getElementById(id);
+$("mat").innerHTML=Object.entries(MATS).map(([k,m])=>`<option value="${k}">${m.n}</option>`).join("");
+$("sec").innerHTML=Object.entries(SECS).map(([k,s])=>`<option value="${k}">${s.n}</option>`).join("");
+function dimsUI(){S.dims={};$("dims").innerHTML=SECS[S.sec].d.map(([k,l,v])=>{S.dims[k]=v;return `<div><label for="d_${k}">${l} (mm)</label><input id="d_${k}" data-dim="${k}" type="number" step="0.1" min="1" value="${v}"></div>`}).join("")}
+function loadsUI(){
+  $("loads").innerHTML=S.loads.map((l,i)=>l.k==="P"
+    ?`<div class="load"><span style="font-size:.8rem;font-weight:600">Point</span><div><label for="l${i}P">P (kN)</label><input id="l${i}P" data-i="${i}" data-f="P" type="number" step="1" value="${l.P}"></div><div><label for="l${i}a">at x (m)</label><input id="l${i}a" data-i="${i}" data-f="a" type="number" step="0.1" value="${l.a}"></div><div></div><button type="button" class="x" data-del="${i}" aria-label="Remove load ${i+1}">×</button></div>`
+    :`<div class="load"><span style="font-size:.8rem;font-weight:600">UDL</span><div><label for="l${i}w">w (kN/m)</label><input id="l${i}w" data-i="${i}" data-f="w" type="number" step="0.5" value="${l.w}"></div><div><label for="l${i}a">from (m)</label><input id="l${i}a" data-i="${i}" data-f="a" type="number" step="0.1" value="${l.a}"></div><div><label for="l${i}b">to (m)</label><input id="l${i}b" data-i="${i}" data-f="b" type="number" step="0.1" value="${l.b}"></div><button type="button" class="x" data-del="${i}" aria-label="Remove load ${i+1}">×</button></div>`).join("")||'<p class="method">No loads yet.</p>';
+}
+document.querySelectorAll("[data-sup]").forEach(b=>b.onclick=()=>{S.sup=b.dataset.sup;document.querySelectorAll("[data-sup]").forEach(x=>x.setAttribute("aria-pressed",x===b));run()});
+$("form").addEventListener("input",e=>{const t=e.target;
+  if(t.id==="L")S.L=+t.value;else if(t.id==="lim")S.lim=+t.value;else if(t.id==="mat")S.mat=t.value;else if(t.id==="sw")S.sw=t.checked;
+  else if(t.id==="sec"){S.sec=t.value;dimsUI()}
+  else if(t.dataset.dim)S.dims[t.dataset.dim]=+t.value;
+  else if(t.dataset.i)S.loads[+t.dataset.i][t.dataset.f]=+t.value;
+  run()});
+$("loads").addEventListener("click",e=>{const d=e.target.dataset.del;if(d!==undefined){S.loads.splice(+d,1);loadsUI();run()}});
+$("addP").onclick=()=>{S.loads.push({k:"P",P:10,a:+(S.L/2).toFixed(2)});loadsUI();run()};
+$("addU").onclick=()=>{S.loads.push({k:"U",w:5,a:0,b:S.L});loadsUI();run()};
+
+function validate(){
+  const bad=[];document.querySelectorAll("#form input[type=number]").forEach(i=>i.removeAttribute("aria-invalid"));
+  const flag=(id,msg)=>{const el=$(id);if(el)el.setAttribute("aria-invalid","true");bad.push(msg)};
+  if(!(S.L>=0.5&&S.L<=30))flag("L","Span must be between 0.5 and 30 m.");
+  if(!(S.lim>=100))flag("lim","Deflection limit should be L/100 or stricter.");
+  Object.entries(S.dims).forEach(([k,v])=>{if(!(v>0))flag("d_"+k,"Section sizes must be positive.")});
+  S.loads.forEach((l,i)=>{
+    if(l.k==="P"){if(!(l.a>=0&&l.a<=S.L))flag(`l${i}a`,`Load ${i+1}: position must be between 0 and ${S.L} m.`);if(!isFinite(l.P))flag(`l${i}P`,`Load ${i+1}: enter a number.`)}
+    else{if(!(l.a>=0&&l.b<=S.L&&l.b>l.a)){flag(`l${i}a`,`Load ${i+1}: needs 0 ≤ from < to ≤ ${S.L} m.`);$(`l${i}b`)?.setAttribute("aria-invalid","true")}if(!isFinite(l.w))flag(`l${i}w`,`Load ${i+1}: enter a number.`)}});
+  return bad;
+}
+
+// ---------- drawing ----------
+const W=900,PL=56,PR=24;
+const X=(x,L)=>PL+(W-PL-PR)*x/(L*1000);
+function plot(el,xs,vals,L,color,unitDiv,fmt,invert){
+  const H=190,T=18,B=26,mx=Math.max(1e-9,...vals.map(Math.abs));
+  const y=v=>T+(H-T-B)/2-(invert?-1:1)*(v/mx)*(H-T-B)/2*.92;
+  let d=`M${X(0,L)},${y(0)}`;xs.forEach((x,i)=>d+=` L${X(x,L).toFixed(1)},${y(vals[i]).toFixed(1)}`);d+=` L${X(xs[xs.length-1],L)},${y(0)} Z`;
+  let im=0;vals.forEach((v,i)=>{if(Math.abs(v)>Math.abs(vals[im]))im=i});
+  let g=`<path d="${d}" fill="${color}" fill-opacity=".14" stroke="${color}" stroke-width="2"/>`;
+  g+=`<line x1="${PL}" x2="${W-PR}" y1="${y(0)}" y2="${y(0)}" stroke="#172033"/>`;
+  const vx=X(xs[im],L),vy=y(vals[im]);
+  g+=`<circle cx="${vx}" cy="${vy}" r="4" fill="${color}"/><text x="${Math.min(vx+8,W-140)}" y="${vy+(vy<y(0)?-6:14)}" font-size="13" font-weight="700" fill="${color}">${fmt(vals[im]/unitDiv)} at x = ${(xs[im]/1000).toFixed(2)} m</text>`;
+  [vals[0],vals[vals.length-1]].forEach((v,j)=>{if(Math.abs(v)/mx>.05&&(j?im!==vals.length-1:im!==0))g+=`<text x="${j?W-PR-4:PL+4}" y="${y(v)+(v>0===!invert?-6:14)}" font-size="11.5" text-anchor="${j?"end":"start"}" fill="#566275">${fmt(v/unitDiv)}</text>`});
+  for(let i=0;i<=Math.floor(L);i+=L>12?2:1)g+=`<text x="${X(i*1000,L)}" y="${H-6}" font-size="11" text-anchor="middle" fill="#566275">${i} m</text>`;
+  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Diagram, peak ${fmt(vals[im]/unitDiv)}">${g}</svg>`;
+}
+function drawLoad(L,r){
+  const H=190,by=118,g=[];
+  g.push(`<rect x="${X(0,L)}" y="${by-7}" width="${X(L*1000,L)-X(0,L)}" height="14" fill="#1B2742" rx="2"/>`);
+  if(S.sup==="ss"){[0,L].forEach((x,j)=>{const cx=X(x*1000,L);g.push(j?`<circle cx="${cx}" cy="${by+18}" r="10" fill="none" stroke="#172033" stroke-width="2"/>`:`<path d="M${cx},${by+7} l-13,22 h26 Z" fill="none" stroke="#172033" stroke-width="2"/>`,
+    `<text x="${cx}" y="${by+50}" font-size="12.5" text-anchor="${j?"end":"start"}" font-weight="700" fill="#2C7A7B">R${j+1} = ${((j?r.R2:r.R1)/1000).toFixed(2)} kN</text>`)})}
+  else{const cx=X(0,L);g.push(`<rect x="${cx-14}" y="${by-40}" width="14" height="80" fill="url(#hatch)" stroke="#172033"/>`,`<text x="${cx+6}" y="${by+38}" font-size="12.5" font-weight="700" fill="#2C7A7B">R = ${(r.R1/1000).toFixed(2)} kN, M = ${(r.M0/1e6).toFixed(2)} kN·m</text>`)}
+  S.loads.forEach(l=>{
+    if(l.k==="P"){const cx=X(l.a*1000,L),up=l.P<0;g.push(`<line x1="${cx}" x2="${cx}" y1="${up?by+60:by-70}" y2="${up?by+10:by-10}" stroke="#8F1D3F" stroke-width="2.5"/><path d="M${cx},${up?by+8:by-8} l-6,${up?10:-10} h12 Z" fill="#8F1D3F"/><text x="${cx}" y="${up?by+74:by-76}" font-size="12.5" text-anchor="middle" font-weight="700" fill="#8F1D3F">${l.P} kN</text>`)}
+    else{const x1=X(l.a*1000,L),x2=X(l.b*1000,L),top=by-44;g.push(`<rect x="${x1}" y="${top}" width="${x2-x1}" height="30" fill="#2F5DA8" fill-opacity=".12" stroke="#2F5DA8"/>`);
+      const nArr=Math.max(2,Math.round((x2-x1)/40));for(let i=0;i<=nArr;i++){const ax=x1+(x2-x1)*i/nArr;g.push(`<line x1="${ax}" x2="${ax}" y1="${top}" y2="${by-12}" stroke="#2F5DA8"/><path d="M${ax},${by-9} l-4,-7 h8 Z" fill="#2F5DA8"/>`)}
+      g.push(`<text x="${(x1+x2)/2}" y="${top-6}" font-size="12.5" text-anchor="middle" font-weight="700" fill="#2F5DA8">${l.w} kN/m</text>`)}});
+  if(S.sw)g.push(`<text x="${W-PR}" y="${H-6}" font-size="11.5" text-anchor="end" fill="#566275">+ self-weight ${(selfW()).toFixed(3)} kN/m (not drawn)</text>`);
+  $("dLoad").innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Beam loading diagram"><defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="#8A94A6" stroke-width="2"/></pattern></defs>${g.join("")}</svg>`;
+}
+function selfW(){try{return props(S.sec,S.dims).A*1e-6*MATS[S.mat].rho*9.81/1000}catch(e){return 0}}
+function secSVG(sec,d){
+  const s=110/Math.max(d.h||d.D,d.b||d.D),cx=70,cy=70;let p="";
+  if(sec==="ibeam"){const h=d.h*s,b=d.b*s,tf=d.tf*s,tw=d.tw*s;p=`<path d="M${cx-b/2},${cy-h/2}h${b}v${tf}h${-(b-tw)/2}v${h-2*tf}h${(b-tw)/2}v${tf}h${-b}v${-tf}h${(b-tw)/2}v${-(h-2*tf)}h${-(b-tw)/2}Z"/>`}
+  else if(sec==="rect")p=`<rect x="${cx-d.b*s/2}" y="${cy-d.h*s/2}" width="${d.b*s}" height="${d.h*s}"/>`;
+  else if(sec==="rhs")p=`<path fill-rule="evenodd" d="M${cx-d.b*s/2},${cy-d.h*s/2}h${d.b*s}v${d.h*s}h${-d.b*s}Z M${cx-d.b*s/2+d.t*s},${cy-d.h*s/2+d.t*s}v${(d.h-2*d.t)*s}h${(d.b-2*d.t)*s}v${-(d.h-2*d.t)*s}Z"/>`;
+  else p=`<circle cx="${cx}" cy="${cy}" r="${d.D*s/2}"/><circle cx="${cx}" cy="${cy}" r="${(d.D/2-d.t)*s}" fill="#fff"/>`;
+  return `<svg viewBox="0 0 140 140" width="140" height="140" role="img" aria-label="Section shape"><g fill="#1B2742">${p}</g><line x1="5" x2="135" y1="70" y2="70" stroke="#8F1D3F" stroke-dasharray="3 3"/></svg>`;
+}
+
+// ---------- main ----------
+function run(){
+  const errs=validate();$("err").textContent=errs[0]||"";
+  if(errs.length){$("kpis").style.opacity=.4;return}
+  let P;try{P=props(S.sec,S.dims)}catch(m){$("err").textContent=m;$("kpis").style.opacity=.4;return}
+  $("kpis").style.opacity=1;
+  const m=MATS[S.mat],EI=m.E*P.I, loads=S.loads.slice();
+  if(S.sw)loads.push({k:"U",w:selfW(),a:0,b:S.L});
+  const r=solve(S.sup,S.L,loads,EI);
+  const Mmax=Math.max(...r.M.map(Math.abs)),Vmax=Math.max(...r.V.map(Math.abs)),dmax=Math.max(...r.y.map(Math.abs));
+  const sig=Mmax*P.ymax/P.I, tau=Vmax/P.Aw, util=sig/m.fy, allow=S.L*1000/(S.sup==="cant"?S.lim/2:S.lim), dUtil=dmax/allow;
+  const tauLim=m.fy/Math.sqrt(3), sUtil=tau/tauLim;
+  const cls=u=>u<=.85?"ok":u<=1?"warn":"fail";
+  const k=[["Max moment",(Mmax/1e6).toFixed(1)+" kN·m","",""],["Max shear",(Vmax/1e3).toFixed(1)+" kN","",""],
+    ["Bending stress",sig.toFixed(0)+" MPa",`limit ${m.fy} MPa`,cls(util)],["Bending use",(util*100).toFixed(0)+"%",`factor of safety ${(1/util).toFixed(2)}`,cls(util)],
+    ["Max deflection",dmax.toFixed(1)+" mm",`limit ${allow.toFixed(1)} mm`,cls(dUtil)],["Deflection use",(dUtil*100).toFixed(0)+"%",`L / ${(S.L*1000/dmax).toFixed(0)}`,cls(dUtil)]];
+  $("kpis").innerHTML=k.map(([l,v,s,c])=>`<div class="kpi ${c}"><span>${l}</span><strong>${v}</strong><small>${s||"&nbsp;"}</small></div>`).join("");
+  drawLoad(S.L,r);
+  plot($("dV"),r.xs,r.V,S.L,"#2C7A7B",1e3,v=>v.toFixed(1)+" kN");
+  plot($("dM"),r.xs,r.M,S.L,"#8F1D3F",1e6,v=>v.toFixed(1)+" kN·m");
+  plot($("dD"),r.xs,r.y,S.L,"#2F5DA8",1,v=>v.toFixed(2)+" mm");
+  const f=(v,dp=0)=>Number(v).toLocaleString("en-GB",{maximumFractionDigits:dp,minimumFractionDigits:dp});
+  $("secProps").innerHTML=`<div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">${secSVG(S.sec,S.dims)}<table style="flex:1;min-width:220px"><tbody>
+    <tr><td>Area A</td><td class="n">${f(P.A)} mm²</td></tr><tr><td>Second moment I</td><td class="n">${f(P.I/1e4,1)} cm⁴</td></tr>
+    <tr><td>Section modulus Z</td><td class="n">${f(P.Z/1e3,1)} cm³</td></tr><tr><td>Mass</td><td class="n">${f(P.A*1e-6*m.rho,1)} kg/m</td></tr>
+    <tr><td>Stiffness EI</td><td class="n">${f(EI/1e12,2)} MN·m²</td></tr></tbody></table></div>`;
+  const row=(n,v,l,u)=>`<tr><td>${n}</td><td class="n">${v}</td><td class="n">${l}</td><td class="n">${(u*100).toFixed(0)}%</td><td><span class="pill ${cls(u)}">${u<=1?"Pass":"Fail"}</span></td></tr>`;
+  $("checks").innerHTML=`<div class="scroll"><table><thead><tr><th>Check</th><th>Actual</th><th>Limit</th><th>Use</th><th></th></tr></thead><tbody>
+    ${row("Bending stress σ = M·y / I",sig.toFixed(1)+" MPa",m.fy+" MPa",util)}
+    ${row("Shear stress τ",tau.toFixed(1)+" MPa",tauLim.toFixed(0)+" MPa",sUtil)}
+    ${row(`Deflection (L/${S.sup==="cant"?S.lim/2:S.lim})`,dmax.toFixed(1)+" mm",allow.toFixed(1)+" mm",dUtil)}
+    </tbody></table></div><p class="method">Total load ${(r.F/1000).toFixed(2)} kN. Reactions sum to ${((r.R1+r.R2)/1000).toFixed(2)} kN (equilibrium check). Cantilevers use half the span ratio, as is common practice. Lateral-torsional buckling and local buckling are not checked.</p>`;
+}
+dimsUI();loadsUI();
+const vOK=verify();
+run();
+window.__beam={solve,props,verifyOK:vOK};
+</script>
+</body>
+</html>
