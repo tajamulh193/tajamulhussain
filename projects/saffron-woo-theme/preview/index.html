@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saffron WooCommerce Theme | Live preview</title>
+<meta name="description" content="Static preview of Saffron, a WooCommerce block theme by Tujummal Hussain. Shop filters, quick view and a cart drawer with a free-shipping bar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1F1A17;--paper:#FBF7F1;--cream:#F3EADC;--saffron:#D9822B;--madder:#9E3B2C;--indigo:#2E3A59;--stone:#7A7067;--line:#E3D8C7;--disp:"Cormorant Garamond",Georgia,serif;--sans:"Jost",system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16.5px/1.65 var(--sans)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--saffron);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 1.5rem}
+.demo{background:#111;color:#ddd;font-size:.82rem;text-align:center;padding:.45rem 1rem}
+.demo a{color:#F6C27A}
+.ann{background:var(--ink);color:var(--paper);text-align:center;font-size:.85rem;padding:.55rem 1rem;letter-spacing:.03em}
+header{position:sticky;top:0;z-index:20;background:rgba(251,247,241,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:74px;gap:1rem}
+.logo{font:600 1.9rem var(--disp);text-decoration:none;letter-spacing:.01em}
+header nav{display:flex;gap:2rem;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase}
+header nav a{text-decoration:none}
+.icons{display:flex;gap:.4rem}
+.ib{position:relative;width:44px;height:44px;border-radius:50%;border:0;background:none;cursor:pointer;display:grid;place-items:center;color:var(--ink)}
+.ib:hover{background:var(--cream)}
+.ib .n{position:absolute;top:4px;right:2px;min-width:18px;height:18px;border-radius:9px;background:var(--madder);color:#fff;font-size:.7rem;font-weight:600;display:grid;place-items:center;padding:0 4px;transform:scale(0);transition:transform .25s}
+.ib .n.on{transform:scale(1)}
+.ib .n.bump{animation:bump .4s}
+@keyframes bump{50%{transform:scale(1.4)}}
+.hero{background:var(--cream)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:3rem;align-items:center;padding-top:4.5rem;padding-bottom:4.5rem}
+.kick{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--madder);font-weight:600}
+h1{font:500 clamp(2.8rem,5.5vw,4.6rem)/1.02 var(--disp);margin:.6rem 0 1rem}
+.hero p{color:var(--stone);max-width:44ch;font-size:1.08rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.6rem;border-radius:99px;background:var(--ink);color:var(--paper);border:1px solid var(--ink);text-decoration:none;font:500 .95rem var(--sans);cursor:pointer;transition:background .2s,transform .2s}
+.btn:hover{background:var(--madder);border-color:var(--madder);transform:translateY(-1px)}
+.btn.o{background:none;color:var(--ink)}
+.btn.o:hover{color:#fff}
+.arch{aspect-ratio:4/5;border-radius:240px 240px 18px 18px;overflow:hidden;max-width:440px;margin-left:auto}
+.arch svg{width:100%;height:100%;display:block}
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin:4rem auto}
+.cat{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:5/4;cursor:pointer;border:0;padding:0;background:none;text-align:left;font:inherit;color:#fff}
+.cat svg{position:absolute;inset:0;width:100%;height:100%;transition:transform .8s}
+.cat:hover svg{transform:scale(1.05)}
+.cat span{position:absolute;left:1rem;bottom:1rem;font:600 1.6rem var(--disp);background:var(--paper);color:var(--ink);padding:.2rem 1rem;border-radius:99px}
+.shophead{display:flex;justify-content:space-between;align-items:end;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem}
+h2{font:500 clamp(2rem,4vw,3rem)/1.05 var(--disp);margin:0}
+.tools{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+.chip{border:1px solid var(--line);background:#fff;border-radius:99px;padding:.45rem 1rem;font:500 .85rem var(--sans);cursor:pointer;color:var(--ink)}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+select{border:1px solid var(--line);background:#fff;border-radius:99px;padding:.45rem .9rem;font:500 .85rem var(--sans);color:var(--ink)}
+.count{color:var(--stone);font-size:.88rem;margin:0 0 1rem}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.6rem 1.2rem}
+.p{position:relative}
+.p .img{position:relative;aspect-ratio:4/5;border-radius:14px;overflow:hidden;background:var(--cream)}
+.p .img svg{width:100%;height:100%;display:block;transition:transform .7s}
+.p:hover .img svg{transform:scale(1.04)}
+.badge{position:absolute;top:.7rem;left:.7rem;background:#fff;border-radius:99px;font-size:.72rem;font-weight:600;padding:.2rem .6rem}
+.badge.sale{background:var(--madder);color:#fff}
+.wish{position:absolute;top:.5rem;right:.5rem;width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.9);cursor:pointer;font-size:1.05rem;color:var(--ink)}
+.wish[aria-pressed=true]{color:var(--madder)}
+.qv{position:absolute;left:.7rem;right:.7rem;bottom:.7rem;opacity:0;transform:translateY(8px);transition:all .3s;justify-content:center}
+.p:hover .qv,.qv:focus-visible{opacity:1;transform:none}
+.p h3{font:600 1.25rem/1.2 var(--disp);margin:.7rem 0 .1rem}
+.price{font-size:.95rem}
+.price s{color:var(--stone);margin-right:.4rem}
+.sw{display:flex;gap:.3rem;margin-top:.35rem}
+.sw i{width:14px;height:14px;border-radius:50%;border:1px solid rgba(0,0,0,.15)}
+.empty{grid-column:1/-1;text-align:center;padding:3rem;color:var(--stone)}
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin:5rem 0}
+.feat div{border-top:1px solid var(--ink);padding-top:1rem}
+.feat h3{font:600 1.4rem var(--disp);margin:0 0 .3rem}
+.feat p{color:var(--stone);margin:0;font-size:.95rem}
+/* modal */
+dialog{border:0;padding:0;border-radius:18px;max-width:min(920px,94vw);width:100%;background:var(--paper);color:var(--ink)}
+dialog::backdrop{background:rgba(31,26,23,.55)}
+dialog[open]{animation:pop .35s ease}
+@keyframes pop{from{opacity:0;transform:translateY(20px)}}
+.qgrid{display:grid;grid-template-columns:1fr 1fr}
+.qgrid .img svg{width:100%;height:100%;display:block}
+.qbody{padding:2rem}
+.qbody h3{font:600 2.2rem/1.05 var(--disp);margin:.2rem 0 .5rem}
+.opt{margin:1.2rem 0}
+.opt b{display:block;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
+.sizes{display:flex;gap:.4rem;flex-wrap:wrap}
+.sizes button{min-width:48px;padding:.5rem .7rem;border:1px solid var(--line);background:#fff;border-radius:10px;cursor:pointer;font:500 .9rem var(--sans);color:var(--ink)}
+.sizes button[aria-pressed=true]{border-color:var(--ink);background:var(--ink);color:#fff}
+.sizes button:disabled{opacity:.35;text-decoration:line-through;cursor:not-allowed}
+.qty{display:inline-flex;border:1px solid var(--line);border-radius:99px;background:#fff}
+.qty button{width:40px;border:0;background:none;cursor:pointer;font-size:1.1rem;color:var(--ink)}
+.qty span{min-width:30px;text-align:center;align-self:center}
+.x{position:absolute;top:.6rem;right:.6rem;width:40px;height:40px;border-radius:50%;border:0;background:#fff;cursor:pointer;font-size:1.3rem;z-index:2}
+.err{color:var(--madder);font-size:.88rem;min-height:1.2em;margin:.5rem 0 0}
+/* drawer */
+.scrim{position:fixed;inset:0;background:rgba(31,26,23,.45);opacity:0;pointer-events:none;transition:opacity .3s;z-index:40}
+.scrim.on{opacity:1;pointer-events:auto}
+aside.cart{position:fixed;top:0;right:0;bottom:0;width:min(420px,100vw);background:var(--paper);z-index:41;transform:translateX(100%);transition:transform .35s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column}
+aside.cart.on{transform:none}
+.ch{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 1.4rem;border-bottom:1px solid var(--line)}
+.ch h2{font-size:1.8rem}
+.ship{padding:1rem 1.4rem;background:var(--cream);font-size:.9rem}
+.bar{height:6px;border-radius:3px;background:#fff;margin-top:.5rem;overflow:hidden}
+.bar b{display:block;height:100%;background:var(--saffron);transition:width .4s}
+.items{flex:1;overflow:auto;padding:.5rem 1.4rem}
+.it{display:grid;grid-template-columns:72px 1fr auto;gap:.9rem;padding:1rem 0;border-bottom:1px solid var(--line);align-items:center}
+.it .th{aspect-ratio:4/5;border-radius:8px;overflow:hidden}
+.it .th svg{width:100%;height:100%;display:block}
+.it b{font:600 1.1rem var(--disp)}
+.it small{display:block;color:var(--stone)}
+.rm{border:0;background:none;color:var(--stone);text-decoration:underline;cursor:pointer;font:400 .8rem var(--sans);padding:0}
+.cf{padding:1.2rem 1.4rem;border-top:1px solid var(--line)}
+.row{display:flex;justify-content:space-between;margin:.2rem 0}
+.toast{position:fixed;left:50%;bottom:1.5rem;transform:translate(-50%,250%);visibility:hidden;background:var(--ink);color:var(--paper);padding:.8rem 1.2rem;border-radius:99px;font-size:.9rem;transition:transform .35s;z-index:50}
+.toast.on{transform:translate(-50%,0);visibility:visible}
+footer{background:var(--cream);padding:3rem 0;margin-top:4rem;color:var(--stone);font-size:.9rem}
+footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+@media (max-width:960px){.grid{grid-template-columns:repeat(2,1fr)}.hero .wrap,.qgrid{grid-template-columns:1fr}.arch{margin:0 auto;max-width:340px}header nav{display:none}.cats,.feat{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<p class="demo">Static preview of the <b>Saffron</b> WooCommerce theme by <a href="../../../">Tujummal Hussain</a>. Products are fictional · <a href="../saffron.zip">Download the theme (.zip)</a> · <a href="https://github.com/tajamulh193/tajamulhussain/tree/main/projects/saffron-woo-theme">View source</a></p>
+<div class="ann">Free shipping on orders over $75 · Handmade in small batches</div>
+<header><div class="wrap">
+  <a class="logo" href="#">Saffron</a>
+  <nav aria-label="Main"><a href="#shop">Shop</a><a href="#shop" data-jump="Scarves">Scarves</a><a href="#shop" data-jump="Home">Home linen</a><a href="#about">Our process</a></nav>
+  <div class="icons"><button class="ib" id="wishBtn" aria-label="Wishlist"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><span class="n" id="wn">0</span></button>
+  <button class="ib" id="cartBtn" aria-label="Open cart" aria-controls="cart" aria-expanded="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="n" id="cn">0</span></button></div>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+  <div><span class="kick">Autumn collection</span><h1>Printed by hand, made to be worn for years</h1><p>Cotton and linen pieces block-printed with natural dyes in small batches. Every print is a little different.</p>
+  <p style="margin-top:1.8rem"><a class="btn" href="#shop">Shop the collection</a> <a class="btn o" href="#about">Our process</a></p></div>
+  <div class="arch" id="heroArt"></div>
+</div></section>
+
+<div class="wrap">
+  <div class="cats" id="cats"></div>
+
+  <section id="shop">
+    <div class="shophead"><h2>New this season</h2>
+      <div class="tools"><div class="tools" role="group" aria-label="Category" id="fcat"></div>
+        <label for="sort" style="position:absolute;left:-9999px">Sort by</label><select id="sort"><option value="new">Newest</option><option value="lo">Price: low to high</option><option value="hi">Price: high to low</option><option value="az">Name</option></select>
+        <label for="maxp" style="font-size:.85rem;color:var(--stone)">Up to <output id="maxOut">$120</output></label><input type="range" id="maxp" min="20" max="120" step="5" value="120" style="accent-color:var(--madder)"></div></div>
+    <p class="count" id="count" aria-live="polite"></p>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="feat" id="about">
+    <div><h3>Carved wooden blocks</h3><p>Each pattern is cut by hand into sheesham wood, then stamped one repeat at a time.</p></div>
+    <div><h3>Natural dyes</h3><p>Indigo, madder root and pomegranate rind, fixed with alum. Colours soften beautifully with washing.</p></div>
+    <div><h3>Small batches</h3><p>We print about forty pieces a week, so popular items sell out. Join the list to hear first.</p></div>
+  </section>
+</div>
+</main>
+
+<dialog id="qv" aria-labelledby="qTitle"><button class="x" id="qClose" aria-label="Close">×</button><div class="qgrid"><div class="img" id="qImg"></div><div class="qbody" id="qBody"></div></div></dialog>
+<div class="scrim" id="scrim"></div>
+<aside class="cart" id="cart" aria-label="Shopping cart" aria-hidden="true">
+  <div class="ch"><h2>Your bag</h2><button class="ib" id="cartClose" aria-label="Close cart">×</button></div>
+  <div class="ship" id="ship"></div>
+  <div class="items" id="items"></div>
+  <div class="cf"><div class="row"><span>Subtotal</span><b id="sub">$0</b></div><div class="row" style="color:var(--stone);font-size:.88rem"><span>Shipping</span><span id="shipCost">Calculated at checkout</span></div>
+  <button class="btn" style="width:100%;justify-content:center;margin-top:1rem" id="checkout">Checkout</button></div>
+</aside>
+<div class="toast" id="toast" role="status"></div>
+<footer><div class="wrap"><span>Saffron theme preview · Designed and built by Tujummal Hussain</span><a href="../../../#projects">Back to the portfolio</a></div></footer>
+
+<script>
+"use strict";
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const FREE=75;
+// block-print pattern art
+function print(p,w=400,h=500){const {bg,fg,acc,motif}=p;let m="";
+  if(motif==="dot")for(let y=40;y<h;y+=60)for(let x=(y/60%2?60:30);x<w;x+=60)m+=`<circle cx="${x}" cy="${y}" r="11" fill="${fg}"/><circle cx="${x}" cy="${y}" r="4" fill="${acc}"/>`;
+  if(motif==="leaf")for(let y=30;y<h;y+=70)for(let x=(y/70%2?50:15);x<w;x+=70)m+=`<path d="M${x} ${y+20} q18 -26 36 0 q-18 26 -36 0z" fill="${fg}"/><line x1="${x}" y1="${y+20}" x2="${x+36}" y2="${y+20}" stroke="${acc}" stroke-width="2"/>`;
+  if(motif==="stripe")for(let x=0;x<w;x+=36)m+=`<rect x="${x}" y="0" width="14" height="${h}" fill="${fg}"/><rect x="${x+20}" y="0" width="3" height="${h}" fill="${acc}"/>`;
+  if(motif==="star")for(let y=40;y<h;y+=80)for(let x=(y/80%2?80:40);x<w;x+=80)m+=`<path d="M${x} ${y-18} L${x+6} ${y-6} L${x+18} ${y} L${x+6} ${y+6} L${x} ${y+18} L${x-6} ${y+6} L${x-18} ${y} L${x-6} ${y-6}Z" fill="${fg}"/><circle cx="${x}" cy="${y}" r="4" fill="${acc}"/>`;
+  if(motif==="paisley")for(let y=50;y<h;y+=90)for(let x=(y/90%2?90:40);x<w;x+=100)m+=`<path d="M${x} ${y} c-22 0 -22 -34 0 -38 c26 -4 36 30 16 50 c-6 6 -14 6 -16 -12z" fill="${fg}"/><circle cx="${x+2}" cy="${y-18}" r="5" fill="${acc}"/>`;
+  return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="${p.n} print"><rect width="${w}" height="${h}" fill="${bg}"/>${m}<rect width="${w}" height="${h}" fill="url(#grain)" opacity=".06"/></svg>`}
+const P=[
+ {id:1,n:"Indigo Dot Scarf",cat:"Scarves",price:48,bg:"#2E3A59",fg:"#E9DCC6",acc:"#D9822B",motif:"dot",badge:"New",sizes:["One size"],sw:["#2E3A59","#9E3B2C"],d:"Soft mulmul cotton, 180 × 70 cm, printed with our oldest dot block."},
+ {id:2,n:"Madder Leaf Stole",cat:"Scarves",price:62,was:78,bg:"#9E3B2C",fg:"#F2D3B3",acc:"#2E3A59",motif:"leaf",badge:"Sale",sizes:["One size"],sw:["#9E3B2C"],d:"A wide linen stole in madder red, light enough for summer evenings."},
+ {id:3,n:"Saffron Stripe Kurta",cat:"Clothing",price:96,bg:"#F2C27D",fg:"#D9822B",acc:"#9E3B2C",motif:"stripe",sizes:["XS","S","M","L","XL"],out:["XS"],sw:["#D9822B","#2E3A59"],d:"Relaxed straight cut in handloom cotton with mother-of-pearl buttons."},
+ {id:4,n:"Star Table Runner",cat:"Home",price:38,bg:"#F3EADC",fg:"#2E3A59",acc:"#D9822B",motif:"star",sizes:["180 cm","240 cm"],sw:["#2E3A59"],d:"Heavy cotton runner, washable, finished with hand-rolled hems."},
+ {id:5,n:"Paisley Quilt Cover",cat:"Home",price:118,bg:"#E7D2B8",fg:"#9E3B2C",acc:"#2E3A59",motif:"paisley",badge:"Bestseller",sizes:["Single","Double","King"],out:["King"],sw:["#9E3B2C","#2E3A59"],d:"Percale cotton duvet cover with coconut-shell buttons. Pillowcases sold separately."},
+ {id:6,n:"Leaf Print Napkins (4)",cat:"Home",price:26,bg:"#DDE3D0",fg:"#4F6B3A",acc:"#D9822B",motif:"leaf",sizes:["Set of 4"],sw:["#4F6B3A"],d:"Four 45 cm napkins in sage green. Gets softer every wash."},
+ {id:7,n:"Night Sky Dupatta",cat:"Scarves",price:54,bg:"#1F2440",fg:"#F2C27D",acc:"#E9DCC6",motif:"star",badge:"New",sizes:["One size"],sw:["#1F2440"],d:"Chanderi silk-cotton with tiny gold stars. Light, slightly sheer."},
+ {id:8,n:"Rust Stripe Shirt",cat:"Clothing",price:84,bg:"#C8693B",fg:"#F3EADC",acc:"#2E3A59",motif:"stripe",sizes:["S","M","L","XL"],sw:["#C8693B"],d:"Boxy unisex shirt in washed khadi with a dropped shoulder."}
+];
+const cartItems=[];const wish=new Set();let cat="All",sort="new",maxp=120;
+$("#heroArt").innerHTML=print({...P[4],n:"Hero"},400,500);
+$("#cats").innerHTML=[["Scarves",P[0]],["Home",P[3]],["Clothing",P[2]]].map(([c,p])=>`<button class="cat" data-c="${c}">${print(p,500,400)}<span>${c==="Home"?"Home linen":c}</span></button>`).join("");
+$("#cats").onclick=e=>{const b=e.target.closest(".cat");if(b){setCat(b.dataset.c);$("#shop").scrollIntoView({behavior:"smooth"})}};
+$$("[data-jump]").forEach(a=>a.onclick=()=>setCat(a.dataset.jump));
+const CATS=["All","Scarves","Clothing","Home"];
+$("#fcat").innerHTML=CATS.map(c=>`<button class="chip" data-c="${c}" aria-pressed="${c==="All"}">${c}</button>`).join("");
+$("#fcat").onclick=e=>{const b=e.target.closest(".chip");if(b)setCat(b.dataset.c)};
+function setCat(c){cat=c;$$("#fcat .chip").forEach(x=>x.setAttribute("aria-pressed",x.dataset.c===c));render()}
+$("#sort").onchange=e=>{sort=e.target.value;render()};
+$("#maxp").oninput=e=>{maxp=+e.target.value;$("#maxOut").textContent="$"+maxp;render()};
+const money=v=>"$"+v.toFixed(v%1?2:0);
+function render(){
+  let list=P.filter(p=>(cat==="All"||p.cat===cat)&&p.price<=maxp);
+  list.sort((a,b)=>sort==="lo"?a.price-b.price:sort==="hi"?b.price-a.price:sort==="az"?a.n.localeCompare(b.n):b.id-a.id);
+  $("#count").textContent=`Showing ${list.length} of ${P.length} products`;
+  $("#grid").innerHTML=list.map(p=>`<article class="p"><div class="img">${print(p)}${p.badge?`<span class="badge ${p.was?"sale":""}">${p.badge}</span>`:""}
+    <button class="wish" data-w="${p.id}" aria-pressed="${wish.has(p.id)}" aria-label="Save ${p.n} to wishlist">${wish.has(p.id)?"♥":"♡"}</button>
+    <button class="btn qv" data-q="${p.id}">Quick view</button></div>
+    <h3>${p.n}</h3><div class="price">${p.was?`<s>${money(p.was)}</s>`:""}${money(p.price)}</div><div class="sw">${p.sw.map(c=>`<i style="background:${c}"></i>`).join("")}</div></article>`).join("")||`<p class="empty">No products match. Try a higher price limit.</p>`;
+}
+$("#grid").onclick=e=>{const w=e.target.closest("[data-w]"),q=e.target.closest("[data-q]");
+  if(w){const id=+w.dataset.w;wish.has(id)?wish.delete(id):wish.add(id);badge("#wn",wish.size);render();$(`[data-w="${id}"]`).focus()}
+  if(q)quick(+q.dataset.q)};
+let sel={};
+function quick(id){const p=P.find(x=>x.id===id);sel={id,size:p.sizes.length===1?p.sizes[0]:null,qty:1};
+  $("#qImg").innerHTML=print(p,500,600);
+  $("#qBody").innerHTML=`<span class="kick">${p.cat}</span><h3 id="qTitle">${p.n}</h3><div class="price" style="font-size:1.2rem">${p.was?`<s>${money(p.was)}</s>`:""}${money(p.price)}</div><p style="color:var(--stone)">${p.d}</p>
+   <div class="opt"><b>${p.cat==="Clothing"?"Size":"Option"}</b><div class="sizes">${p.sizes.map(s=>`<button type="button" data-s="${s}" aria-pressed="${sel.size===s}" ${p.out&&p.out.includes(s)?"disabled aria-label='"+s+", sold out'":""}>${s}</button>`).join("")}</div></div>
+   <div class="opt"><b>Quantity</b><div class="qty"><button type="button" data-qq="-1" aria-label="Fewer">−</button><span id="qq">1</span><button type="button" data-qq="1" aria-label="More">+</button></div></div>
+   <button class="btn" id="add" style="width:100%;justify-content:center">Add to bag · ${money(p.price)}</button><p class="err" id="qerr" role="alert"></p>`;
+  $("#qv").showModal()}
+$("#qBody").onclick=e=>{const s=e.target.closest("[data-s]"),q=e.target.closest("[data-qq]"),p=P.find(x=>x.id===sel.id);
+  if(s){sel.size=s.dataset.s;$$("#qBody [data-s]").forEach(b=>b.setAttribute("aria-pressed",b===s));$("#qerr").textContent=""}
+  if(q){sel.qty=Math.max(1,Math.min(9,sel.qty+ +q.dataset.qq));$("#qq").textContent=sel.qty;$("#add").textContent=`Add to bag · ${money(p.price*sel.qty)}`}
+  if(e.target.id==="add"){if(!sel.size){$("#qerr").textContent="Please choose an option first.";return}
+    const ex=cartItems.find(i=>i.id===sel.id&&i.size===sel.size);ex?ex.qty+=sel.qty:cartItems.push({...sel});$("#qv").close();drawCart();toast(`${p.n} added to your bag`);openCart()}};
+$("#qClose").onclick=()=>$("#qv").close();$("#qv").addEventListener("click",e=>{if(e.target===$("#qv"))$("#qv").close()});
+function badge(id,n){const b=$(id);b.textContent=n;b.classList.toggle("on",n>0);b.classList.remove("bump");void b.offsetWidth;b.classList.add("bump")}
+function drawCart(){const sub=cartItems.reduce((s,i)=>s+P.find(p=>p.id===i.id).price*i.qty,0),n=cartItems.reduce((s,i)=>s+i.qty,0);badge("#cn",n);
+  $("#sub").textContent=money(sub);$("#shipCost").textContent=sub>=FREE?"Free":sub?"$6.50":"Calculated at checkout";
+  $("#ship").innerHTML=sub>=FREE?"Your order ships free.":`Spend <b>${money(FREE-sub)}</b> more for free shipping.<div class="bar"><b style="width:${Math.min(100,sub/FREE*100)}%"></b></div>`;
+  $("#items").innerHTML=cartItems.map((i,k)=>{const p=P.find(x=>x.id===i.id);return `<div class="it"><div class="th">${print(p,160,200)}</div><div><b>${p.n}</b><small>${i.size}</small>
+    <div class="qty" style="margin-top:.4rem;transform:scale(.85);transform-origin:left"><button data-c="${k}" data-d="-1" aria-label="Fewer">−</button><span>${i.qty}</span><button data-c="${k}" data-d="1" aria-label="More">+</button></div></div>
+    <div style="text-align:right">${money(p.price*i.qty)}<br><button class="rm" data-r="${k}">Remove</button></div></div>`}).join("")||`<p style="color:var(--stone);text-align:center;padding:2rem 0">Your bag is empty.</p>`}
+$("#items").onclick=e=>{const d=e.target.closest("[data-d]"),r=e.target.closest("[data-r]");
+  if(d){const it=cartItems[+d.dataset.c];it.qty+= +d.dataset.d;if(it.qty<1)cartItems.splice(+d.dataset.c,1);drawCart()}
+  if(r){cartItems.splice(+r.dataset.r,1);drawCart()}};
+function openCart(){$("#cart").classList.add("on");$("#scrim").classList.add("on");$("#cart").setAttribute("aria-hidden","false");$("#cartBtn").setAttribute("aria-expanded","true");$("#cartClose").focus()}
+function closeCart(){$("#cart").classList.remove("on");$("#scrim").classList.remove("on");$("#cart").setAttribute("aria-hidden","true");$("#cartBtn").setAttribute("aria-expanded","false");$("#cartBtn").focus()}
+$("#cartBtn").onclick=openCart;$("#cartClose").onclick=closeCart;$("#scrim").onclick=closeCart;
+addEventListener("keydown",e=>{if(e.key==="Escape"&&$("#cart").classList.contains("on"))closeCart()});
+$("#checkout").onclick=()=>toast(cartItems.length?"Checkout is disabled in this preview.":"Your bag is empty.");
+$("#wishBtn").onclick=()=>toast(wish.size?`${wish.size} item${wish.size>1?"s":""} saved to your wishlist`:"Tap ♡ on a product to save it");
+let tt;function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("on"),2400)}
+render();drawCart();
+</script>
+</body>
+</html>
