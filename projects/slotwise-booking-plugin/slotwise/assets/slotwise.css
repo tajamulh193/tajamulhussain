@@ -1,0 +1,14 @@
+.slotwise{display:grid;gap:1.5rem;max-width:640px}
+.slotwise fieldset{border:1px solid #dcdcde;border-radius:12px;padding:1.2rem}
+.slotwise legend{font-weight:600;padding:0 .4rem}
+.slotwise label{display:block;margin:.6rem 0 .25rem;font-size:.9rem}
+.slotwise input:not([type=radio]),.slotwise textarea{width:100%;padding:.6rem .7rem;border:1px solid #c3c4c7;border-radius:8px;font:inherit}
+.sw-service{display:flex!important;gap:.7rem;align-items:flex-start;padding:.7rem;border:1px solid #e0e0e0;border-radius:10px;cursor:pointer}
+.sw-service small{display:block;color:#646970}
+.sw-slots{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem;min-height:1.5em}
+.sw-slot{padding:.5rem .8rem;border:1px solid #2271b1;border-radius:8px;background:#fff;color:#2271b1;cursor:pointer;font:inherit}
+.sw-slot[aria-checked=true]{background:#2271b1;color:#fff}
+.sw-submit{justify-self:start;padding:.8rem 1.4rem;border:0;border-radius:8px;background:#1d2327;color:#fff;font:inherit;font-weight:600;cursor:pointer}
+.sw-submit:disabled{opacity:.6}
+.sw-hp{position:absolute;left:-9999px}
+.sw-msg{min-height:1.4em;font-weight:600}
