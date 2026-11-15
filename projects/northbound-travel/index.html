@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Northbound Journeys | Plan a trip to Pakistan's north</title>
+<meta name="description" content="Sample travel website by Tujummal Hussain: interactive route map, drag-and-drop itinerary builder, live cost estimate, altitude profile and multi-step booking form. Northbound Journeys is fictional.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0F2A2E;--ink2:#1D4248;--snow:#F7F5EF;--sand:#EFE9DC;--line:#D9D2C2;--mute:#5E6E6F;--glacier:#3BA7B5;--sun:#F2A541;--berry:#C8553D;--pine:#2E5E4E;
+--disp:"Bricolage Grotesque",system-ui,sans-serif;--sans:"DM Sans",system-ui,sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--snow);color:var(--ink);font:400 16.5px/1.6 var(--sans);overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 1.5rem}
+.note{background:var(--ink);color:#B8D3D6;font-size:.8rem;text-align:center;padding:.4rem 1rem;margin:0}.note a{color:#fff}
+/* hero */
+.hero{position:relative;height:min(92vh,820px);min-height:560px;overflow:hidden;background:linear-gradient(#F6C994 0%,#F3DDBF 38%,#DCEBEB 70%)}
+.hero svg.mtn{position:absolute;left:-5%;width:110%;bottom:0;height:auto}
+.hero .copy{position:relative;z-index:3;padding-top:min(13vh,120px)}
+.top{position:absolute;z-index:5;left:0;right:0;top:0}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;height:76px}
+.logo{display:flex;gap:.55rem;align-items:center;font:800 1.2rem var(--disp);text-decoration:none;letter-spacing:-.02em}
+.top nav{display:flex;gap:1.6rem;font-weight:500;font-size:.95rem}
+.top nav a{text-decoration:none}
+h1{font:800 clamp(2.8rem,7.2vw,6rem)/.95 var(--disp);letter-spacing:-.045em;margin:0 0 1.2rem;max-width:12ch}
+.rot{display:inline-block;color:var(--berry);min-width:4ch}
+.rot.swap{animation:swap .6s ease}
+@keyframes swap{0%{opacity:0;transform:translateY(.4em)}100%{opacity:1;transform:none}}
+.hero p{max-width:46ch;font-size:1.15rem;color:var(--ink2);margin:0 0 2rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.4rem;border-radius:12px;background:var(--ink);color:#fff;text-decoration:none;font:700 .95rem var(--sans);border:0;cursor:pointer;transition:transform .2s,background .2s}
+.btn:hover{transform:translateY(-2px);background:var(--ink2)}
+.btn.alt{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.btn.sun{background:var(--sun);color:var(--ink)}
+.cloud{position:absolute;z-index:2;opacity:.8;animation:drift linear infinite}
+@keyframes drift{from{transform:translateX(-30vw)}to{transform:translateX(130vw)}}
+.badges{display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:2rem;font-size:.9rem;color:var(--ink2)}
+.badges b{font:800 1.5rem var(--disp);display:block;color:var(--ink)}
+/* planner */
+section{padding:5.5rem 0}
+.eyebrow{font:700 .78rem var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--berry)}
+h2{font:800 clamp(2rem,4.2vw,3.3rem)/1.02 var(--disp);letter-spacing:-.035em;margin:.5rem 0 .8rem}
+.sub{color:var(--mute);max-width:58ch;margin:0 0 2.2rem;font-size:1.05rem}
+.planner{display:grid;grid-template-columns:1.25fr 1fr;gap:1.5rem;align-items:start}
+.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:1.2rem;box-shadow:0 20px 50px -30px rgba(15,42,46,.35)}
+.map svg{width:100%;height:auto;display:block;border-radius:14px}
+.pin{cursor:pointer}
+.pin circle.hit{fill:transparent}
+.pin .dot{transition:r .2s,fill .2s}
+.pin:hover .dot,.pin:focus .dot{r:9}
+.pin text{font:700 12px var(--sans);fill:var(--ink);paint-order:stroke;stroke:#F7F5EF;stroke-width:4px;pointer-events:none}
+.route{fill:none;stroke:var(--berry);stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:draw 1s ease forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.maphint{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.85rem;color:var(--mute);margin:.6rem .2rem 0}
+.legend span{display:inline-flex;align-items:center;gap:.35rem;margin-right:.9rem}
+.legend i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.it h3{font:800 1.35rem var(--disp);margin:.2rem 0 .8rem;display:flex;justify-content:space-between;align-items:center}
+.it h3 button{font:600 .8rem var(--sans);background:none;border:0;color:var(--berry);cursor:pointer}
+ol.stops{list-style:none;padding:0;margin:0;display:grid;gap:.5rem}
+.stop{display:grid;grid-template-columns:22px 1fr auto auto;gap:.6rem;align-items:center;padding:.6rem .7rem;border:1px solid var(--line);border-radius:12px;background:var(--snow);transition:box-shadow .2s,transform .2s}
+.stop.dragging{opacity:.5}
+.stop.over{box-shadow:0 -3px 0 var(--berry)}
+.grip{cursor:grab;color:var(--mute);font-size:1.1rem;user-select:none;text-align:center}
+.stop b{display:block;font-size:.95rem}
+.stop small{color:var(--mute);font-size:.78rem}
+.step{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:9px;background:#fff}
+.step button{width:28px;height:28px;border:0;background:none;cursor:pointer;font:700 1rem var(--sans);color:var(--ink)}
+.step span{min-width:52px;text-align:center;font-size:.85rem;font-weight:700}
+.mv{display:flex;flex-direction:column}
+.mv button,.rm{border:0;background:none;cursor:pointer;color:var(--mute);font-size:.75rem;line-height:1;padding:2px 4px}
+.empty{padding:1.5rem;border:2px dashed var(--line);border-radius:14px;text-align:center;color:var(--mute)}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:1rem 0}
+.opts label{display:block;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:.3rem}
+.segm{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.segm button{flex:1;border:0;background:#fff;padding:.5rem .3rem;font:600 .82rem var(--sans);cursor:pointer;color:var(--ink)}
+.segm button[aria-pressed=true]{background:var(--ink);color:#fff}
+.sum{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;background:var(--ink);color:#fff;border-radius:14px;padding:1rem;margin-top:.4rem}
+.sum div span{display:block;font-size:.72rem;color:#9FC2C6;text-transform:uppercase;letter-spacing:.06em}
+.sum b{font:800 1.35rem var(--disp);font-variant-numeric:tabular-nums}
+.warn{margin:.8rem 0 0;padding:.6rem .8rem;border-radius:10px;background:#FCEBD5;color:#7A4B0C;font-size:.88rem;display:none}
+.warn.on{display:block}
+.prof{margin-top:1rem}
+.prof svg{width:100%;height:auto;display:block}
+/* destinations */
+.dgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.dest{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:5/4;color:#fff;cursor:pointer;border:0;padding:0;text-align:left;font:inherit;background:var(--ink)}
+.dest svg{position:absolute;inset:0;width:100%;height:100%;transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+.dest:hover svg,.dest:focus-visible svg{transform:scale(1.07)}
+.dest .lab{position:absolute;left:0;right:0;bottom:0;padding:1rem;background:linear-gradient(transparent,rgba(10,30,33,.85))}
+.dest h3{font:800 1.4rem var(--disp);margin:0}
+.dest small{opacity:.85}
+.dest .add{position:absolute;top:.8rem;right:.8rem;background:#fff;color:var(--ink);border-radius:99px;padding:.3rem .7rem;font-size:.78rem;font-weight:700}
+.dest.in-trip .add{background:var(--sun)}
+/* seasons */
+.heat{overflow-x:auto}
+.heat table{border-collapse:separate;border-spacing:4px;width:100%;min-width:720px;font-size:.85rem}
+.heat th{font-weight:700;color:var(--mute);font-size:.75rem;text-align:center}
+.heat th:first-child{text-align:left}
+.heat td{height:38px;border-radius:8px;text-align:center;font-size:.72rem;font-weight:700}
+.heat td.name{background:none;text-align:left;font-size:.92rem;font-weight:700;white-space:nowrap;padding-right:.6rem}
+.heat td.now{outline:2px solid var(--ink);outline-offset:-2px}
+/* packing */
+.pack{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.pack .card h3{font:800 1.1rem var(--disp);margin:0 0 .6rem}
+.pack label{display:flex;gap:.6rem;align-items:center;padding:.35rem 0;font-size:.95rem;cursor:pointer}
+.pack input{width:18px;height:18px;accent-color:var(--pine)}
+.pack label.done span{text-decoration:line-through;color:var(--mute)}
+.packbar{height:8px;border-radius:4px;background:var(--sand);overflow:hidden;margin:.4rem 0 1.4rem;max-width:420px}
+.packbar b{display:block;height:100%;background:var(--pine);transition:width .4s}
+/* booking */
+.book{background:var(--ink);color:#fff;border-radius:28px;padding:2.5rem}
+.book .sub{color:#A8C6C9}
+.prog{display:flex;gap:.5rem;margin-bottom:1.8rem}
+.prog div{flex:1;height:6px;border-radius:3px;background:#2C5258;overflow:hidden}
+.prog div b{display:block;height:100%;width:0;background:var(--sun);transition:width .4s}
+.prog div.on b{width:100%}
+.fstep{display:none;animation:fade .4s}
+.fstep.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateX(20px)}}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.f label{display:block;font-size:.8rem;font-weight:700;color:#A8C6C9;margin-bottom:.35rem}
+.f input,.f select,.f textarea{width:100%;padding:.8rem .9rem;border-radius:10px;border:1px solid #2C5258;background:#163A40;color:#fff;font:500 1rem var(--sans)}
+.f [aria-invalid=true]{border-color:#F2A541;background:#3A3420}
+.f .e{color:#F7C47E;font-size:.82rem;min-height:1.2em;margin:.25rem 0 .6rem}
+.review{background:#163A40;border-radius:14px;padding:1rem 1.2rem;margin-bottom:1rem}
+.review p{margin:.3rem 0}
+.nav2{display:flex;justify-content:space-between;margin-top:1rem}
+footer{padding:2.5rem 0;color:var(--mute);font-size:.9rem}
+footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.reveal{opacity:0;transform:translateY(30px);transition:all .9s cubic-bezier(.2,.7,.2,1)}.reveal.in{opacity:1;transform:none}
+@media (max-width:980px){.planner{grid-template-columns:1fr}.dgrid{grid-template-columns:1fr 1fr}.pack{grid-template-columns:1fr}.top nav{display:none}}
+@media (max-width:560px){.sum{grid-template-columns:1fr 1fr}.opts,.frow{grid-template-columns:1fr}.book{padding:1.5rem}section{padding:4rem 0}.stop{grid-template-columns:18px 1fr auto;}.stop .mv{display:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.route{stroke-dashoffset:0}}
+</style>
+</head>
+<body>
+<p class="note">Sample website by <a href="../../">Tujummal Hussain</a>. Northbound Journeys is a fictional company; prices are illustrative estimates.</p>
+<header class="hero" id="hero">
+  <div class="top"><div class="wrap"><a class="logo" href="#"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" rx="8" fill="#0F2A2E"/><path d="M5 22 L12 10 L16 16 L19 12 L25 22Z" fill="#F7F5EF"/><circle cx="21" cy="8" r="2.5" fill="#F2A541"/></svg>Northbound</a>
+    <nav aria-label="Main"><a href="#plan">Trip builder</a><a href="#places">Places</a><a href="#seasons">When to go</a><a href="#book">Book</a></nav></div></div>
+  <svg class="cloud" style="top:16%;animation-duration:70s" width="160" height="50" aria-hidden="true"><ellipse cx="80" cy="30" rx="80" ry="18" fill="#fff"/><ellipse cx="60" cy="20" rx="34" ry="18" fill="#fff"/></svg>
+  <svg class="cloud" style="top:28%;animation-duration:95s;animation-delay:-40s" width="120" height="40" aria-hidden="true"><ellipse cx="60" cy="24" rx="60" ry="14" fill="#fff"/><ellipse cx="44" cy="16" rx="26" ry="14" fill="#fff"/></svg>
+  <div class="wrap copy">
+    <h1>Your road to <span class="rot" id="rot">Hunza</span></h1>
+    <p>Build a trip through Pakistan's northern valleys in a few clicks. Pick places on the map, set the nights, and see the route, altitude and cost update live.</p>
+    <a class="btn" href="#plan">Build my trip ↓</a> <a class="btn alt" href="#places">Browse places</a>
+    <div class="badges"><div><b>10</b>destinations</div><div><b>4,693 m</b>highest road pass</div><div><b>24/7</b>local driver support</div></div>
+  </div>
+  <svg class="mtn" viewBox="0 0 1440 420" preserveAspectRatio="none" aria-hidden="true">
+    <g class="ly" data-d=".1"><path d="M0 260 L120 170 L210 220 L330 90 L420 180 L520 120 L640 210 L760 60 L880 190 L990 110 L1100 200 L1230 80 L1340 170 L1440 130 V420 H0Z" fill="#A9C7CB"/>
+      <path d="M330 90 L300 118 L318 114 L330 125 L345 112 L360 120Z M760 60 L728 92 L748 88 L762 100 L778 86 L795 95Z M1230 80 L1200 110 L1218 106 L1232 116 L1248 104 L1262 110Z" fill="#fff"/></g>
+    <g class="ly" data-d=".25"><path d="M0 300 L160 220 L280 280 L420 190 L560 270 L700 200 L860 290 L1010 210 L1160 280 L1300 220 L1440 260 V420 H0Z" fill="#5F8F8F"/></g>
+    <g class="ly" data-d=".45"><path d="M0 340 L180 300 L360 350 L540 300 L760 360 L980 310 L1200 355 L1440 320 V420 H0Z" fill="#2E5E4E"/>
+      <g fill="#1F4639"><path d="M90 330 l14 -40 l14 40Z M120 335 l10 -30 l10 30Z M1210 345 l14 -42 l14 42Z M1240 350 l10 -30 l10 30Z M640 345 l12 -34 l12 34Z"/></g></g>
+    <path class="ly" data-d=".6" d="M0 390 Q360 360 720 392 T1440 380 V420 H0Z" fill="#0F2A2E"/>
+  </svg>
+</header>
+
+<main>
+<section id="plan"><div class="wrap">
+  <div class="reveal"><span class="eyebrow">Trip builder</span><h2>Click the map. Build the trip.</h2>
+  <p class="sub">Tap a place to add it, tap again to remove it. Drag stops to reorder. Distances are estimated road kilometres from Islamabad and back.</p></div>
+  <div class="planner">
+    <div class="card map reveal"><div id="map"></div>
+      <div class="maphint"><span class="legend"><span><i style="background:var(--berry)"></i>In your trip</span><span><i style="background:#fff;border:2px solid var(--ink)"></i>Available</span></span><span>Schematic map, not for navigation</span></div></div>
+    <div class="card it reveal" id="it">
+      <h3>Your itinerary <button type="button" id="clear">Clear all</button></h3>
+      <ol class="stops" id="stops"></ol>
+      <div class="opts">
+        <div><label id="lc">Comfort</label><div class="segm" role="group" aria-labelledby="lc" id="comfort"><button data-c="0" aria-pressed="false">Budget</button><button data-c="1" aria-pressed="true">Comfort</button><button data-c="2" aria-pressed="false">Luxury</button></div></div>
+        <div><label id="lt">Travellers</label><div class="step" style="width:100%;justify-content:space-between" role="group" aria-labelledby="lt"><button type="button" id="tMinus" aria-label="Fewer travellers">−</button><span id="tOut">2</span><button type="button" id="tPlus" aria-label="More travellers">+</button></div></div>
+      </div>
+      <div class="sum" aria-live="polite"><div><span>Nights</span><b id="sN">0</b></div><div><span>Road km</span><b id="sK">0</b></div><div><span>Drive hrs</span><b id="sH">0</b></div><div><span>Per person</span><b id="sC">–</b></div></div>
+      <p class="warn" id="warn"></p>
+      <div class="prof" id="prof"></div>
+      <p style="margin:1rem 0 0"><a class="btn sun" href="#book" style="width:100%;justify-content:center">Request this trip →</a></p>
+    </div>
+  </div>
+</div></section>
+
+<section id="places" style="background:var(--sand)"><div class="wrap">
+  <div class="reveal"><span class="eyebrow">Places</span><h2>Ten places worth the drive.</h2><p class="sub">Each card adds or removes the stop from the trip builder above.</p></div>
+  <div class="dgrid" id="dgrid"></div>
+</div></section>
+
+<section id="seasons"><div class="wrap">
+  <div class="reveal"><span class="eyebrow">When to go</span><h2>Best months, at a glance.</h2><p class="sub">Darker green means better conditions. High passes close with snow; the current month is outlined.</p></div>
+  <div class="heat reveal" id="heat"></div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="reveal"><span class="eyebrow">Packing list</span><h2>Packed for your route.</h2><p class="sub" id="packSub">The list changes with the highest point on your trip.</p></div>
+  <div class="packbar reveal"><b id="packBar" style="width:0"></b></div>
+  <div class="pack reveal" id="pack"></div>
+</div></section>
+
+<section id="book" style="padding-top:0"><div class="wrap"><div class="book reveal">
+  <span class="eyebrow" style="color:var(--sun)">Request a trip</span><h2>Three steps. No payment now.</h2><p class="sub">We reply with a confirmed price and driver details within a day.</p>
+  <div class="prog" aria-hidden="true"><div class="on"><b></b></div><div><b></b></div><div><b></b></div></div>
+  <form id="bform" novalidate>
+    <div class="fstep on" data-s="0"><div class="frow">
+      <div class="f"><label for="bd">Start date</label><input type="date" id="bd"><p class="e" id="e_bd"></p></div>
+      <div class="f"><label for="bp">Pick-up</label><select id="bp"><option>Islamabad airport</option><option>Islamabad city hotel</option><option>Lahore (extra day)</option></select><p class="e"></p></div></div>
+      <div class="nav2"><span></span><button class="btn sun" type="button" data-next>Next: your details →</button></div></div>
+    <div class="fstep" data-s="1"><div class="frow">
+      <div class="f"><label for="bn">Full name</label><input id="bn" autocomplete="name"><p class="e" id="e_bn"></p></div>
+      <div class="f"><label for="bw">WhatsApp number</label><input id="bw" inputmode="tel" placeholder="+92 3XX XXXXXXX"><p class="e" id="e_bw"></p></div></div>
+      <div class="f"><label for="bx">Anything we should know?</label><textarea id="bx" rows="2" placeholder="Dietary needs, mobility, celebrations…"></textarea></div>
+      <div class="nav2"><button class="btn alt" type="button" data-back>← Back</button><button class="btn sun" type="button" data-next>Next: review →</button></div></div>
+    <div class="fstep" data-s="2"><div class="review" id="review"></div>
+      <div class="nav2"><button class="btn alt" type="button" data-back>← Back</button><button class="btn sun" type="submit">Send request</button></div></div>
+  </form>
+</div></div></section>
+</main>
+<footer><div class="wrap"><span>© 2026 Northbound Journeys (fictional). Designed and built by Tujummal Hussain.</span><a href="../../#projects">Back to the portfolio</a></div></footer>
+
+<script>
+"use strict";
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+// data: approx coordinates and altitude (m); seasons 0-3 per month
+const P=[
+ {id:"isb",n:"Islamabad",lat:33.68,lon:73.05,alt:540,base:1,t:"Start and finish",s:[2,3,3,3,2,1,1,1,2,3,3,2],hue:["#E6B788","#7A9A86"]},
+ {id:"mur",n:"Murree",lat:33.91,lon:73.39,alt:2290,t:"Pine-forest hill station",s:[1,1,2,3,3,3,2,2,3,3,2,1],hue:["#CFE0DA","#2E5E4E"]},
+ {id:"nar",n:"Naran",lat:34.91,lon:73.65,alt:2400,t:"Kaghan Valley and Saiful Muluk lake",s:[0,0,0,1,2,3,3,3,2,1,0,0],hue:["#BFD9E0","#3BA7B5"]},
+ {id:"bab",n:"Babusar Pass",lat:35.15,lon:74.05,alt:4173,t:"High pass between Kaghan and Chilas",s:[0,0,0,0,0,2,3,3,2,0,0,0],hue:["#E3ECEF","#8FA8B0"]},
+ {id:"gil",n:"Gilgit",lat:35.92,lon:74.31,alt:1500,t:"Gateway town on the Karakoram Highway",s:[1,1,2,3,3,3,2,2,3,3,2,1],hue:["#E9CFA6","#A26B3F"]},
+ {id:"hun",n:"Hunza (Karimabad)",lat:36.32,lon:74.67,alt:2500,t:"Forts, orchards and Rakaposhi views",s:[0,1,2,3,3,3,3,3,3,3,2,1],hue:["#F2C38E","#C8553D"]},
+ {id:"att",n:"Attabad Lake",lat:36.33,lon:74.87,alt:2560,t:"Turquoise lake formed in 2010",s:[1,1,1,2,3,3,3,3,3,2,1,1],hue:["#A9E0E3","#1F8A99"]},
+ {id:"khu",n:"Khunjerab Pass",lat:36.85,lon:75.43,alt:4693,t:"China border, yaks and snow",s:[0,0,0,0,2,3,3,3,2,1,0,0],hue:["#EEF2F4","#6E8C99"]},
+ {id:"skd",n:"Skardu",lat:35.30,lon:75.63,alt:2228,t:"Cold desert and Shangrila lake",s:[1,1,2,3,3,3,3,3,3,2,1,1],hue:["#E8D6B5","#B08A5A"]},
+ {id:"deo",n:"Deosai Plains",lat:35.00,lon:75.45,alt:4114,t:"Wildflower plateau, brown bears",s:[0,0,0,0,0,2,3,3,1,0,0,0],hue:["#D5E8C9","#6C9A55"]}
+];
+const byId=Object.fromEntries(P.map(p=>[p.id,p]));
+const NIGHT=[[3500,9000,24000],[0,0,0]][0]; // PKR per person per night by comfort
+const DAYCOST=[3000,5500,11000]; // food + activities per person/day
+const VEHICLE=[55,75,120]; // PKR per km for the whole vehicle
+let trip=[{id:"nar",nights:2},{id:"hun",nights:3},{id:"att",nights:1}],comfort=1,travellers=2;
+
+function km(a,b){const R=6371,r=Math.PI/180,dLat=(b.lat-a.lat)*r,dLon=(b.lon-a.lon)*r;const h=Math.sin(dLat/2)**2+Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(dLon/2)**2;return 2*R*Math.asin(Math.sqrt(h))*1.45}
+function legs(){const pts=[byId.isb,...trip.map(t=>byId[t.id]),byId.isb];const L=[];for(let i=1;i<pts.length;i++)L.push({a:pts[i-1],b:pts[i],km:km(pts[i-1],pts[i])});return L}
+
+// ---------- map ----------
+const MW=640,MH=520,lo0=72.6,lo1=76.1,la0=33.3,la1=37.2;
+const mx=lon=>30+(lon-lo0)/(lo1-lo0)*(MW-60), my=lat=>MH-30-(lat-la0)/(la1-la0)*(MH-60);
+let mapBase="";
+(function(){let g=`<defs><pattern id="ridge" width="26" height="18" patternUnits="userSpaceOnUse"><path d="M0 16 L7 6 L12 12 L17 4 L26 16" fill="none" stroke="#C9D8D3" stroke-width="1.2"/></pattern><radialGradient id="bg"><stop offset="0" stop-color="#F7F5EF"/><stop offset="1" stop-color="#E8EFEA"/></radialGradient></defs>`;
+  g+=`<rect width="${MW}" height="${MH}" fill="url(#bg)"/><rect width="${MW}" height="${MH}" fill="url(#ridge)" opacity=".8"/>`;
+  g+=`<path d="M${mx(73.1)} ${my(33.75)} C ${mx(73.6)} ${my(34.4)}, ${mx(74.1)} ${my(35.4)}, ${mx(74.6)} ${my(35.9)} S ${mx(75.2)} ${my(36.6)}, ${mx(75.6)} ${my(37.0)}" fill="none" stroke="#9EC9CE" stroke-width="5" opacity=".7"/>`;
+  g+=`<text x="${mx(75.35)}" y="${my(35.85)}" font-size="11" fill="#7F9A9C" font-family="DM Sans" font-style="italic">Karakoram</text><text x="${mx(73.0)}" y="${my(35.6)}" font-size="11" fill="#7F9A9C" font-family="DM Sans" font-style="italic">Himalaya</text><text x="${mx(73.6)}" y="${my(36.7)}" font-size="11" fill="#7F9A9C" font-family="DM Sans" font-style="italic">Hindu Kush</text>`;
+  g+=`<g transform="translate(${MW-40} 40)"><circle r="16" fill="#fff" stroke="#0F2A2E"/><path d="M0 -11 L5 4 L0 1 L-5 4Z" fill="#0F2A2E"/></g>`;
+  mapBase=g})();
+function drawMap(){
+  const L=legs();let route="";
+  if(trip.length){const pts=[byId.isb,...trip.map(t=>byId[t.id]),byId.isb];route=`M`+pts.map(p=>`${mx(p.lon).toFixed(1)},${my(p.lat).toFixed(1)}`).join(" L")}
+  let g=mapBase+(route?`<path class="route" id="rt" d="${route}"/>`:"");
+  P.forEach(p=>{const i=trip.findIndex(t=>t.id===p.id),on=i>=0||p.base,x=mx(p.lon),y=my(p.lat);
+    g+=`<g class="pin" ${p.base?"":`tabindex="0" role="button" aria-pressed="${i>=0}" aria-label="${p.n}, ${p.alt} metres. ${i>=0?"Remove from":"Add to"} trip"`} data-id="${p.id}"><circle class="hit" cx="${x}" cy="${y}" r="18"/>
+      <circle class="dot" cx="${x}" cy="${y}" r="7" fill="${p.base?"#0F2A2E":on?"#C8553D":"#fff"}" stroke="#0F2A2E" stroke-width="2"/>${i>=0?`<text x="${x}" y="${y+4}" text-anchor="middle" style="fill:#fff;stroke:none;font-size:9px">${i+1}</text>`:""}
+      <text x="${x+12}" y="${y-8}">${p.n}</text></g>`});
+  $("#map").innerHTML=`<svg viewBox="0 0 ${MW} ${MH}" role="group" aria-label="Map of northern Pakistan destinations">${g}</svg>`;
+  const rt=$("#rt");if(rt){rt.style.setProperty("--len",rt.getTotalLength())}
+}
+function toggle(id){if(byId[id].base)return;const i=trip.findIndex(t=>t.id===id);if(i>=0)trip.splice(i,1);else trip.push({id,nights:byId[id].alt>4000?0:2});update(id)}
+$("#map").addEventListener("click",e=>{const g=e.target.closest(".pin");if(g)toggle(g.dataset.id)});
+$("#map").addEventListener("keydown",e=>{const g=e.target.closest(".pin");if(g&&(e.key==="Enter"||e.key===" ")){e.preventDefault();toggle(g.dataset.id)}});
+
+// ---------- itinerary ----------
+let dragI=null;
+function drawStops(){
+  if(!trip.length){$("#stops").innerHTML=`<li class="empty">Your trip is empty. Tap places on the map to add them.</li>`;return}
+  const L=legs();
+  $("#stops").innerHTML=trip.map((t,i)=>{const p=byId[t.id];return `<li class="stop" draggable="true" data-i="${i}"><span class="grip" aria-hidden="true">⋮⋮</span>
+    <div><b>${i+1}. ${p.n}</b><small>${p.alt.toLocaleString()} m · ${Math.round(L[i].km)} km from ${L[i].a.n}</small></div>
+    <span class="step" role="group" aria-label="Nights in ${p.n}"><button type="button" data-n="-1" data-i="${i}" aria-label="One night fewer">−</button><span>${t.nights?t.nights+(t.nights>1?" nights":" night"):"Day trip"}</span><button type="button" data-n="1" data-i="${i}" aria-label="One more night">+</button></span>
+    <span class="mv"><button type="button" data-up="${i}" aria-label="Move ${p.n} earlier">▲</button><button type="button" data-down="${i}" aria-label="Move ${p.n} later">▼</button></span></li>`}).join("");
+}
+$("#stops").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
+  if(b.dataset.n){const t=trip[+b.dataset.i];t.nights=Math.max(0,Math.min(7,t.nights+ +b.dataset.n));update()}
+  if(b.dataset.up){const i=+b.dataset.up;if(i>0){[trip[i-1],trip[i]]=[trip[i],trip[i-1]];update();$(`[data-up="${i-1}"]`)?.focus()}}
+  if(b.dataset.down){const i=+b.dataset.down;if(i<trip.length-1){[trip[i+1],trip[i]]=[trip[i],trip[i+1]];update();$(`[data-down="${i+1}"]`)?.focus()}}});
+$("#stops").addEventListener("dragstart",e=>{const li=e.target.closest(".stop");dragI=+li.dataset.i;li.classList.add("dragging");e.dataTransfer.effectAllowed="move"});
+$("#stops").addEventListener("dragover",e=>{e.preventDefault();$$(".stop").forEach(s=>s.classList.remove("over"));e.target.closest(".stop")?.classList.add("over")});
+$("#stops").addEventListener("drop",e=>{e.preventDefault();const li=e.target.closest(".stop");if(li&&dragI!==null){const to=+li.dataset.i,[m]=trip.splice(dragI,1);trip.splice(to,0,m);update()}dragI=null});
+$("#stops").addEventListener("dragend",()=>{dragI=null;$$(".stop").forEach(s=>s.classList.remove("over","dragging"))});
+$("#clear").onclick=()=>{trip=[];update()};
+$("#comfort").onclick=e=>{const b=e.target.closest("button");if(!b)return;comfort=+b.dataset.c;$$("#comfort button").forEach(x=>x.setAttribute("aria-pressed",x===b));update()};
+$("#tMinus").onclick=()=>{travellers=Math.max(1,travellers-1);update()};$("#tPlus").onclick=()=>{travellers=Math.min(12,travellers+1);update()};
+
+function totals(){const L=legs(),k=trip.length?L.reduce((s,l)=>s+l.km,0):0,n=trip.reduce((s,t)=>s+t.nights,0),hrs=k/38;
+  const days=Math.max(1,n+1),vehicles=Math.ceil(travellers/4);
+  const per=trip.length?(n*NIGHT[comfort]+days*DAYCOST[comfort]+k*VEHICLE[comfort]*vehicles/travellers):0;return {k,n,hrs,per,days}}
+function profile(){
+  if(!trip.length){$("#prof").innerHTML="";return}
+  const pts=[byId.isb,...trip.map(t=>byId[t.id]),byId.isb],L=legs(),W=520,H=150,pad=28;let cum=[0];L.forEach(l=>cum.push(cum[cum.length-1]+l.km));
+  const tot=cum[cum.length-1],X=d=>pad+(W-pad*2)*d/tot,Y=a=>H-24-(H-44)*a/5000;
+  let d=`M${X(0)},${H-24}`;pts.forEach((p,i)=>d+=` L${X(cum[i]).toFixed(1)},${Y(p.alt).toFixed(1)}`);d+=` L${X(tot)},${H-24}Z`;
+  let g=`<defs><linearGradient id="pf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3BA7B5" stop-opacity=".55"/><stop offset="1" stop-color="#3BA7B5" stop-opacity=".05"/></linearGradient></defs>`;
+  [0,2500,5000].forEach(a=>g+=`<line x1="${pad}" x2="${W-pad}" y1="${Y(a)}" y2="${Y(a)}" stroke="#E5E0D4"/><text x="${pad-4}" y="${Y(a)+4}" font-size="10" text-anchor="end" fill="#5E6E6F">${a/1000}k</text>`);
+  g+=`<line x1="${pad}" x2="${W-pad}" y1="${Y(3500)}" y2="${Y(3500)}" stroke="#C8553D" stroke-dasharray="4 4"/><text x="${W-pad}" y="${Y(3500)-4}" font-size="10" text-anchor="end" fill="#C8553D">3,500 m: take it slowly</text>`;
+  g+=`<path d="${d}" fill="url(#pf)" stroke="#1F8A99" stroke-width="2"/>`;
+  pts.forEach((p,i)=>{if(i>0&&i<pts.length-1)g+=`<circle cx="${X(cum[i])}" cy="${Y(p.alt)}" r="3.5" fill="#0F2A2E"/>`});
+  $("#prof").innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Altitude profile, highest point ${Math.max(...pts.map(p=>p.alt))} metres"><text x="${pad}" y="12" font-size="11" font-weight="700" fill="#0F2A2E" font-family="DM Sans">Altitude along your route (m)</text>${g}</svg>`;
+}
+function update(changed){
+  drawMap();drawStops();profile();
+  const t=totals();$("#sN").textContent=t.n;$("#sK").textContent=Math.round(t.k).toLocaleString();$("#sH").textContent=Math.round(t.hrs);
+  $("#sC").textContent=trip.length?"Rs "+(Math.round(t.per/1000)).toLocaleString()+"k":"–";$("#tOut").textContent=travellers;
+  const hi=trip.map(x=>byId[x.id]).filter(p=>p.alt>4000),w=[];
+  if(t.hrs>t.n*7+6)w.push(`That's about ${Math.round(t.hrs)} hours of driving over ${t.n} nights. Add a night or two so no day is longer than 7 hours.`);
+  const m=new Date().getMonth(),closed=trip.map(x=>byId[x.id]).filter(p=>p.s[m]===0);
+  if(closed.length)w.push(`${closed.map(p=>p.n).join(" and ")} ${closed.length>1?"are":"is"} usually closed or snowbound in ${new Date().toLocaleString("en-GB",{month:"long"})}.`);
+  $("#warn").innerHTML=w.join("<br>");$("#warn").classList.toggle("on",w.length>0);
+  drawCards();pack();
+}
+
+// ---------- destination cards ----------
+function scene(p){const [a,b]=p.hue,h=p.alt;const peak=Math.min(1,h/4800);
+  return `<svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="g${p.id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient></defs>
+  <rect width="300" height="400" fill="url(#g${p.id})"/><circle cx="220" cy="${90}" r="28" fill="#FFF3DA" opacity=".85"/>
+  <path d="M0 ${300-peak*170} L70 ${250-peak*120} L130 ${290-peak*180} L200 ${230-peak*100} L300 ${280-peak*150} V400 H0Z" fill="#fff" opacity=".35"/>
+  <path d="M0 ${330-peak*60} L90 ${280-peak*70} L170 ${320-peak*40} L260 ${270-peak*80} L300 ${300} V400 H0Z" fill="${b}" opacity=".85"/>
+  ${p.id==="att"||p.id==="nar"?`<ellipse cx="150" cy="350" rx="140" ry="22" fill="#5FD3DC" opacity=".8"/>`:""}
+  <path d="M0 370 Q150 350 300 372 V400 H0Z" fill="#0F2A2E" opacity=".7"/></svg>`}
+function drawCards(){
+  $("#dgrid").innerHTML=P.filter(p=>!p.base).map(p=>{const on=trip.some(t=>t.id===p.id);return `<button class="dest ${on?"in-trip":""}" data-id="${p.id}" aria-pressed="${on}">${scene(p)}<span class="add">${on?"✓ In trip":"+ Add"}</span><span class="lab"><h3>${p.n}</h3><small>${p.t} · ${p.alt.toLocaleString()} m</small></span></button>`}).join("");
+}
+$("#dgrid").onclick=e=>{const b=e.target.closest(".dest");if(b){toggle(b.dataset.id);$(`.dest[data-id="${b.dataset.id}"]`).focus()}};
+
+// ---------- season heat map ----------
+(function(){const M=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],now=new Date().getMonth();
+  const col=["#ECE6DA","#CFE3CF","#8DC09A","#2E7D5B"],txt=["Closed","Fair","Good","Best"];
+  $("#heat").innerHTML=`<table><thead><tr><th scope="col">Place</th>${M.map(m=>`<th scope="col">${m}</th>`).join("")}</tr></thead><tbody>${P.filter(p=>!p.base).map(p=>`<tr><td class="name">${p.n}</td>${p.s.map((v,i)=>`<td class="${i===now?"now":""}" style="background:${col[v]};color:${v===3?"#fff":"#0F2A2E"}" title="${p.n}, ${M[i]}: ${txt[v]}">${v===0?"–":v===3?"★":""}<span style="position:absolute;left:-9999px">${txt[v]}</span></td>`).join("")}</tr>`).join("")}</tbody></table>`})();
+
+// ---------- packing list ----------
+const packed=new Set();
+function pack(){
+  const hi=Math.max(540,...trip.map(t=>byId[t.id].alt));
+  const lists={"Clothing":["Breathable layers","Fleece or light down jacket","Comfortable walking shoes","Modest clothing for villages"],"Health":["Sunscreen SPF 50","Personal medicines","Water purification tablets","Motion sickness tablets"],"Gear":["Power bank","Headtorch","Reusable water bottle","Cash in small notes (few ATMs)"]};
+  if(hi>3000){lists["Clothing"].push("Warm hat and gloves","Thermal base layer");lists["Health"].push("Lip balm and sunglasses (UV is strong)")}
+  if(hi>4000){lists["Health"].push("Altitude advice from your doctor");lists["Gear"].push("Windproof shell")}
+  $("#packSub").textContent=`Your highest point is ${hi.toLocaleString()} m${hi>4000?". Above 4,000 m, cold wind and thin air need extra kit.":hi>3000?", so pack for cold evenings.":"."}`;
+  const all=Object.values(lists).flat();
+  $("#pack").innerHTML=Object.entries(lists).map(([h,items])=>`<div class="card"><h3>${h}</h3>${items.map(it=>`<label class="${packed.has(it)?"done":""}"><input type="checkbox" ${packed.has(it)?"checked":""} data-it="${esc(it)}"><span>${it}</span></label>`).join("")}</div>`).join("");
+  $("#packBar").style.width=(all.filter(x=>packed.has(x)).length/all.length*100)+"%";
+}
+$("#pack").addEventListener("change",e=>{const it=e.target.dataset.it;if(!it)return;e.target.checked?packed.add(it):packed.delete(it);pack();$(`[data-it="${CSS.escape(it)}"]`)?.focus()});
+
+// ---------- booking form ----------
+let stepI=0;
+const d0=new Date();d0.setDate(d0.getDate()+14);$("#bd").min=new Date().toISOString().slice(0,10);$("#bd").value=d0.toISOString().slice(0,10);
+function show(i){stepI=i;$$(".fstep").forEach((s,k)=>s.classList.toggle("on",k===i));$$(".prog div").forEach((d,k)=>d.classList.toggle("on",k<=i));
+  if(i===2){const t=totals();$("#review").innerHTML=`<p><b>Route:</b> Islamabad → ${trip.length?trip.map(x=>esc(byId[x.id].n)).join(" → "):"<i>no stops yet: add some in the trip builder</i>"} → Islamabad</p><p><b>When:</b> ${new Date($("#bd").value).toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})}, ${t.n} nights, from ${esc($("#bp").value)}</p><p><b>Who:</b> ${esc($("#bn").value)}, ${travellers} traveller${travellers>1?"s":""}, ${["Budget","Comfort","Luxury"][comfort]}</p><p><b>Estimate:</b> about Rs ${Math.round(t.per*travellers).toLocaleString()} for the group</p>`}
+  $$(".fstep")[i].querySelector("input,select,button")?.focus()}
+function valid(i){let ok=true;const set=(id,m)=>{$("#e_"+id).textContent=m;$("#"+id).setAttribute("aria-invalid",!!m);if(m&&ok){$("#"+id).focus();ok=false}};
+  if(i===0){const v=$("#bd").value,d=new Date(v),t=new Date();t.setHours(0,0,0,0);set("bd",!v?"Choose a start date.":d<t?"The start date is in the past.":"")}
+  if(i===1){set("bn",$("#bn").value.trim().length<2?"Enter your name.":"");if(ok)set("bw",!/^\+?[\d\s-]{10,16}$/.test($("#bw").value.trim())?"Enter a phone number with 10 to 15 digits.":"")}
+  return ok}
+$("#bform").addEventListener("click",e=>{if(e.target.matches("[data-next]")&&valid(stepI))show(stepI+1);if(e.target.matches("[data-back]"))show(stepI-1)});
+$("#bform").onsubmit=e=>{e.preventDefault();if(!trip.length){$("#review").insertAdjacentHTML("beforeend",`<p style="color:#F7C47E">Add at least one place to your trip first.</p>`);return}
+  $("#bform").innerHTML=`<div class="review" role="status" tabindex="-1" id="done"><h3 style="font:800 1.6rem var(--disp);margin:0 0 .4rem">Request received</h3><p>Thanks, ${esc($("#bn").value.trim().split(" ")[0])}. This is a demo, so no message was sent, but a real request would get a reply on WhatsApp within a day.</p></div>`;$("#done").focus()};
+
+// ---------- hero bits ----------
+const words=["Hunza","Skardu","Deosai","Naran","Khunjerab"];let wi=0;
+if(!reduce)setInterval(()=>{wi=(wi+1)%words.length;const r=$("#rot");r.classList.remove("swap");void r.offsetWidth;r.textContent=words[wi];r.classList.add("swap")},2400);
+addEventListener("scroll",()=>{if(reduce||scrollY>900)return;$$("#hero .ly").forEach(l=>l.style.transform=`translateY(${scrollY*(+l.dataset.d)*-0.4}px)`)},{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.1});
+$$(".reveal").forEach(el=>io.observe(el));
+update();
+</script>
+</body>
+</html>
