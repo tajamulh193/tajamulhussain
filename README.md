@@ -1,7 +1,5 @@
 # Tujummal Hussain: portfolio
 
-![Checks](https://github.com/tajamulh193/tajamulhussain/actions/workflows/ci.yml/badge.svg)
-
 Portfolio of Tujummal Hussain, project manager and web developer (PhD, Finance and Economics) in Islamabad, Pakistan.
 
 - Portfolio: https://tajamulh193.github.io/tajamulhussain/
@@ -24,30 +22,31 @@ Portfolio of Tujummal Hussain, project manager and web developer (PhD, Finance a
 | `projects/business-plan-model` | Sample business plan with a live 36-month financial model |
 | `projects/survey-analysis` | Sample Python statistical analysis with 12 tests |
 | `projects/beam-analysis` | Sample engineering beam analysis tool |
-| `tools/check_links.py` | Checks every link and asset on the site |
+| `projects/saffron-woo-theme` | Sample WooCommerce block theme, with an interactive preview and an installable `.zip` |
+| `projects/slotwise-booking-plugin` | Sample WordPress appointment booking plugin, with a demo, 11 tests and an installable `.zip` |
+| `projects/tidewell-saas` | Sample SaaS product website with a live dashboard demo and interactive pricing |
+| `projects/halden-moss-architects` | Sample architecture studio website with a sun-path study and floor plan |
+| `projects/northbound-travel` | Sample travel website with a map-based trip planner |
 
 All sample projects use fictional businesses and are not client work.
 
 ## How the samples are checked
 
-The **Checks** badge above comes from GitHub Actions (`.github/workflows/ci.yml`). On every push it:
+Projects with tests can be checked on your own machine:
 
-1. runs the Node.js API tests,
-2. runs the Python tests and builds the sample report,
-3. checks every PHP file in the WordPress theme,
-4. checks every link, image, script and stylesheet on the site.
-
-A green badge means all of that passed on a clean machine.
+- `projects/project-tracker-api`: `npm test` (13 tests)
+- `projects/python-status-report`: `python -m unittest` (11 tests)
+- `projects/survey-analysis`: `python -m unittest` (12 tests)
+- `projects/slotwise-booking-plugin`: `php tests/test-availability.php` (11 tests)
 
 ## Publish with GitHub Pages
 
 This repository is `tajamulh193/tajamulhussain`, so GitHub Pages publishes it as a project site at `https://tajamulh193.github.io/tajamulhussain/`.
 
-1. Upload everything from the portfolio zip into the repository, including the hidden `.github` folder and the `.nojekyll` file. This `README.md` replaces the short one that is already there.
+1. Upload the files into the repository.
 2. Open **Settings, Pages**. Under **Build and deployment** choose **Deploy from a branch**, branch **main**, folder **/ (root)**, and save.
 3. After about a minute the site is live at the address above.
-4. Open the **Actions** tab and confirm the Checks run is green.
 
 Every link on the site is relative, so it works under `/tajamulhussain/` without changes.
 
-The Node.js API and the live WordPress theme need a server, which GitHub Pages does not provide. Their entries show the code, tests and a static preview. To add a live link for the API, deploy `projects/project-tracker-api` to a Node host such as Render and link it from the portfolio.
+The Node.js API and the WordPress theme and plugin need a server, which GitHub Pages does not provide. Their entries show the code, tests and a static preview. To add a live link for the API, deploy `projects/project-tracker-api` to a Node host such as Render and link it from the portfolio.

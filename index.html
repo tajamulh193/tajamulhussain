@@ -4,606 +4,532 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tujummal Hussain | Project Manager and Web Developer</title>
-<meta name="description" content="Portfolio of Tujummal Hussain, a project manager and web developer with a PhD in Finance and Economics, based in Islamabad, Pakistan. Sample websites, a WordPress theme, a Node.js API, Python data analysis, a financial model and an engineering tool you can open and test. Message on WhatsApp +92 320 5660010.">
+<meta name="description" content="Portfolio of Tujummal Hussain, PhD: project manager and web developer in Islamabad. WordPress themes and plugins, interactive websites, web apps, data analysis, financial models and engineering tools. WhatsApp +92 320 5660010.">
 <meta property="og:title" content="Tujummal Hussain | Project Manager and Web Developer">
-<meta property="og:description" content="Project management and web development. Ten working sample projects in web development, software, data analysis, engineering and project management.">
+<meta property="og:description" content="Fifteen working sample projects: WordPress, interactive websites, web apps, data analysis, financial modelling, engineering and project management.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tajamulh193.github.io/tajamulhussain/">
 <meta property="og:image" content="https://tajamulh193.github.io/tajamulhussain/assets/tujummal-hussain.jpg">
-<meta name="twitter:card" content="summary">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%238F1D3F'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='30' font-weight='700' text-anchor='middle' fill='white'%3ETH%3C/text%3E%3C/svg%3E">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B1324'/%3E%3Ctext x='32' y='42' font-family='Arial' font-size='26' font-weight='700' text-anchor='middle' fill='white'%3ETH%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#172033;
-  --navy:#1B2742;
-  --navy-d:#121B30;
-  --crimson:#8F1D3F;
-  --crimson-l:#E7B7C5;
-  --mist:#EDF0F4;
-  --paper:#FFFFFF;
-  --line:#D5DBE4;
-  --slate:#566275;
-  --wa:#0E7A3E;
-  --wa-d:#0A5E2F;
-  --serif:"Source Serif 4","Source Serif Pro",Georgia,"Times New Roman",serif;
-  --sans:"Public Sans","Segoe UI",system-ui,-apple-system,Arial,sans-serif;
-  --wrap:1140px;
+  --ink:#0B1324;--ink2:#1E293B;--body:#334155;--mute:#64748B;--line:#E2E8F0;--soft:#F8FAFC;--soft2:#F1F5F9;
+  --blue:#1D4ED8;--blue2:#2563EB;--blue-l:#EFF4FF;--green:#15803D;--wa:#128C4B;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;--wrap:1200px;--r:14px;
+  --shadow:0 1px 2px rgba(11,19,36,.05),0 8px 24px -12px rgba(11,19,36,.12);
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:4.5rem}
-body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.65 var(--sans)}
-a{color:var(--crimson);text-underline-offset:3px}
-a:hover{color:var(--navy)}
-:focus-visible{outline:3px solid #E0A526;outline-offset:3px;border-radius:2px}
-.skip{position:absolute;left:-999px;top:0;background:#fff;color:#000;padding:.6rem 1rem;z-index:100}
-.skip:focus{left:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px;-webkit-text-size-adjust:100%}
+body{margin:0;background:#fff;color:var(--body);font:400 16.5px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{color:var(--ink);letter-spacing:-.02em;line-height:1.15;margin:0}
+a{color:var(--blue)}
+img{max-width:100%;display:block}
+code{font-size:.85em;background:var(--soft2);padding:.05rem .3rem;border-radius:4px}
+:focus-visible{outline:3px solid #93B4FF;outline-offset:2px;border-radius:6px}
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 1.5rem}
-.ico{flex:none}
-
-/* buttons */
-.btn{display:inline-flex;align-items:center;gap:.55rem;font:600 1rem var(--sans);text-decoration:none;padding:.8rem 1.4rem;border-radius:4px;border:2px solid transparent;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
-.btn.wa{background:var(--wa);color:#fff;border-color:var(--wa)}
-.btn.wa:hover{background:var(--wa-d);border-color:var(--wa-d);color:#fff}
-.btn.line{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
-.btn.line:hover{background:#fff;color:var(--navy);border-color:#fff}
-.btn.dark{background:transparent;color:var(--navy);border-color:var(--navy)}
-.btn.dark:hover{background:var(--navy);color:#fff}
-.btn.sm{padding:.5rem 1rem;font-size:.95rem}
-
-/* top bar */
-.bar{position:sticky;top:0;z-index:50;background:var(--navy-d);color:#fff;border-bottom:1px solid rgba(255,255,255,.1)}
-.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:4rem}
-.logo{display:flex;align-items:center;gap:.7rem;color:#fff;text-decoration:none;font-weight:600}
-.logo:hover{color:#fff}
-.mono{display:grid;place-items:center;width:2.4rem;height:2.4rem;border-radius:50%;background:var(--crimson);font:700 1rem var(--serif);letter-spacing:.02em}
-.bar nav{display:flex;align-items:center;gap:1.6rem}
-.bar nav a:not(.btn){color:#E5EAF2;text-decoration:none;font-weight:500;font-size:.96rem;padding:.4rem 0;border-bottom:2px solid transparent}
-.bar nav a:not(.btn):hover{color:#fff;border-bottom-color:var(--crimson-l)}
-.menu-btn{display:none;background:none;border:1px solid rgba(255,255,255,.5);color:#fff;border-radius:4px;padding:.45rem .8rem;font:500 .95rem var(--sans);cursor:pointer}
-
-/* hero */
-.hero{background:var(--navy);color:#fff;border-top:4px solid var(--crimson);padding:clamp(3rem,7vw,5.5rem) 0}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:2.5rem 4rem;align-items:center}
-.role{margin:0 0 .75rem;color:var(--crimson-l);font-weight:600;font-size:1.05rem}
-.hero h1{font:700 clamp(2.6rem,6vw,4.5rem)/1.02 var(--serif);letter-spacing:-.02em;margin:0 0 1.25rem}
-.lede{font-size:1.25rem;line-height:1.55;color:#D9E1EC;max-width:33em;margin:0 0 2rem}
-.actions{display:flex;gap:.75rem;flex-wrap:wrap}
-.contactline{margin:1.25rem 0 0;color:#B9C4D4;font-size:.98rem}
-.contactline a{color:#fff}
-.glance{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:8px;overflow:hidden}
-.portrait{display:block;width:100%;height:auto;aspect-ratio:1/1;max-height:340px;object-fit:cover;object-position:50% 18%;background:#2B2F36}
-.glance-body{padding:1.25rem 1.5rem 1.5rem}
-.glance-head{margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,.16)}
-.glance-head strong{display:block;font:600 1.35rem/1.2 var(--serif)}
-.glance-head span{color:#B9C4D4;font-size:.95rem}
-.glance dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:.55rem 1.25rem;font-size:.98rem}
-.glance dt{color:#B9C4D4}
-.glance dd{margin:0}
-.glance a{color:#fff}
-
-/* sections */
-.block{padding:clamp(3rem,7vw,5rem) 0}
-.tint{background:var(--mist)}
-.block h2{font:700 clamp(1.8rem,3.6vw,2.5rem)/1.15 var(--serif);letter-spacing:-.01em;margin:0 0 .6rem;color:var(--navy)}
-.intro{max-width:42rem;margin:0 0 2.5rem;color:var(--slate)}
-
-.services{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2rem 2.5rem;list-style:none;margin:0;padding:0}
-.services li{border-top:4px solid var(--crimson);padding-top:1.1rem}
-.services h3{font:600 1.35rem/1.25 var(--serif);margin:0 0 .5rem;color:var(--navy)}
-.services p{margin:0;color:var(--slate)}
-
-.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.5rem;list-style:none;margin:0;padding:0;counter-reset:s}
-.steps li{counter-increment:s;position:relative;padding-top:3rem}
-.steps li::before{content:counter(s);position:absolute;top:0;left:0;width:2.2rem;height:2.2rem;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:700}
-.steps li::after{content:"";position:absolute;top:1.1rem;left:2.8rem;right:-1rem;height:2px;background:var(--line)}
-.steps li:last-child::after{display:none}
-.steps h3{font:600 1.15rem/1.3 var(--serif);margin:0 0 .3rem;color:var(--navy)}
-.steps p{margin:0;color:var(--slate);font-size:.98rem}
-
-/* projects */
-.proj{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:1.75rem 3.5rem;padding:2.25rem 0;align-items:center}
-.proj + .proj{border-top:1px solid var(--line)}
-.proj:nth-of-type(even) .proj-shot{order:2}
-.proj-shot{display:block;border:1px solid var(--line);background:#fff;overflow:hidden;border-radius:6px;box-shadow:0 10px 30px rgba(23,32,51,.10)}
-.proj-shot img{display:block;width:100%;height:auto}
-.proj-shot:hover{border-color:var(--crimson)}
-.proj .kind{margin:0 0 .15rem;color:var(--crimson);font-weight:600;font-size:.98rem}
-.proj h3{font:600 1.75rem/1.2 var(--serif);margin:0 0 .6rem;color:var(--navy)}
-.chips{list-style:none;margin:0 0 .9rem;padding:0;display:flex;flex-wrap:wrap;gap:.4rem}
-.chips li{background:#fff;border:1px solid var(--line);border-radius:99px;padding:.1rem .7rem;font-size:.85rem;font-weight:500;color:var(--navy)}
-.proj p{margin:0 0 .8rem}
-.proj .checked{font-size:.95rem;color:var(--slate);border-left:3px solid var(--crimson);padding-left:.85rem}
-.links{display:flex;gap:.5rem 1.5rem;flex-wrap:wrap;margin-top:1.1rem;font-weight:600}
-.proj code{background:#fff;border:1px solid var(--line);padding:.05rem .35rem;border-radius:3px;font-size:.9em}
-
-/* career plan */
-.plan{margin:0 0 3rem}
-.plan h3{font:600 1.25rem/1.3 var(--serif);margin:0 0 .25rem}
-.plan .key{margin:0 0 1.25rem;color:var(--slate);font-size:.9rem;display:flex;gap:1.25rem;flex-wrap:wrap}
-.key span::before{content:"";display:inline-block;width:.9rem;height:.5rem;margin-right:.45rem;border-radius:1px;vertical-align:middle;background:var(--c)}
-.axis{position:relative;height:1.5rem;border-bottom:1px solid var(--ink);margin-bottom:.25rem}
-.axis span{position:absolute;bottom:.15rem;transform:translateX(-50%);font-size:.8rem;color:var(--slate);font-variant-numeric:tabular-nums}
-.axis span:first-child{transform:none}
-.axis span:last-child{transform:translateX(-100%)}
-.rows{list-style:none;margin:0;padding:0}
-.row a{display:block;color:inherit;text-decoration:none;padding:.7rem 0 .55rem}
-.row + .row{border-top:1px solid var(--line)}
-.row .meta{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:.4rem;font-size:.95rem}
-.row .meta b{font-weight:600}
-.row .meta i{font-style:normal;color:var(--slate)}
-.row .when{color:var(--slate);font-size:.85rem;font-variant-numeric:tabular-nums}
-.track{position:relative;height:1.1rem;background:repeating-linear-gradient(90deg,transparent 0,transparent calc(100%/16 - 1px),var(--line) calc(100%/16 - 1px),var(--line) calc(100%/16))}
-.bar-fill{position:absolute;top:0;bottom:0;background:var(--c);border-radius:2px;transform-origin:left center;animation:grow .9s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i) * 140ms + 200ms)}
-.bar-fill.now{border-top-right-radius:0;border-bottom-right-radius:0;-webkit-mask-image:linear-gradient(90deg,#000 85%,rgba(0,0,0,.35));mask-image:linear-gradient(90deg,#000 85%,rgba(0,0,0,.35))}
-.row a:hover .bar-fill,.row a:focus-visible .bar-fill{filter:brightness(1.15)}
-@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-
-.role-item{display:grid;grid-template-columns:minmax(0,13rem) minmax(0,1fr);gap:1rem 3rem;padding:1.75rem 0;scroll-margin-top:5rem}
-.role-item + .role-item{border-top:1px solid var(--line)}
-.role-item .when{color:var(--slate);font-size:.95rem;font-variant-numeric:tabular-nums}
-.role-item .when span{display:block}
-.role-item h3{font:600 1.375rem/1.25 var(--serif);margin:0;color:var(--navy)}
-.role-item .org{margin:.15rem 0 .9rem;color:var(--slate);font-weight:500}
-.role-item ul{margin:0;padding-left:1.15rem;max-width:42rem}
-.role-item li{margin:0 0 .5rem}
-.role-item li::marker{color:var(--crimson)}
-
-.toolkit{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:2rem 2.5rem}
-.toolkit h3{font:600 1.125rem/1.3 var(--serif);margin:0 0 .6rem;padding-bottom:.5rem;border-bottom:2px solid var(--navy);color:var(--navy)}
-.toolkit ul{list-style:none;margin:0;padding:0}
-.toolkit li{padding:.3rem 0;border-bottom:1px solid var(--line)}
-
-.block h2 + .cols{margin-top:1.75rem}
-.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr));gap:2.5rem 3.5rem}
-.cols h3{font:600 1.125rem/1.3 var(--serif);margin:0 0 1rem;color:var(--navy)}
-.cols dl{margin:0}
-.cols dt{font-weight:600;margin-top:1rem}
-.cols dt:first-child{margin-top:0}
-.cols dd{margin:.1rem 0 0;color:var(--slate);font-size:.95rem}
-
-/* contact */
-.contact{background:var(--navy);color:#fff;border-top:4px solid var(--crimson)}
-.contact h2{color:#fff}
-.contact .intro{color:#D0D9E6}
-.contact-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:2.5rem 4rem;align-items:start}
-.contact .actions{margin-bottom:0}
-.reach{list-style:none;margin:0;padding:0;display:grid;gap:.9rem}
-.reach li{display:grid;grid-template-columns:7rem 1fr;gap:1rem;padding-bottom:.9rem;border-bottom:1px solid rgba(255,255,255,.16)}
-.reach span{color:#B9C4D4}
-.reach a{color:#fff}
-
-footer{background:var(--navy-d);color:#B9C4D4;padding:1.5rem 0 2rem;font-size:.92rem}
-footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-footer a{color:#fff}
-footer nav{display:flex;gap:1.25rem;flex-wrap:wrap}
-
-/* floating WhatsApp */
-.float-wa{position:fixed;right:1.25rem;bottom:1.25rem;z-index:60;display:flex;align-items:center;gap:.5rem;background:var(--wa);color:#fff;text-decoration:none;font-weight:600;padding:.75rem 1.1rem;border-radius:99px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
-.float-wa:hover{background:var(--wa-d);color:#fff}
-
-@media (prefers-reduced-motion:reduce){.bar-fill{animation:none}html{scroll-behavior:auto}.btn{transition:none}}
-@media (max-width:980px){
-  .hero-grid,.contact-grid{grid-template-columns:1fr}
-  .services{grid-template-columns:1fr}
-  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .steps li::after{display:none}
+.skip{position:absolute;left:-999px;top:.5rem;background:#fff;padding:.6rem 1rem;z-index:100;border-radius:8px}
+.skip:focus{left:.5rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.78rem 1.25rem;border-radius:10px;font:600 .95rem var(--sans);text-decoration:none;border:1px solid transparent;cursor:pointer;transition:background .2s,border-color .2s,color .2s,box-shadow .2s,transform .2s;white-space:nowrap}
+.btn:hover{transform:translateY(-1px)}
+.btn.pri{background:var(--ink);color:#fff}
+.btn.pri:hover{background:var(--blue);box-shadow:0 10px 24px -10px rgba(29,78,216,.6)}
+.btn.ghost{background:#fff;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--ink2)}
+.btn.wa{background:var(--wa);color:#fff}
+.btn.wa:hover{background:#0E7340}
+.btn.sm{padding:.55rem .95rem;font-size:.88rem}
+.hdr{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid transparent;transition:border-color .2s}
+.hdr.s{border-bottom-color:var(--line)}
+.hdr .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:1rem}
+.logo{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:var(--ink);font-weight:700}
+.logo .m{width:38px;height:38px;border-radius:10px;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:.9rem;letter-spacing:.02em}
+.logo small{display:block;font-weight:500;color:var(--mute);font-size:.78rem;line-height:1.1}
+.nav{display:flex;align-items:center;gap:1.8rem}
+.nav a:not(.btn){color:var(--ink2);text-decoration:none;font-size:.93rem;font-weight:500}
+.nav a:not(.btn):hover,.nav a.on{color:var(--blue)}
+.menu{display:none;background:none;border:1px solid var(--line);border-radius:10px;padding:.5rem .8rem;font:600 .9rem var(--sans);color:var(--ink);cursor:pointer}
+.hero{position:relative;overflow:hidden;padding:5rem 0 4.5rem;border-bottom:1px solid var(--line)}
+.hero:before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 70% 60% at 70% 30%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse 70% 60% at 70% 30%,#000 20%,transparent 75%);opacity:.6;pointer-events:none}
+.hero:after{content:"";position:absolute;width:620px;height:620px;right:-120px;top:-220px;background:radial-gradient(circle,rgba(37,99,235,.14),transparent 65%);pointer-events:none}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:4rem;align-items:center}
+.avail{display:inline-flex;align-items:center;gap:.55rem;padding:.35rem .85rem .35rem .6rem;border:1px solid var(--line);border-radius:99px;background:#fff;font-size:.85rem;font-weight:500;color:var(--ink2);box-shadow:var(--shadow)}
+.avail i{width:8px;height:8px;border-radius:50%;background:#22C55E;box-shadow:0 0 0 4px rgba(34,197,94,.18)}
+.hero h1{font-size:clamp(2.5rem,5.4vw,4.1rem);font-weight:800;letter-spacing:-.035em;line-height:1.04;margin:1.3rem 0 1.2rem}
+.hero h1 span{color:var(--blue)}
+.hero .lede{font-size:1.15rem;max-width:56ch;margin:0 0 2rem}
+.cta{display:flex;gap:.7rem;flex-wrap:wrap}
+.creds{display:grid;grid-template-columns:repeat(4,auto);justify-content:start;gap:1.2rem 2.6rem;margin-top:2.6rem;padding-top:1.8rem;border-top:1px solid var(--line)}
+.creds div{font-size:.86rem;color:var(--mute)}
+.creds b{display:block;font-size:1.5rem;font-weight:800;color:var(--ink);letter-spacing:-.02em}
+.profile{position:relative;background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 30px 60px -30px rgba(11,19,36,.35)}
+.profile img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:center 20%;border-radius:20px 20px 0 0}
+.profile .pb{padding:1.2rem 1.3rem 1.3rem}
+.profile h2{font-size:1.15rem}
+.profile .pb>p{margin:.15rem 0 1rem;color:var(--mute);font-size:.9rem}
+.facts{list-style:none;margin:0;padding:0;display:grid;gap:.55rem;font-size:.9rem}
+.facts li{display:flex;gap:.6rem;align-items:flex-start;color:var(--ink2)}
+.facts svg{flex:none;margin-top:.2rem;color:var(--blue)}
+.float{position:absolute;left:-1.8rem;top:58%;background:#fff;border:1px solid var(--line);border-radius:12px;padding:.65rem .85rem;box-shadow:var(--shadow);font-size:.8rem;display:flex;gap:.6rem;align-items:center;color:var(--mute)}
+.float b{display:block;color:var(--ink);font-size:.88rem}
+.float .ic{width:34px;height:34px;border-radius:9px;background:var(--blue-l);color:var(--blue);display:grid;place-items:center}
+.strip{padding:1.6rem 0;border-bottom:1px solid var(--line);background:var(--soft)}
+.strip .wrap{display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;justify-content:space-between}
+.strip p{margin:0;font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.orgs{display:flex;gap:2.4rem;flex-wrap:wrap;align-items:center}
+.orgs span{font-weight:700;color:#94A3B8;font-size:1.02rem;letter-spacing:-.01em}
+.sec{padding:6rem 0}
+.sec.alt{background:var(--soft)}
+.head{display:flex;justify-content:space-between;align-items:end;gap:2rem;flex-wrap:wrap;margin-bottom:2.8rem}
+.eyebrow{display:inline-block;font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:.7rem}
+.head h2,.h2{font-size:clamp(2rem,3.6vw,2.75rem);font-weight:800;letter-spacing:-.03em}
+.head p{max-width:56ch;margin:.8rem 0 0;color:var(--mute);font-size:1.05rem}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.s{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:1.6rem;transition:border-color .2s,box-shadow .25s,transform .25s}
+.s:hover{border-color:#C7D5F5;box-shadow:var(--shadow);transform:translateY(-3px)}
+.s .ic{width:46px;height:46px;border-radius:12px;background:var(--blue-l);color:var(--blue);display:grid;place-items:center;margin-bottom:1.1rem}
+.s h3{font-size:1.12rem;margin-bottom:.45rem}
+.s p{margin:0 0 1rem;font-size:.95rem}
+.s ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.35rem}
+.s li{font-size:.76rem;font-weight:600;color:var(--ink2);background:var(--soft2);border-radius:6px;padding:.2rem .5rem}
+.s.feature{background:var(--ink);border-color:var(--ink)}
+.s.feature h3{color:#fff}.s.feature p{color:#CBD5E1}
+.s.feature .ic{background:rgba(255,255,255,.1);color:#93B4FF}
+.s.feature li{background:rgba(255,255,255,.08);color:#E2E8F0}
+.s .tag{float:right;font-size:.72rem;font-weight:700;color:#FCD34D;background:rgba(252,211,77,.12);padding:.15rem .5rem;border-radius:99px}
+.filters{display:flex;gap:.4rem;flex-wrap:wrap;margin:-1rem 0 2rem}
+.filters button{border:1px solid var(--line);background:#fff;color:var(--ink2);padding:.5rem .95rem;border-radius:99px;font:600 .86rem var(--sans);cursor:pointer;transition:all .2s}
+.filters button:hover{border-color:var(--ink2)}
+.filters button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+.filters button span{opacity:.6;margin-left:.35rem;font-weight:500}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:box-shadow .25s,transform .25s,border-color .25s}
+.card:hover{box-shadow:0 20px 40px -24px rgba(11,19,36,.35);transform:translateY(-4px);border-color:#CBD5E1}
+.card.hide{display:none}
+.shot{display:block;position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--soft2);border-bottom:1px solid var(--line)}
+.shot img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .6s ease}
+.card:hover .shot img{transform:scale(1.035)}
+.shot .lbl{position:absolute;left:.75rem;top:.75rem;background:rgba(255,255,255,.95);color:var(--ink);font-size:.72rem;font-weight:700;padding:.2rem .55rem;border-radius:6px;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.shot .lbl.wp{background:#21759B;color:#fff}
+.cb{padding:1.2rem 1.25rem 1.3rem;display:flex;flex-direction:column;flex:1}
+.cb .k{font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--blue)}
+.cb h3{font-size:1.18rem;margin:.3rem 0 .45rem}
+.cb p{margin:0 0 .9rem;font-size:.93rem}
+.chips{list-style:none;margin:0 0 1rem;padding:0;display:flex;flex-wrap:wrap;gap:.35rem}
+.chips li{font-size:.75rem;font-weight:600;color:var(--ink2);background:var(--soft2);border:1px solid var(--line);border-radius:6px;padding:.15rem .5rem}
+.cb p.ok{display:flex;gap:.45rem;font-size:.82rem;color:var(--green);line-height:1.45}
+.ok svg{flex:none;margin-top:.15rem}
+.links{margin-top:auto;display:flex;gap:1rem;flex-wrap:wrap;padding-top:.9rem;border-top:1px solid var(--line)}
+.links a{font-size:.88rem;font-weight:600;text-decoration:none}
+.links a:hover{text-decoration:underline}
+.links a.gh{color:var(--mute)}
+.note{margin-top:1.6rem;color:var(--mute);font-size:.88rem}
+.band{background:var(--ink);color:#fff;padding:4rem 0}
+.band .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+.band b{display:block;font-size:2.6rem;font-weight:800;letter-spacing:-.03em}
+.band span{color:#94A3B8;font-size:.92rem}
+.xp{display:grid;grid-template-columns:300px 1fr;gap:4rem;align-items:start}
+.xp aside{position:sticky;top:100px}
+.xp aside p{color:var(--mute)}
+.tl{position:relative;list-style:none;margin:0;padding:0}
+.tl:before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:var(--line)}
+.tl>li{position:relative;padding:0 0 2.6rem 2.4rem}
+.tl>li:last-child{padding-bottom:0}
+.tl>li:before{content:"";position:absolute;left:0;top:6px;width:16px;height:16px;border-radius:50%;background:#fff;border:3px solid var(--blue)}
+.tl>li.past:before{border-color:#94A3B8}
+.when{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;font-size:.85rem;color:var(--mute);margin-bottom:.35rem}
+.now{font-size:.72rem;font-weight:700;color:var(--green);background:#ECFDF3;border:1px solid #BBF7D0;padding:.05rem .5rem;border-radius:99px}
+.tl h3{font-size:1.2rem}
+.org{font-weight:600;color:var(--blue);margin:.15rem 0 .7rem}
+.tl ul{margin:0;padding-left:1.1rem;font-size:.95rem}
+.tl ul li{margin:.3rem 0}
+.skills{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+.sk{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:1.4rem}
+.sk h3{font-size:1rem;margin-bottom:.9rem;display:flex;gap:.55rem;align-items:center}
+.sk h3 i{width:8px;height:8px;border-radius:2px;background:var(--blue)}
+.sk ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.4rem}
+.sk li{font-size:.85rem;font-weight:500;color:var(--ink2);border:1px solid var(--line);border-radius:8px;padding:.25rem .6rem;background:var(--soft)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;counter-reset:n}
+.step{padding:1.5rem;border-radius:var(--r);border:1px solid var(--line);background:#fff}
+.step:before{counter-increment:n;content:counter(n,decimal-leading-zero);font-size:.85rem;font-weight:800;color:var(--blue);display:block;margin-bottom:.8rem}
+.step h3{font-size:1.05rem;margin-bottom:.35rem}
+.step p{margin:0;font-size:.93rem}
+.rgrid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.rc{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:1.6rem}
+.rc h3{font-size:1.1rem;margin-bottom:1rem;display:flex;align-items:center;gap:.6rem}
+.rc h3 svg{color:var(--blue)}
+.rc dl{margin:0}
+.rc dt{font-weight:600;color:var(--ink);font-size:.97rem}
+.rc dd{margin:.15rem 0 1rem;color:var(--mute);font-size:.9rem}
+.rc dd:last-child{margin-bottom:0}
+.rc.wide{grid-column:1/-1}
+.pubs{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.pubs div{border-left:3px solid var(--blue);padding:.2rem 0 .2rem 1rem}
+.pubs b{display:block;color:var(--ink);font-size:.95rem;line-height:1.4}
+.pubs span{color:var(--mute);font-size:.85rem}
+.contact{background:var(--ink);color:#CBD5E1;border-radius:24px;padding:3.5rem;display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;position:relative;overflow:hidden}
+.contact:after{content:"";position:absolute;right:-160px;bottom:-200px;width:480px;height:480px;background:radial-gradient(circle,rgba(37,99,235,.35),transparent 65%);pointer-events:none}
+.contact h2{color:#fff;font-size:clamp(2rem,3.6vw,2.7rem);font-weight:800;letter-spacing:-.03em}
+.contact p{font-size:1.05rem;margin:1rem 0 2rem;max-width:46ch}
+.contact .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.25)}
+.contact .btn.ghost:hover{border-color:#fff}
+.reach{list-style:none;margin:0;padding:0;position:relative;z-index:1}
+.reach li{display:flex;justify-content:space-between;gap:1rem;padding:.95rem 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:.95rem}
+.reach li span{color:#94A3B8}
+.reach a,.reach strong{color:#fff;text-decoration:none;font-weight:600;text-align:right;word-break:break-word}
+.reach a:hover{color:#93B4FF}
+footer{padding:2.5rem 0;color:var(--mute);font-size:.88rem}
+footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:center}
+footer nav{display:flex;gap:1.4rem;flex-wrap:wrap}
+footer a{color:var(--ink2);text-decoration:none}
+footer a:hover{color:var(--blue)}
+.fab{position:fixed;right:1.2rem;bottom:1.2rem;z-index:60;display:flex;align-items:center;gap:.5rem;background:var(--wa);color:#fff;text-decoration:none;font-weight:600;padding:.8rem 1.1rem;border-radius:99px;box-shadow:0 12px 28px -10px rgba(18,140,75,.65);transition:transform .2s}
+.fab:hover{transform:translateY(-2px)}
+@media (max-width:1080px){.svc,.pgrid{grid-template-columns:repeat(2,1fr)}.skills,.steps{grid-template-columns:repeat(2,1fr)}.pubs{grid-template-columns:1fr}}
+@media (max-width:900px){
+  .hero .wrap,.xp,.contact{grid-template-columns:1fr}.profile{max-width:420px}.float{left:auto;right:1rem;top:1rem}
+  .xp aside{position:static}.band .wrap{grid-template-columns:repeat(2,1fr)}.contact{padding:2.2rem}
+  .menu{display:block}
+  .nav{display:none;position:absolute;top:72px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:0;padding:.5rem 1.5rem 1rem}
+  .nav.open{display:flex}.nav a:not(.btn){padding:.8rem 0;border-bottom:1px solid var(--line)}.nav .btn{margin-top:.8rem}
 }
-@media (max-width:820px){
-  .proj{grid-template-columns:1fr}
-  .proj:nth-of-type(even) .proj-shot{order:0}
-  .role-item{grid-template-columns:1fr;gap:.25rem}
-  .role-item .when span{display:inline}
-  .role-item .when span + span::before{content:", "}
-  .menu-btn{display:inline-block}
-  .bar nav{display:none;position:absolute;top:100%;left:0;right:0;background:var(--navy-d);flex-direction:column;align-items:flex-start;padding:1rem 1.5rem 1.5rem;gap:1rem;border-bottom:1px solid rgba(255,255,255,.1)}
-  .bar nav.open{display:flex}
-}
-@media (max-width:560px){
-  .steps{grid-template-columns:1fr}
-  .reach li{grid-template-columns:1fr;gap:.1rem}
-  .float-wa span{display:none}
-  .float-wa{padding:.85rem}
-  .portrait{max-height:320px}
-  .glance dl{grid-template-columns:1fr;gap:.1rem}
-  .glance dd{margin-bottom:.6rem}
-}
-@media print{.bar,.skip,.float-wa{display:none}}
+@media (max-width:620px){.creds{grid-template-columns:1fr 1fr}.svc,.pgrid,.skills,.steps,.rgrid{grid-template-columns:1fr}.sec{padding:4.2rem 0}.hero{padding:3.2rem 0}.fab span{display:none}.fab{padding:.9rem}.strip .wrap{gap:1rem}.orgs{gap:1.2rem}.reach li{flex-direction:column;gap:.1rem}.reach a,.reach strong{text-align:left}.band b{font-size:2rem}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+@media print{.hdr,.fab,.skip{display:none}.reveal{opacity:1;transform:none}}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="bar">
-  <div class="wrap">
-    <a class="logo" href="#top" aria-label="Tujummal Hussain, back to top"><span class="mono" aria-hidden="true">TH</span><span>Tujummal Hussain</span></a>
-    <button class="menu-btn" aria-expanded="false" aria-controls="nav">Menu</button>
-    <nav id="nav" aria-label="Main">
-      <a href="#services">Services</a>
-      <a href="#projects">Projects</a>
-      <a href="#experience">Experience</a>
-      <a href="#contact">Contact</a>
-      <a class="btn wa sm" href="https://wa.me/923205660010?text=Hello%20Tujummal%2C%20I%20found%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project."><svg class="ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.900 11.900 0 0 0 4.600 4.100c1.700.7 2.400.800 3.200.700a2.700 2.700 0 0 0 1.800-1.300 2.200 2.200 0 0 0 .2-1.300c-.1-.1-.3-.2-.6-.3z"/></svg>WhatsApp</a>
-    </nav>
-  </div>
-</header>
+<header class="hdr" id="hdr"><div class="wrap">
+  <a class="logo" href="#top" aria-label="Tujummal Hussain, back to top"><span class="m" aria-hidden="true">TH</span><span>Tujummal Hussain<small>Project Manager · Web Developer</small></span></a>
+  <button class="menu" id="menu" aria-expanded="false" aria-controls="nav">Menu</button>
+  <nav class="nav" id="nav" aria-label="Main">
+    <a href="#services">Services</a><a href="#work">Work</a><a href="#experience">Experience</a><a href="#research">Research</a>
+    <a class="btn pri sm" href="#contact">Hire me</a>
+  </nav>
+</div></header>
 
 <main id="main">
-  <section class="hero" id="top">
-    <div class="wrap hero-grid">
-      <div>
-        <p class="role">Project manager and web developer</p>
-        <h1>Tujummal Hussain</h1>
-        <p class="lede">I plan and deliver projects on schedule, and build the websites that go with them in HTML, WordPress, Node.js and Python.</p>
-        <div class="actions">
-          <a class="btn wa" href="https://wa.me/923205660010?text=Hello%20Tujummal%2C%20I%20found%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project."><svg class="ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.900 11.900 0 0 0 4.600 4.100c1.700.7 2.400.800 3.200.700a2.700 2.700 0 0 0 1.800-1.300 2.200 2.200 0 0 0 .2-1.300c-.1-.1-.3-.2-.6-.3z"/></svg>Chat on WhatsApp</a>
-          <a class="btn line" href="#projects">See sample projects</a>
-          <a class="btn line" href="mailto:tajamulh193@gmail.com">Email me</a>
-        </div>
-        <p class="contactline">WhatsApp <a href="https://wa.me/923205660010?text=Hello%20Tujummal%2C%20I%20found%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project.">+92 320 5660010</a></p>
-      </div>
-      <aside class="glance" aria-label="At a glance">
-        <img class="portrait" src="assets/tujummal-hussain.jpg" width="640" height="640" alt="Portrait of Tujummal Hussain in a dark suit and burgundy tie">
-        <div class="glance-body">
-          <div class="glance-head"><strong>Tujummal Hussain</strong><span>Islamabad, Pakistan</span></div>
-          <dl>
-            <dt>Education</dt><dd>PhD, Finance and Economics, Jiangsu University</dd>
-            <dt>Project management</dt><dd>Since April 2020</dd>
-            <dt>Languages</dt><dd>Urdu and English</dd>
-            <dt>Website</dt><dd><a href="https://www.writesbytj.com">www.writesbytj.com</a></dd>
-          </dl>
-        </div>
-      </aside>
+<section class="hero" id="top"><div class="wrap">
+  <div>
+    <span class="avail"><i></i>Available for new projects</span>
+    <h1>I plan projects and build the <span>websites</span> that deliver them.</h1>
+    <p class="lede">Project manager and web developer with a PhD in Finance and Economics. I build WordPress sites, interactive websites and web apps, and I run the plans, data and reporting behind them.</p>
+    <div class="cta">
+      <a class="btn pri" href="#work">View my work <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn wa" href="https://wa.me/923205660010?text=Hello%20Tujummal%2C%20I%20found%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project."><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.9 11.9 0 0 0 4.6 4.1c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.6-.3z"/></svg>WhatsApp me</a>
+      <a class="btn ghost" href="Tujummal_Hussain_CV.pdf">Download CV</a>
     </div>
-  </section>
-
-  <section class="block" id="services">
-    <div class="wrap">
-      <h2>How I can help</h2>
-      <p class="intro">Technical work from planning a project to building, analysing and reporting on it. Each service has a sample project below.</p>
-      <ul class="services">
-        <li><h3>Project management and coordination</h3><p>Plans, schedules, earned-value tracking, RAID logs and steering-committee reporting for software and operations programmes. Tools: JIRA, Confluence, Smartsheet, ServiceNow and MS Excel.</p></li><li><h3>Web development and design</h3><p>Responsive websites in HTML, CSS and JavaScript, custom WordPress themes, web apps and UI design, built to be fast, accessible and easy to update.</p></li><li><h3>Software development and programming</h3><p>Node.js APIs, Python tools and automation, with automated tests so the work can be checked and maintained.</p></li><li><h3>Data analysis and statistics</h3><p>Survey and dataset analysis: cleaning, reliability, t-tests, ANOVA, correlation and regression, in Python, SPSS, STATA or JAMOVI, with clear reports.</p></li><li><h3>Business plans and financial modelling</h3><p>Market sizing, competitor analysis and financial models with NPV, IRR, break-even and sensitivity, drawing on a PhD in Finance and Economics.</p></li><li><h3>Technical and engineering projects</h3><p>Engineering calculations and tools, such as structural beam analysis, plus MATLAB and SOLIDWORKS project work.</p></li>
-      </ul>
+    <div class="creds">
+      <div><b>PhD</b>Finance and Economics</div>
+      <div><b>2015</b>Freelancing since</div>
+      <div><b>15</b>Working sample projects</div>
+      <div><b>3</b>Published papers</div>
     </div>
-  </section>
+  </div>
+  <aside class="profile" aria-label="Profile">
+    <img src="assets/tujummal-hussain.jpg" width="640" height="640" alt="Portrait of Tujummal Hussain in a dark suit and burgundy tie">
+    <div class="float" aria-hidden="true"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span><span><b>PhD, Jiangsu University</b>Finance and Economics</span></div>
+    <div class="pb"><h2>Tujummal Hussain</h2><p>Islamabad, Pakistan · Urdu and English</p>
+      <ul class="facts">
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Project Coordinator at Egeeks Global</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Project Manager since April 2020</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>WordPress, JavaScript, Node.js, Python</li>
+      </ul></div>
+  </aside>
+</div></section>
 
-  <section class="block tint" id="process">
-    <div class="wrap">
-      <h2>How a project runs</h2>
-      <p class="intro">A simple path from first message to finished work.</p>
-      <ol class="steps">
-        <li><h3>Tell me what you need</h3><p>Message me on WhatsApp or email with your goal, deadline and budget.</p></li><li><h3>Agree the plan</h3><p>You get a clear scope, timeline and price before work starts.</p></li><li><h3>Build and review</h3><p>Work is shared in stages, so you can comment early.</p></li><li><h3>Deliver and hand over</h3><p>You receive the finished work with its files and notes.</p></li>
-      </ol>
-    </div>
-  </section>
+<div class="strip"><div class="wrap"><p>Experience with</p><div class="orgs"><span>Egeeks Global</span><span>XD Readers</span><span>Immentia</span><span>Jiangsu University</span><span>Upwork</span><span>Fiverr</span></div></div></div>
 
-  <section class="block" id="projects">
-    <div class="wrap">
-      <h2>Sample projects</h2>
-      <p class="intro">Each project below is a sample built to show how I work. They use fictional businesses and are not client work. You can open every demo, read the code, and see what was tested before you decide.</p>
-      <article class="proj">
-        <a class="proj-shot" href="projects/kiln-street-kitchen/" tabindex="-1" aria-hidden="true"><img src="assets/projects/kiln.jpg" width="1000" height="625" loading="lazy" alt=""></a>
-        <div class="proj-body">
-          <p class="kind">Restaurant website</p>
-          <h3>Kiln Street Kitchen</h3>
-          <ul class="chips" aria-label="Technologies"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
-          <p>A responsive website for a fictional restaurant: a filterable menu, opening hours that highlight today, and a booking form that checks every field and explains each error.</p>
-          <p class="checked">Tested at desktop and 375 px phone widths. The form moves focus to the first error and refuses Monday bookings, as the restaurant is closed.</p>
-          <div class="links"><a href="projects/kiln-street-kitchen/">View live demo</a><a href="https://github.com/tajamulh193/tajamulhussain/tree/main/projects/kiln-street-kitchen">View source</a></div>
-        </div>
-      </article>
-      <article class="proj">
-        <a class="proj-shot" href="projects/taskboard/" tabindex="-1" aria-hidden="true"><img src="assets/projects/taskboard.jpg" width="1000" height="625" loading="lazy" alt=""></a>
-        <div class="proj-body">
-          <p class="kind">Project management web app</p>
-          <h3>Taskboard</h3>
-          <ul class="chips" aria-label="Technologies"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
-          <p>A Kanban board with drag and drop, move buttons for keyboard users, search and filters, due dates with overdue flags, a progress bar, and tasks saved in the browser.</p>
-          <p class="checked">Browser-tested: moving cards, adding tasks, validation, filtering, drag and drop, and saved state after reload.</p>
-          <div class="links"><a href="projects/taskboard/">View live demo</a><a href="https://github.com/tajamulh193/tajamulhussain/tree/main/projects/taskboard">View source</a></div>
-        </div>
-      </article>
-      <article class="proj">
-        <a class="proj-shot" href="projects/northfield-wp-theme/preview/index.html" tabindex="-1" aria-hidden="true"><img src="assets/projects/wordpress.jpg" width="1000" height="625" loading="lazy" alt=""></a>
-        <div class="proj-body">
-          <p class="kind">WordPress theme</p>
-          <h3>Northfield</h3>
-          <ul class="chips" aria-label="Technologies"><li>PHP</li><li>WordPress</li><li>CSS</li></ul>
-          <p>A custom business theme written from scratch: a homepage editable in the Customizer, a Case Studies post type with sector filters, a menu system and a contact form with a security token and spam trap.</p>
-          <p class="checked">Installed and tested on WordPress 7.1.4 with PHP 8.3. Every template loads, and the contact form passes four test cases: valid, invalid, bad token and bot.</p>
-          <div class="links"><a href="projects/northfield-wp-theme/preview/index.html">View static preview</a><a href="projects/northfield-wp-theme/northfield.zip">Download theme (.zip)</a><a href="https://github.com/tajamulh193/tajamulhussain/tree/main/projects/northfield-wp-theme">View source</a></div>
-        </div>
-      </article>
-      <article class="proj">
-        <a class="proj-shot" href="https://github.com/tajamulh193/tajamulhussain/tree/main/projects/project-tracker-api" tabindex="-1" aria-hidden="true"><img src="assets/projects/nodeapi.jpg" width="1000" height="625" loading="lazy" alt=""></a>
-        <div class="proj-body">
-          <p class="kind">Back-end</p>
-          <h3>Project Tracker API</h3>
-          <ul class="chips" aria-label="Technologies"><li>Node.js</li><li>REST API</li><li>Automated tests</li></ul>
-          <p>A REST API for projects and tasks with input validation, clear JSON error messages, paging and search, data saved to a file, and a small web page that uses it. Run it with <code>node server.js</code>.</p>
-          <p class="checked">13 automated tests pass, covering routing, validation, task summary maths, bad input and restart persistence. The tests run automatically on GitHub.</p>
-          <div class="links"><a href="https://github.com/tajamulh193/tajamulhussain/tree/main/projects/project-tracker-api">Read the code and tests</a></div>
-        </div>
-      </article>
-      <article class="proj">
-        <a class="proj-shot" href="projects/python-status-report/sample-report.html" tabindex="-1" aria-hidden="true"><img src="assets/projects/python.jpg" width="1000" height="625" loading="lazy" alt=""></a>
-        <div class="proj-body">
-          <p class="kind">Automation</p>
-          <h3>Status report generator</h3>
-          <ul class="chips" aria-label="Technologies"><li>Python</li><li>CSV to HTML</li><li>Automated tests</li></ul>
-          <p>A command-line tool that reads a task spreadsheet and writes a one-page status report: a Red, Amber or Green rating, charts, and lists of overdue, blocked and upcoming work.</p>
-          <p class="checked">11 automated tests pass. Bad input gets a message naming the row, and all text is escaped before it reaches the page.</p>
-          <div class="links"><a href="projects/python-status-report/sample-report.html">View sample report</a><a href="https://github.com/tajamulh193/tajamulhussain/tree/main/projects/python-status-report">View source</a></div>
-        </div>
-      </article>
-      <article class="proj">
-        <a class="proj-shot" href="projects/tally-app-design/" tabindex="-1" aria-hidden="true"><img src="assets/projects/design.jpg" width="1000" height="625" loading="lazy" alt=""></a>
-        <div class="proj-body">
-          <p class="kind">Mobile app UI design</p>
-          <h3>Tally</h3>
-          <ul class="chips" aria-label="Technologies"><li>UI design</li><li>Branding</li><li>HTML and CSS</li></ul>
-          <p>A design concept for a habit tracker app: logo, colour palette, type scale and three key screens, with the reasoning behind each choice.</p>
-          <p class="checked">A design concept only. It shows the visual design and screen flow, and is not a working app.</p>
-          <div class="links"><a href="projects/tally-app-design/">View the design</a><a href="https://github.com/tajamulh193/tajamulhussain/tree/main/projects/tally-app-design">View source</a></div>
-        </div>
-      </article>
-      <article class="proj">
-        <a class="proj-shot" href="projects/programme-dashboard/" tabindex="-1" aria-hidden="true"><img src="assets/projects/programme.jpg" width="1000" height="625" loading="lazy" alt=""></a>
-        <div class="proj-body">
-          <p class="kind">Project management</p>
-          <h3>Programme dashboard</h3>
-          <ul class="chips" aria-label="Technologies"><li>Earned value</li><li>Gantt and RAID</li><li>JavaScript</li></ul>
-          <p>A steering-committee dashboard for a fictional warehouse system rollout: earned-value KPIs (CPI, SPI, EAC), an S-curve with a cost forecast, an integrated schedule, a sortable RAID log with a risk heat map, and a RACI matrix.</p>
-          <p class="checked">Every chart is drawn from one data object, so a new month's figures update the whole page. Checked at desktop and 375 px phone widths.</p>
-          <div class="links"><a href="projects/programme-dashboard/">View live demo</a><a href="https://github.com/tajamulh193/tajamulhussain/tree/main/projects/programme-dashboard">View source</a></div>
-        </div>
-      </article>
-      <article class="proj">
-        <a class="proj-shot" href="projects/business-plan-model/" tabindex="-1" aria-hidden="true"><img src="assets/projects/businessplan.jpg" width="1000" height="625" loading="lazy" alt=""></a>
-        <div class="proj-body">
-          <p class="kind">Business plan and financial model</p>
-          <h3>Doorstep Pantry</h3>
-          <ul class="chips" aria-label="Technologies"><li>Financial modelling</li><li>Market research</li><li>JavaScript</li></ul>
-          <p>A seed-round business plan for a fictional grocery delivery start-up: market sizing, a competitor positioning map, and a live 36-month model with base, downside and upside scenarios, NPV, IRR, break-even, unit economics and a sensitivity chart.</p>
-          <p class="checked">Move any of the ten assumption sliders and every number, chart and the annual P&amp;L recalculate from the same model.</p>
-          <div class="links"><a href="projects/business-plan-model/">Open the model</a><a href="https://github.com/tajamulh193/tajamulhussain/tree/main/projects/business-plan-model">View source</a></div>
-        </div>
-      </article>
-      <article class="proj">
-        <a class="proj-shot" href="projects/survey-analysis/report.html" tabindex="-1" aria-hidden="true"><img src="assets/projects/survey.jpg" width="1000" height="625" loading="lazy" alt=""></a>
-        <div class="proj-body">
-          <p class="kind">Data analysis and statistics</p>
-          <h3>Employee wellbeing survey</h3>
-          <ul class="chips" aria-label="Technologies"><li>Python</li><li>Statistics</li><li>Automated tests</li></ul>
-          <p>A reproducible analysis of a 420-person synthetic survey: logged data cleaning, Cronbach's alpha, ANOVA, Welch's t-test, a correlation matrix and multiple regression, written up as a report with plain-English findings.</p>
-          <p class="checked">12 automated tests pass. Every statistic matches SciPy and statsmodels to at least 7 decimal places, using only the Python standard library.</p>
-          <div class="links"><a href="projects/survey-analysis/report.html">View the report</a><a href="https://github.com/tajamulh193/tajamulhussain/tree/main/projects/survey-analysis">View source</a></div>
-        </div>
-      </article>
-      <article class="proj">
-        <a class="proj-shot" href="projects/beam-analysis/" tabindex="-1" aria-hidden="true"><img src="assets/projects/beam.jpg" width="1000" height="625" loading="lazy" alt=""></a>
-        <div class="proj-body">
-          <p class="kind">Engineering tool</p>
-          <h3>Beam analysis</h3>
-          <ul class="chips" aria-label="Technologies"><li>Structural mechanics</li><li>Numerical methods</li><li>JavaScript</li></ul>
-          <p>A beam calculator for simply supported and cantilever beams: point and distributed loads, four section shapes and four materials, with shear, bending-moment and deflection diagrams, section properties and stress and deflection checks.</p>
-          <p class="checked">On every load the solver is checked against four textbook formulas (PL³/48EI, 5wL⁴/384EI and the cantilever cases) and agrees within 0.001%.</p>
-          <div class="links"><a href="projects/beam-analysis/">Open the tool</a><a href="https://github.com/tajamulh193/tajamulhussain/tree/main/projects/beam-analysis">View source</a></div>
-        </div>
-      </article>
-    </div>
-  </section>
+<section class="sec" id="services"><div class="wrap">
+  <div class="head reveal"><div><span class="eyebrow">Services</span><h2>What I can do for you</h2><p>From the first plan to a site that works, with one person accountable for both.</p></div><a class="btn ghost" href="#contact">Discuss a project</a></div>
+  <div class="svc">
+    <article class="s feature reveal"><span class="tag">In demand</span><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M3.5 9h17M3.5 15h17M12 2c3 3.5 3 16.5 0 20M12 2c-3 3.5-3 16.5 0 20"/></svg></div><h3>WordPress development</h3><p>Custom themes, block themes, WooCommerce shops and plugins, built securely and easy for you to edit yourself.</p><ul><li>Block themes</li><li>WooCommerce</li><li>Custom plugins</li><li>PHP</li></ul></article>
+    <article class="s reveal"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></div><h3>Interactive websites</h3><p>Fast, responsive sites with animation, live calculators and booking flows that make visitors stay and act.</p><ul><li>HTML and CSS</li><li>JavaScript</li><li>UI design</li></ul></article>
+    <article class="s reveal"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m8 9-4 3 4 3M16 9l4 3-4 3M14 5l-4 14"/></svg></div><h3>Web apps and software</h3><p>Node.js APIs, Python tools and automation, with automated tests so the work can be checked and maintained.</p><ul><li>Node.js</li><li>Python</li><li>REST APIs</li><li>Testing</li></ul></article>
+    <article class="s reveal"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4M7 14h4"/></svg></div><h3>Project management</h3><p>Plans, schedules, earned-value tracking, RAID logs and steering-committee reporting for software and operations work.</p><ul><li>JIRA</li><li>Confluence</li><li>Smartsheet</li><li>ServiceNow</li></ul></article>
+    <article class="s reveal"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg></div><h3>Data analysis and finance</h3><p>Survey and dataset analysis, business plans and financial models with NPV, IRR, break-even and sensitivity.</p><ul><li>SPSS</li><li>STATA</li><li>Python</li><li>Excel</li></ul></article>
+    <article class="s reveal"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 20h20M5 20V9l7-5 7 5v11"/><path d="M9 20v-6h6v6"/></svg></div><h3>Technical and engineering</h3><p>Engineering calculations and tools, such as structural beam analysis, plus MATLAB and SOLIDWORKS project work.</p><ul><li>MATLAB</li><li>SOLIDWORKS</li><li>Numerical methods</li></ul></article>
+  </div>
+</div></section>
 
-  <section class="block tint" id="experience">
-    <div class="wrap">
-      <h2>Experience</h2>
-      <div class="plan">
-        <h3>Career plan, 2011 to today</h3>
-        <p class="key" aria-hidden="true">
-          <span style="--c:var(--crimson)">Current</span>
-          <span style="--c:var(--navy)">Completed</span>
-          <span style="--c:#8A97AD">Study</span>
-        </p>
-        <div class="axis" id="axis" aria-hidden="true"></div>
-        <ol class="rows" id="rows"></ol>
-      </div>
+<section class="sec alt" id="work"><div class="wrap">
+  <div class="head reveal"><div><span class="eyebrow">Selected work</span><h2>Sample projects you can open and use</h2><p>Every project below is live. Open it, click around and read the code. They use fictional businesses and are not client work.</p></div></div>
+  <div class="filters" role="group" aria-label="Filter projects" id="filters"></div>
+  <div class="pgrid" id="pgrid">
 
-      <article class="role-item" id="egeeks">
-        <div class="when"><span>July 2025 to present</span><span>Rawalpindi, Pakistan</span></div>
-        <div>
-          <h3>Project Coordinator, Product and Deployment Coordination</h3>
-          <p class="org">Egeeks Global</p>
-          <ul>
-            <li>Manage end-to-end deployment delivery across internal teams and tools, holding each project to client SLA and quality standards.</li>
-            <li>Plan and track timelines, milestones and competing priorities across active projects in client dashboards, Smartsheet and MS Excel.</li>
-            <li>Lead product and project launches by coordinating development, design, sales and marketing, with clear handoffs and on-time delivery.</li>
-            <li>Track orders, releases and delivery status, with quality checks and regular status reporting.</li>
-            <li>Manage scope and priority changes with developers, designers and stakeholders, and confirm requirements are understood and delivered on schedule.</li>
-            <li>Research the market and competitors, and turn findings into action items for stakeholders.</li>
-            <li>Collect feedback from users and internal teams and track performance to recommend process improvements.</li>
-          </ul>
-        </div>
-      </article>
+    <article class="card" data-cat="wordpress">
+      <a class="shot" href="projects/saffron-woo-theme/preview/" tabindex="-1" aria-hidden="true"><img src="assets/projects/saffron.jpg" width="1000" height="625" loading="lazy" alt=""><span class="lbl wp">WordPress</span></a>
+      <div class="cb"><span class="k">WooCommerce block theme</span><h3>Saffron</h3>
+        <p>A Full Site Editing theme for a craft and fashion shop: design system in theme.json, shop and product templates, patterns, block styles and a free-shipping message in the mini cart.</p>
+        <ul class="chips" aria-label="Technologies"><li>WooCommerce</li><li>Block theme</li><li>theme.json</li><li>PHP</li></ul>
+        <p class="ok"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>PHP passes a syntax check. The preview has working filters, quick view and a cart drawer.</p>
+        <div class="links"><a href="projects/saffron-woo-theme/preview/">Live preview →</a><a href="projects/saffron-woo-theme/saffron.zip">Download theme</a><a class="gh" href="https://github.com/tajamulh193/tajamulhussain/tree/main/projects/saffron-woo-theme">Source</a></div></div>
+    </article>
 
-      <article class="role-item" id="xd">
-        <div class="when"><span>April 2020 to present</span><span>Remote</span></div>
-        <div>
-          <h3>Project Manager</h3>
-          <p class="org">XD Readers</p>
-          <ul>
-            <li>Define project scope, objectives and deliverables, and build project plans with timelines, resource allocation and milestones.</li>
-            <li>Manage changes to scope, schedule and cost through established change-management processes.</li>
-            <li>Lead team collaboration and regular status meetings, and report progress to stakeholders.</li>
-            <li>Maintain project documentation: plans, status reports, meeting minutes and change logs.</li>
-          </ul>
-        </div>
-      </article>
+    <article class="card" data-cat="wordpress">
+      <a class="shot" href="projects/slotwise-booking-plugin/demo/" tabindex="-1" aria-hidden="true"><img src="assets/projects/slotwise.jpg" width="1000" height="625" loading="lazy" alt=""><span class="lbl wp">WordPress</span></a>
+      <div class="cb"><span class="k">WordPress plugin</span><h3>Slotwise Appointments</h3>
+        <p>Online booking for clinics and salons: services, opening hours, live free slots over the REST API, double-booking protection, email confirmations and an admin bookings screen.</p>
+        <ul class="chips" aria-label="Technologies"><li>Plugin</li><li>REST API</li><li>Shortcode</li><li>PHP</li></ul>
+        <p class="ok"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>11 automated tests pass on the booking logic. Uses nonces, a honeypot and rate limiting.</p>
+        <div class="links"><a href="projects/slotwise-booking-plugin/demo/">Live demo →</a><a href="projects/slotwise-booking-plugin/slotwise.zip">Download plugin</a><a class="gh" href="https://github.com/tajamulh193/tajamulhussain/tree/main/projects/slotwise-booking-plugin">Source</a></div></div>
+    </article>
 
-      <article class="role-item" id="immentia">
-        <div class="when"><span>April 2015 to October 2023</span><span>Islamabad, Pakistan</span></div>
-        <div>
-          <h3>Research Assistant</h3>
-          <p class="org">Immentia SMC-Pvt Ltd.</p>
-          <ul>
-            <li>Coordinated the deliverables of the organisation's research and development function, including reports, presentations and supporting documents.</li>
-            <li>Rolled out policies and procedures: communicated them to staff, supported policy formulation, training and development, and checked that they were followed.</li>
-          </ul>
-        </div>
-      </article>
+    <article class="card" data-cat="wordpress">
+      <a class="shot" href="projects/northfield-wp-theme/preview/index.html" tabindex="-1" aria-hidden="true"><img src="assets/projects/wordpress.jpg" width="1000" height="625" loading="lazy" alt=""><span class="lbl wp">WordPress</span></a>
+      <div class="cb"><span class="k">Custom business theme</span><h3>Northfield</h3>
+        <p>A classic theme written from scratch: a homepage editable in the Customizer, a Case Studies post type with sector filters, menus and a contact form with a security token and spam trap.</p>
+        <ul class="chips" aria-label="Technologies"><li>PHP</li><li>WordPress</li><li>Customizer</li></ul>
+        <p class="ok"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Installed and tested with PHP 8.3; the contact form passes four test cases.</p>
+        <div class="links"><a href="projects/northfield-wp-theme/preview/index.html">Static preview →</a><a href="projects/northfield-wp-theme/northfield.zip">Download theme</a><a class="gh" href="https://github.com/tajamulh193/tajamulhussain/tree/main/projects/northfield-wp-theme">Source</a></div></div>
+    </article>
 
-      <article class="role-item" id="freelance">
-        <div class="when"><span>April 2015 to present</span><span>Freelancer.pk, Fiverr, Upwork</span></div>
-        <div>
-          <h3>Freelancer and Researcher</h3>
-          <p class="org">Independent consultant</p>
-          <ul>
-            <li>Delivered business plans for numerous clients, managing each engagement independently.</li>
-            <li>Ran client research analysis in SPSS, STATA, NVivo and JAMOVI.</li>
-          </ul>
-        </div>
-      </article>
-    </div>
-  </section>
+    <article class="card" data-cat="websites">
+      <a class="shot" href="projects/tidewell-saas/" tabindex="-1" aria-hidden="true"><img src="assets/projects/tidewell.jpg" width="1000" height="625" loading="lazy" alt=""><span class="lbl">Website</span></a>
+      <div class="cb"><span class="k">SaaS product website</span><h3>Tidewell</h3>
+        <p>A dark product site with an animated network hero, a live dashboard demo with hover charts and a streaming event feed, interactive pricing and a spotlight feature grid.</p>
+        <ul class="chips" aria-label="Technologies"><li>Canvas</li><li>SVG charts</li><li>JavaScript</li></ul>
+        <p class="ok"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Responsive to phone width, keyboard accessible, respects reduced-motion settings.</p>
+        <div class="links"><a href="projects/tidewell-saas/">Live site →</a><a class="gh" href="https://github.com/tajamulh193/tajamulhussain/tree/main/projects/tidewell-saas">Source</a></div></div>
+    </article>
 
-  <section class="block" id="toolkit">
-    <div class="wrap">
-      <h2>Toolkit</h2>
-      <div class="toolkit">
-        <div><h3>Web development</h3><ul><li>HTML and CSS</li><li>JavaScript</li><li>Node.js</li><li>WordPress</li><li>Python</li></ul></div>
-        <div><h3>Project delivery</h3><ul><li>JIRA</li><li>Confluence</li><li>ServiceNow</li><li>Smartsheet</li><li>MS Excel</li><li>CRM tools</li></ul></div>
-        <div><h3>Operations</h3><ul><li>Order processing</li><li>Inventory management</li><li>Customer service</li></ul></div>
-        <div><h3>Research and content</h3><ul><li>Market research</li><li>SPSS, STATA, NVivo, JAMOVI</li><li>Google Analytics</li><li>Content writing</li></ul></div>
-      </div>
-    </div>
-  </section>
+    <article class="card" data-cat="websites">
+      <a class="shot" href="projects/halden-moss-architects/" tabindex="-1" aria-hidden="true"><img src="assets/projects/halden.jpg" width="1000" height="625" loading="lazy" alt=""><span class="lbl">Website</span></a>
+      <div class="cb"><span class="k">Architecture studio website</span><h3>Halden &amp; Moss</h3>
+        <p>An editorial studio site with a parallax hero, filterable projects with case-study pop-ups, a sun-path study you can play, a before-and-after slider and a clickable floor plan.</p>
+        <ul class="chips" aria-label="Technologies"><li>Animation</li><li>SVG</li><li>JavaScript</li></ul>
+        <p class="ok"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Browser-tested: filters, pop-ups, slider keys, floor plan and form validation.</p>
+        <div class="links"><a href="projects/halden-moss-architects/">Live site →</a><a class="gh" href="https://github.com/tajamulh193/tajamulhussain/tree/main/projects/halden-moss-architects">Source</a></div></div>
+    </article>
 
-  <section class="block tint" id="research">
-    <div class="wrap">
-      <h2>Research and education</h2>
-      <div class="cols">
-        <div>
-          <h3>Education</h3>
-          <dl>
-            <dt>Doctor of Philosophy (PhD), Finance and Economics</dt>
-            <dd>Jiangsu University, China. May 2020 to 2024.</dd>
-            <dd>Research title: The impact of economic factors on investment behavior in stock market of China during COVID-19 with mediating role of financial uncertainty.</dd>
-            <dt>MBA / M.Phil, Finance</dt>
-            <dd>The Islamia University Bahawalpur, Pakistan. August 2011 to February 2015. CGPA 3.74.</dd>
-          </dl>
-          <h3 style="margin-top:2rem">Languages</h3>
-          <dl><dt>Urdu</dt><dd>Native or bilingual</dd><dt>English</dt><dd>Full professional</dd></dl>
-        </div>
-        <div>
-          <h3>Publications</h3>
-          <dl>
-            <dt>Does Capital Structure Affect Profitability of the Firms? Evidence from Firms Listed at KSE 100 Index (2015)</dt>
-            <dd>Research Journal of Accounting and Finance, Vol. 6, No. 5.</dd>
-            <dt>Why OGDCL Should Not Be Privatized (2014)</dt>
-            <dd>International Institute for Science and Technology, Vol. 5.</dd>
-            <dt>The Impact of Perceived Quality, Customer Satisfaction, Brand Trust and Contextual Factors on Brand Loyalty (2013)</dt>
-            <dd>International Journal of Research and Commerce and Management, Vol. 4.</dd>
-          </dl>
-        </div>
-        <div>
-          <h3>Certificates and awards</h3>
-          <dl>
-            <dt>Silver medalist, MBA batch (2011 to 2015)</dt><dd>The Islamia University Bahawalpur.</dd>
-            <dt>X-Culture International Business Student Collaboration Project (2013)</dt><dd>Recognized among 2,000+ students from 43 countries.</dd>
-            <dt>Fundamentals of Digital Marketing (2019 to 2020)</dt><dd>Google Digital Garage. SEO and keyword search training.</dd>
-            <dt>Time Management Training (2018)</dt><dd>Certificate of participation.</dd>
-            <dt>"Battle of the Ads" Advertising Competition (2013)</dt><dd>Certificate of participation.</dd>
-          </dl>
-        </div>
-      </div>
-    </div>
-  </section>
+    <article class="card" data-cat="websites">
+      <a class="shot" href="projects/northbound-travel/" tabindex="-1" aria-hidden="true"><img src="assets/projects/northbound.jpg" width="1000" height="625" loading="lazy" alt=""><span class="lbl">Website</span></a>
+      <div class="cb"><span class="k">Travel website and trip planner</span><h3>Northbound Journeys</h3>
+        <p>Plan a trip through northern Pakistan: click places on a map, drag stops into order, and watch the route, altitude profile, cost, best-season chart and packing list update.</p>
+        <ul class="chips" aria-label="Technologies"><li>Drag and drop</li><li>Maps</li><li>Multi-step form</li></ul>
+        <p class="ok"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Distances come from real coordinates; seasonal closures trigger warnings.</p>
+        <div class="links"><a href="projects/northbound-travel/">Live site →</a><a class="gh" href="https://github.com/tajamulh193/tajamulhussain/tree/main/projects/northbound-travel">Source</a></div></div>
+    </article>
 
-  <section class="block contact" id="contact">
-    <div class="wrap contact-grid">
-      <div>
-        <h2>Let's talk about your project</h2>
-        <p class="intro">Send a short note about what you need and when, and I will reply with a plan and a timeline.</p>
-        <div class="actions">
-          <a class="btn wa" href="https://wa.me/923205660010?text=Hello%20Tujummal%2C%20I%20found%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project."><svg class="ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.900 11.900 0 0 0 4.600 4.100c1.700.7 2.400.800 3.200.700a2.700 2.700 0 0 0 1.800-1.300 2.200 2.200 0 0 0 .2-1.300c-.1-.1-.3-.2-.6-.3z"/></svg>Chat on WhatsApp</a>
-          <a class="btn line" href="mailto:tajamulh193@gmail.com">Email me</a>
-          <a class="btn line" href="Tujummal_Hussain_CV.pdf">Download CV (PDF)</a>
-        </div>
-      </div>
-      <ul class="reach">
-        <li><span>WhatsApp</span><a href="https://wa.me/923205660010?text=Hello%20Tujummal%2C%20I%20found%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project.">+92 320 5660010</a></li>
-        <li><span>Email</span><a href="mailto:tajamulh193@gmail.com">tajamulh193@gmail.com</a></li>
-        <li><span>Website</span><a href="https://www.writesbytj.com">www.writesbytj.com</a></li>
-        <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/tajamul-hussain-23aa60134">Tujummal Hussain</a></li>
-        <li><span>Location</span>Islamabad, Pakistan</li>
-      </ul>
-    </div>
-  </section>
+    <article class="card" data-cat="websites">
+      <a class="shot" href="projects/kiln-street-kitchen/" tabindex="-1" aria-hidden="true"><img src="assets/projects/kiln.jpg" width="1000" height="625" loading="lazy" alt=""><span class="lbl">Website</span></a>
+      <div class="cb"><span class="k">Restaurant website</span><h3>Kiln Street Kitchen</h3>
+        <p>A responsive restaurant site with a filterable menu, opening hours that highlight today, and a booking form that checks every field and explains each error.</p>
+        <ul class="chips" aria-label="Technologies"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+        <p class="ok"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Tested at desktop and phone widths; refuses bookings on closed days.</p>
+        <div class="links"><a href="projects/kiln-street-kitchen/">Live site →</a><a class="gh" href="https://github.com/tajamulh193/tajamulhussain/tree/main/projects/kiln-street-kitchen">Source</a></div></div>
+    </article>
+
+    <article class="card" data-cat="websites">
+      <a class="shot" href="projects/tally-app-design/" tabindex="-1" aria-hidden="true"><img src="assets/projects/design.jpg" width="1000" height="625" loading="lazy" alt=""><span class="lbl">UI design</span></a>
+      <div class="cb"><span class="k">Mobile app UI design</span><h3>Tally</h3>
+        <p>A design concept for a habit tracker app: logo, colour palette, type scale and three key screens, with the reasoning behind each choice.</p>
+        <ul class="chips" aria-label="Technologies"><li>UI design</li><li>Branding</li><li>HTML and CSS</li></ul>
+        <p class="ok"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>A design concept showing the visual system and screen flow.</p>
+        <div class="links"><a href="projects/tally-app-design/">View design →</a><a class="gh" href="https://github.com/tajamulh193/tajamulhussain/tree/main/projects/tally-app-design">Source</a></div></div>
+    </article>
+
+    <article class="card" data-cat="apps">
+      <a class="shot" href="projects/taskboard/" tabindex="-1" aria-hidden="true"><img src="assets/projects/taskboard.jpg" width="1000" height="625" loading="lazy" alt=""><span class="lbl">Web app</span></a>
+      <div class="cb"><span class="k">Kanban web app</span><h3>Taskboard</h3>
+        <p>Drag-and-drop Kanban with keyboard move buttons, search and filters, due dates with overdue flags, a progress bar and tasks saved in the browser.</p>
+        <ul class="chips" aria-label="Technologies"><li>JavaScript</li><li>Drag and drop</li><li>Local storage</li></ul>
+        <p class="ok"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Browser-tested: moving cards, validation, filtering and saved state.</p>
+        <div class="links"><a href="projects/taskboard/">Live app →</a><a class="gh" href="https://github.com/tajamulh193/tajamulhussain/tree/main/projects/taskboard">Source</a></div></div>
+    </article>
+
+    <article class="card" data-cat="apps">
+      <a class="shot" href="https://github.com/tajamulh193/tajamulhussain/tree/main/projects/project-tracker-api" tabindex="-1" aria-hidden="true"><img src="assets/projects/nodeapi.jpg" width="1000" height="625" loading="lazy" alt=""><span class="lbl">Back-end</span></a>
+      <div class="cb"><span class="k">Node.js REST API</span><h3>Project Tracker API</h3>
+        <p>A REST API for projects and tasks with input validation, clear JSON errors, paging and search, file persistence and a small web page that uses it.</p>
+        <ul class="chips" aria-label="Technologies"><li>Node.js</li><li>REST</li><li>Docker</li></ul>
+        <p class="ok"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>13 automated tests pass on routing, validation and persistence.</p>
+        <div class="links"><a href="https://github.com/tajamulh193/tajamulhussain/tree/main/projects/project-tracker-api">Code and tests →</a></div></div>
+    </article>
+
+    <article class="card" data-cat="pm">
+      <a class="shot" href="projects/programme-dashboard/" tabindex="-1" aria-hidden="true"><img src="assets/projects/programme.jpg" width="1000" height="625" loading="lazy" alt=""><span class="lbl">Project management</span></a>
+      <div class="cb"><span class="k">Programme dashboard</span><h3>Harbourline WMS rollout</h3>
+        <p>A steering-committee dashboard: earned-value KPIs, an S-curve with cost forecast, an integrated schedule, a sortable RAID log with risk heat map and a RACI matrix.</p>
+        <ul class="chips" aria-label="Technologies"><li>Earned value</li><li>Gantt</li><li>RAID</li></ul>
+        <p class="ok"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Every chart is drawn from one data object, so a new month updates the whole page.</p>
+        <div class="links"><a href="projects/programme-dashboard/">Live dashboard →</a><a class="gh" href="https://github.com/tajamulh193/tajamulhussain/tree/main/projects/programme-dashboard">Source</a></div></div>
+    </article>
+
+    <article class="card" data-cat="pm apps">
+      <a class="shot" href="projects/python-status-report/sample-report.html" tabindex="-1" aria-hidden="true"><img src="assets/projects/python.jpg" width="1000" height="625" loading="lazy" alt=""><span class="lbl">Automation</span></a>
+      <div class="cb"><span class="k">Python automation</span><h3>Status report generator</h3>
+        <p>A command-line tool that turns a task spreadsheet into a one-page status report with a RAG rating, charts, and lists of overdue, blocked and upcoming work.</p>
+        <ul class="chips" aria-label="Technologies"><li>Python</li><li>CSV to HTML</li></ul>
+        <p class="ok"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>11 automated tests pass; bad input names the row.</p>
+        <div class="links"><a href="projects/python-status-report/sample-report.html">Sample report →</a><a class="gh" href="https://github.com/tajamulh193/tajamulhussain/tree/main/projects/python-status-report">Source</a></div></div>
+    </article>
+
+    <article class="card" data-cat="data">
+      <a class="shot" href="projects/business-plan-model/" tabindex="-1" aria-hidden="true"><img src="assets/projects/businessplan.jpg" width="1000" height="625" loading="lazy" alt=""><span class="lbl">Finance</span></a>
+      <div class="cb"><span class="k">Business plan and financial model</span><h3>Doorstep Pantry</h3>
+        <p>A seed-round plan with market sizing, a competitor map and a live 36-month model: scenarios, NPV, IRR, break-even, unit economics and a sensitivity chart.</p>
+        <ul class="chips" aria-label="Technologies"><li>Financial modelling</li><li>Market research</li></ul>
+        <p class="ok"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Ten assumption sliders recalculate every chart and the annual P&amp;L.</p>
+        <div class="links"><a href="projects/business-plan-model/">Open model →</a><a class="gh" href="https://github.com/tajamulh193/tajamulhussain/tree/main/projects/business-plan-model">Source</a></div></div>
+    </article>
+
+    <article class="card" data-cat="data">
+      <a class="shot" href="projects/survey-analysis/report.html" tabindex="-1" aria-hidden="true"><img src="assets/projects/survey.jpg" width="1000" height="625" loading="lazy" alt=""><span class="lbl">Data analysis</span></a>
+      <div class="cb"><span class="k">Statistical analysis</span><h3>Employee wellbeing survey</h3>
+        <p>A reproducible analysis of 420 survey responses: logged cleaning, Cronbach's alpha, ANOVA, Welch's t-test, correlations and multiple regression, with plain-English findings.</p>
+        <ul class="chips" aria-label="Technologies"><li>Python</li><li>Statistics</li><li>Testing</li></ul>
+        <p class="ok"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>12 tests pass; results match SciPy and statsmodels to 7+ decimal places.</p>
+        <div class="links"><a href="projects/survey-analysis/report.html">View report →</a><a class="gh" href="https://github.com/tajamulh193/tajamulhussain/tree/main/projects/survey-analysis">Source</a></div></div>
+    </article>
+
+    <article class="card" data-cat="engineering">
+      <a class="shot" href="projects/beam-analysis/" tabindex="-1" aria-hidden="true"><img src="assets/projects/beam.jpg" width="1000" height="625" loading="lazy" alt=""><span class="lbl">Engineering</span></a>
+      <div class="cb"><span class="k">Engineering tool</span><h3>Beam analysis</h3>
+        <p>Shear, bending-moment and deflection diagrams for simply supported and cantilever beams, with four sections, four materials, and stress and deflection checks.</p>
+        <ul class="chips" aria-label="Technologies"><li>Structural mechanics</li><li>Numerical methods</li></ul>
+        <p class="ok"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Checked against four textbook formulas on every load; agrees within 0.001%.</p>
+        <div class="links"><a href="projects/beam-analysis/">Open tool →</a><a class="gh" href="https://github.com/tajamulh193/tajamulhussain/tree/main/projects/beam-analysis">Source</a></div></div>
+    </article>
+  </div>
+  <p class="note">Every sample uses a fictional business and invented data. The source code for all fifteen is in the <a href="https://github.com/tajamulh193/tajamulhussain">GitHub repository</a>.</p>
+</div></section>
+
+<section class="band" aria-label="In numbers"><div class="wrap">
+  <div class="reveal"><b>10+</b><span>years of research and freelance work</span></div>
+  <div class="reveal"><b>6+</b><span>years managing projects</span></div>
+  <div class="reveal"><b>3.74</b><span>CGPA, MBA/M.Phil, silver medalist</span></div>
+  <div class="reveal"><b>43</b><span>countries in the X-Culture project</span></div>
+</div></section>
+
+<section class="sec" id="experience"><div class="wrap xp">
+  <aside class="reveal"><span class="eyebrow">Experience</span><h2 class="h2">Where I've worked</h2><p>Project delivery and coordination since 2020, research and freelance consulting since 2015.</p><a class="btn ghost" href="Tujummal_Hussain_CV.pdf" style="margin-top:.6rem">Download full CV</a></aside>
+  <ol class="tl">
+    <li class="reveal"><div class="when"><span>July 2025 to present</span>·<span>Rawalpindi, Pakistan</span><span class="now">Current</span></div>
+      <h3>Project Coordinator, Product and Deployment Coordination</h3><p class="org">Egeeks Global</p>
+      <ul><li>Manage end-to-end deployment delivery across internal teams and tools, holding each project to client SLA and quality standards.</li>
+        <li>Plan and track timelines, milestones and competing priorities across active projects in client dashboards, Smartsheet and MS Excel.</li>
+        <li>Lead product and project launches by coordinating development, design, sales and marketing, with clear handoffs and on-time delivery.</li>
+        <li>Track orders, releases and delivery status, with quality checks and regular status reporting.</li>
+        <li>Manage scope and priority changes with developers, designers and stakeholders, and confirm requirements are delivered on schedule.</li>
+        <li>Research the market and competitors, turn findings into action items, collect feedback and recommend process improvements.</li></ul></li>
+    <li class="reveal"><div class="when"><span>April 2020 to present</span>·<span>Remote</span><span class="now">Current</span></div>
+      <h3>Project Manager</h3><p class="org">XD Readers</p>
+      <ul><li>Define project scope, objectives and deliverables, and build plans with timelines, resource allocation and milestones.</li>
+        <li>Manage changes to scope, schedule and cost through established change-management processes.</li>
+        <li>Lead team collaboration and regular status meetings, and report progress to stakeholders.</li>
+        <li>Maintain project documentation: plans, status reports, meeting minutes and change logs.</li></ul></li>
+    <li class="reveal"><div class="when"><span>April 2015 to present</span>·<span>Freelancer.pk, Fiverr, Upwork</span><span class="now">Current</span></div>
+      <h3>Freelancer and Researcher</h3><p class="org">Independent consultant</p>
+      <ul><li>Delivered business plans for numerous clients, managing each engagement independently.</li>
+        <li>Ran client research analysis in SPSS, STATA, NVivo and JAMOVI.</li></ul></li>
+    <li class="reveal past"><div class="when"><span>April 2015 to October 2023</span>·<span>Islamabad, Pakistan</span></div>
+      <h3>Research Assistant</h3><p class="org">Immentia SMC-Pvt Ltd.</p>
+      <ul><li>Coordinated the deliverables of the research and development function, including reports, presentations and supporting documents.</li>
+        <li>Rolled out policies and procedures: communicated them to staff, supported policy formulation, training and development, and checked compliance.</li></ul></li>
+  </ol>
+</div></section>
+
+<section class="sec alt" id="skills"><div class="wrap">
+  <div class="head reveal"><div><span class="eyebrow">Toolkit</span><h2>Tools I work with</h2></div></div>
+  <div class="skills">
+    <div class="sk reveal"><h3><i></i>Web development</h3><ul><li>WordPress</li><li>WooCommerce</li><li>PHP</li><li>HTML and CSS</li><li>JavaScript</li><li>Node.js</li><li>Python</li></ul></div>
+    <div class="sk reveal"><h3><i></i>Project delivery</h3><ul><li>JIRA</li><li>Confluence</li><li>ServiceNow</li><li>Smartsheet</li><li>MS Excel</li><li>CRM tools</li></ul></div>
+    <div class="sk reveal"><h3><i></i>Data and research</h3><ul><li>SPSS</li><li>STATA</li><li>NVivo</li><li>JAMOVI</li><li>Google Analytics</li><li>Market research</li></ul></div>
+    <div class="sk reveal"><h3><i></i>Engineering and operations</h3><ul><li>MATLAB</li><li>SOLIDWORKS</li><li>Order processing</li><li>Inventory management</li><li>Customer service</li></ul></div>
+  </div>
+</div></section>
+
+<section class="sec" id="process"><div class="wrap">
+  <div class="head reveal"><div><span class="eyebrow">How I work</span><h2>A clear process, no surprises</h2></div></div>
+  <div class="steps">
+    <div class="step reveal"><h3>Tell me what you need</h3><p>Message me on WhatsApp or email with your goal, deadline and budget.</p></div>
+    <div class="step reveal"><h3>Agree the plan</h3><p>You get a clear scope, timeline and price before any work starts.</p></div>
+    <div class="step reveal"><h3>Build and review</h3><p>Work is shared in stages, so you can comment early and often.</p></div>
+    <div class="step reveal"><h3>Deliver and hand over</h3><p>You receive the finished work with its files, logins and notes.</p></div>
+  </div>
+</div></section>
+
+<section class="sec alt" id="research"><div class="wrap">
+  <div class="head reveal"><div><span class="eyebrow">Research and education</span><h2>Academic background</h2></div></div>
+  <div class="rgrid">
+    <div class="rc reveal"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>Education</h3><dl>
+      <dt>PhD, Finance and Economics</dt><dd>Jiangsu University, China · May 2020 to 2024<br>Thesis: The impact of economic factors on investment behavior in the stock market of China during COVID-19, with the mediating role of financial uncertainty.</dd>
+      <dt>MBA / M.Phil, Finance</dt><dd>The Islamia University Bahawalpur, Pakistan · August 2011 to February 2015 · CGPA 3.74</dd>
+      <dt>Languages</dt><dd>Urdu (native) · English (full professional)</dd></dl></div>
+    <div class="rc reveal"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M8.2 13.4 7 22l5-3 5 3-1.2-8.6"/></svg>Certificates and awards</h3><dl>
+      <dt>Silver medalist, MBA batch 2011 to 2015</dt><dd>The Islamia University Bahawalpur</dd>
+      <dt>X-Culture International Business Collaboration (2013)</dt><dd>Recognized among 2,000+ students from 43 countries</dd>
+      <dt>Fundamentals of Digital Marketing (2019 to 2020)</dt><dd>Google Digital Garage · SEO and keyword research</dd>
+      <dt>Time Management Training (2018)</dt><dd>Certificate of participation</dd>
+      <dt>"Battle of the Ads" Advertising Competition (2013)</dt><dd>Certificate of participation</dd></dl></div>
+    <div class="rc wide reveal"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>Publications</h3>
+      <div class="pubs">
+        <div><b>Does Capital Structure Affect Profitability of the Firms? Evidence from Firms Listed at KSE 100 Index</b><span>Research Journal of Accounting and Finance, Vol. 6, No. 5 (2015)</span></div>
+        <div><b>Why OGDCL Should Not Be Privatized</b><span>International Institute for Science and Technology, Vol. 5 (2014)</span></div>
+        <div><b>The Impact of Perceived Quality, Customer Satisfaction, Brand Trust and Contextual Factors on Brand Loyalty</b><span>International Journal of Research and Commerce and Management, Vol. 4 (2013)</span></div>
+      </div></div>
+  </div>
+</div></section>
+
+<section class="sec" id="contact"><div class="wrap">
+  <div class="contact reveal">
+    <div style="position:relative;z-index:1"><span class="eyebrow" style="color:#93B4FF">Contact</span><h2>Let's talk about your project</h2>
+      <p>Send a short note about what you need and when. I'll reply with a plan, a timeline and a price.</p>
+      <div class="cta">
+        <a class="btn wa" href="https://wa.me/923205660010?text=Hello%20Tujummal%2C%20I%20found%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project.">Chat on WhatsApp</a>
+        <a class="btn ghost" href="mailto:tajamulh193@gmail.com">Email me</a>
+      </div></div>
+    <ul class="reach">
+      <li><span>WhatsApp</span><a href="https://wa.me/923205660010?text=Hello%20Tujummal%2C%20I%20found%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project.">+92 320 5660010</a></li>
+      <li><span>Email</span><a href="mailto:tajamulh193@gmail.com">tajamulh193@gmail.com</a></li>
+      <li><span>Website</span><a href="https://www.writesbytj.com">www.writesbytj.com</a></li>
+      <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/tajamul-hussain-23aa60134">Tujummal Hussain</a></li>
+      <li><span>Location</span><strong>Islamabad, Pakistan</strong></li>
+    </ul>
+  </div>
+</div></section>
 </main>
 
-<footer>
-  <div class="wrap">
-    <span>&copy; <span id="yr">2026</span> Tujummal Hussain. Sample projects use fictional businesses.</span>
-    <nav aria-label="Footer"><a href="https://www.writesbytj.com">www.writesbytj.com</a><a href="https://wa.me/923205660010?text=Hello%20Tujummal%2C%20I%20found%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project.">WhatsApp</a><a href="mailto:tajamulh193@gmail.com">Email</a><a href="Tujummal_Hussain_CV.pdf">CV</a></nav>
-  </div>
-</footer>
+<footer><div class="wrap">
+  <span>&copy; <span id="yr">2026</span> Tujummal Hussain. Sample projects use fictional businesses.</span>
+  <nav aria-label="Footer"><a href="#services">Services</a><a href="#work">Work</a><a href="https://github.com/tajamulh193/tajamulhussain">GitHub</a><a href="Tujummal_Hussain_CV.pdf">CV</a></nav>
+</div></footer>
 
-<a class="float-wa" href="https://wa.me/923205660010?text=Hello%20Tujummal%2C%20I%20found%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project." aria-label="Chat on WhatsApp, +92 320 5660010"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.900 11.900 0 0 0 4.600 4.100c1.700.7 2.400.800 3.200.700a2.700 2.700 0 0 0 1.800-1.300 2.200 2.200 0 0 0 .2-1.300c-.1-.1-.3-.2-.6-.3z"/></svg><span>WhatsApp</span></a>
+<a class="fab" href="https://wa.me/923205660010?text=Hello%20Tujummal%2C%20I%20found%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project." aria-label="Chat on WhatsApp, +92 320 5660010"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.9 11.9 0 0 0 4.6 4.1c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.6-.3z"/></svg><span>WhatsApp</span></a>
 
 <script>
 (function(){
-  var START = 2011, END = 2027, SPAN = END - START;
-  var M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-  var now = new Date(), nowF = now.getFullYear() + now.getMonth() / 12;
-  document.getElementById("yr").textContent = now.getFullYear();
+  "use strict";
+  var $=function(s){return document.querySelector(s)},$$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
+  $("#yr").textContent=new Date().getFullYear();
+  addEventListener("scroll",function(){$("#hdr").classList.toggle("s",scrollY>8)},{passive:true});
+  var menu=$("#menu"),nav=$("#nav");
+  menu.onclick=function(){var o=nav.classList.toggle("open");menu.setAttribute("aria-expanded",o);menu.textContent=o?"Close":"Menu"};
+  $$("#nav a").forEach(function(a){a.addEventListener("click",function(){nav.classList.remove("open");menu.setAttribute("aria-expanded","false");menu.textContent="Menu"})});
 
-  var data = [
-    {id:"egeeks",   title:"Project Coordinator", org:"Egeeks Global",             from:[2025,7],  to:null,       c:"var(--crimson)"},
-    {id:"xd",       title:"Project Manager",     org:"XD Readers",                from:[2020,4],  to:null,       c:"var(--crimson)"},
-    {id:"freelance",title:"Freelancer and Researcher", org:"Freelancer.pk, Fiverr, Upwork", from:[2015,4], to:null, c:"var(--crimson)"},
-    {id:"immentia", title:"Research Assistant",  org:"Immentia",                  from:[2015,4],  to:[2023,10], c:"var(--navy)"},
-    {id:"research", title:"PhD, Finance and Economics",org:"Jiangsu University", from:[2020,5], to:[2024,12], when:"May 2020 to 2024", c:"#8A97AD"},
-    {id:"research", title:"MBA / M.Phil, Finance",org:"Islamia University Bahawalpur", from:[2011,8], to:[2015,2], c:"#8A97AD"}
-  ];
-  function f(a){ return a[0] + (a[1] - 1) / 12; }
-  function label(a){ return M[a[1]-1] + " " + a[0]; }
+  var cats=[["all","All"],["wordpress","WordPress"],["websites","Websites"],["apps","Web apps"],["data","Data and finance"],["pm","Project management"],["engineering","Engineering"]];
+  var cards=$$("#pgrid .card");
+  var has=function(k,c){return k.dataset.cat.split(" ").indexOf(c)>-1};
+  $("#filters").innerHTML=cats.map(function(c,i){var n=c[0]==="all"?cards.length:cards.filter(function(k){return has(k,c[0])}).length;
+    return '<button type="button" data-f="'+c[0]+'" aria-pressed="'+(i===0)+'">'+c[1]+'<span>'+n+'</span></button>'}).join("");
+  $("#filters").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;var f=b.dataset.f;
+    $$("#filters button").forEach(function(x){x.setAttribute("aria-pressed",x===b)});
+    cards.forEach(function(k){k.classList.toggle("hide",f!=="all"&&!has(k,f))})});
 
-  var axis = document.getElementById("axis");
-  for (var y = START; y <= END; y += 4) {
-    var s = document.createElement("span");
-    s.textContent = y;
-    s.style.left = ((y - START) / SPAN * 100) + "%";
-    axis.appendChild(s);
-  }
-  var rows = document.getElementById("rows");
-  data.forEach(function(d, i){
-    var from = f(d.from), to = d.to ? f(d.to) : nowF;
-    var li = document.createElement("li");
-    li.className = "row";
-    var a = document.createElement("a");
-    a.href = "#" + d.id;
-    a.innerHTML = '<div class="meta"><span><b></b> <i></i></span><span class="when"></span></div><div class="track"><div class="bar-fill' + (d.to ? "" : " now") + '"></div></div>';
-    a.querySelector("b").textContent = d.title;
-    a.querySelector("i").textContent = d.org;
-    a.querySelector(".when").textContent = d.when || (label(d.from) + " to " + (d.to ? label(d.to) : "present"));
-    var bar = a.querySelector(".bar-fill");
-    bar.style.left = ((from - START) / SPAN * 100) + "%";
-    bar.style.width = ((to - from) / SPAN * 100) + "%";
-    bar.style.setProperty("--c", d.c);
-    bar.style.setProperty("--i", i);
-    li.appendChild(a);
-    rows.appendChild(li);
-  });
+  if("IntersectionObserver" in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.1});
+    $$(".reveal").forEach(function(el){io.observe(el)})}else{$$(".reveal").forEach(function(el){el.classList.add("in")})}
 
-  var btn = document.querySelector(".menu-btn"), nav = document.getElementById("nav");
-  btn.addEventListener("click", function(){
-    var open = nav.classList.toggle("open");
-    btn.setAttribute("aria-expanded", String(open));
-  });
-  nav.addEventListener("click", function(e){
-    if (e.target.closest("a")) { nav.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); }
-  });
+  var secs=["services","work","experience","research"].map(function(id){return document.getElementById(id)});
+  addEventListener("scroll",function(){var y=scrollY+120,cur="";secs.forEach(function(s){if(s.offsetTop<=y)cur=s.id});
+    $$("#nav a[href^='#']").forEach(function(a){a.classList.toggle("on",a.getAttribute("href")==="#"+cur)})},{passive:true});
 })();
 </script>
 </body>
