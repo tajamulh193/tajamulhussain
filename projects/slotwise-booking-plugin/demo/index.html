@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Slotwise Appointments | WordPress plugin demo</title>
+<meta name="description" content="Interactive demo of Slotwise, a WordPress appointment booking plugin by Tujummal Hussain: live slot availability, double-booking protection and an admin bookings screen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0F1B2D;--mute:#5A6577;--line:#E2E6EC;--bg:#F5F7FA;--teal:#0E7C7B;--teal-l:#E3F3F2;--wp:#2271B1;--wpd:#1D2327;--sans:"Inter",system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15.5px/1.6 var(--sans)}
+a{color:var(--teal)}
+:focus-visible{outline:3px solid #F5B942;outline-offset:2px}
+.demo{background:var(--wpd);color:#C3C4C7;font-size:.82rem;text-align:center;padding:.5rem 1rem}
+.demo a{color:#72AEE6}
+.switch{display:flex;justify-content:center;gap:.4rem;padding:1rem;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+.switch button{border:1px solid var(--line);background:#fff;padding:.55rem 1.1rem;border-radius:99px;font:600 .9rem var(--sans);cursor:pointer;color:var(--ink)}
+.switch button[aria-selected=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.view{display:none}.view.on{display:block}
+/* client site */
+.site header{background:#fff;border-bottom:1px solid var(--line)}
+.site header .in{max-width:1100px;margin:0 auto;padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center}
+.brand{display:flex;gap:.6rem;align-items:center;font-weight:700;font-size:1.15rem}
+.brand i{width:32px;height:32px;border-radius:9px;background:var(--teal);display:grid;place-items:center;color:#fff;font-style:normal}
+.site nav{display:flex;gap:1.5rem;font-size:.92rem;color:var(--mute)}
+.banner{background:linear-gradient(120deg,#0E7C7B,#14506B);color:#fff}
+.banner .in{max-width:1100px;margin:0 auto;padding:3rem 1.5rem}
+.banner h1{font-size:clamp(1.9rem,4vw,2.7rem);line-height:1.1;margin:0 0 .5rem;letter-spacing:-.02em}
+.banner p{margin:0;opacity:.85;max-width:52ch}
+.page{max-width:1100px;margin:-2rem auto 3rem;padding:0 1.5rem;display:grid;grid-template-columns:1fr 330px;gap:1.5rem;align-items:start}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.5rem;box-shadow:0 10px 30px -18px rgba(15,27,45,.25)}
+.stepper{display:flex;gap:.5rem;margin-bottom:1.4rem}
+.stepper span{flex:1;height:5px;border-radius:3px;background:var(--line);transition:background .3s}
+.stepper span.on{background:var(--teal)}
+h2{font-size:1.15rem;margin:1.6rem 0 .8rem}
+h2:first-of-type{margin-top:0}
+.svc{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem}
+.svc label{display:flex;gap:.7rem;padding:.85rem;border:1.5px solid var(--line);border-radius:12px;cursor:pointer;transition:border-color .2s,background .2s}
+.svc input{accent-color:var(--teal);margin-top:.25rem}
+.svc label:has(input:checked){border-color:var(--teal);background:var(--teal-l)}
+.svc small{display:block;color:var(--mute)}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:.35rem}
+.cal .dow{font-size:.72rem;color:var(--mute);text-align:center;font-weight:600}
+.cal button{height:44px;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:pointer;font:600 .9rem var(--sans);color:var(--ink);position:relative}
+.cal button:disabled{color:#B8BFCA;background:#FAFBFC;cursor:not-allowed}
+.cal button[aria-pressed=true]{background:var(--teal);color:#fff;border-color:var(--teal)}
+.cal button .dot{position:absolute;left:50%;bottom:5px;width:5px;height:5px;border-radius:50%;transform:translateX(-50%)}
+.calhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem}
+.calhead button{border:1px solid var(--line);background:#fff;border-radius:8px;width:34px;height:34px;cursor:pointer}
+.slots{display:flex;flex-wrap:wrap;gap:.45rem;min-height:2.4rem}
+.slots button{padding:.5rem .8rem;border:1.5px solid var(--teal);border-radius:9px;background:#fff;color:var(--teal);font:600 .88rem var(--sans);cursor:pointer;animation:in .3s both}
+.slots button[aria-checked=true]{background:var(--teal);color:#fff}
+@keyframes in{from{opacity:0;transform:translateY(4px)}}
+.muted{color:var(--mute);font-size:.9rem}
+.f{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.f label{font-size:.82rem;font-weight:600;display:block;margin-bottom:.25rem}
+.f input,.f textarea{width:100%;padding:.65rem .75rem;border:1px solid #C9D0DA;border-radius:9px;font:inherit}
+.f [aria-invalid=true]{border-color:#C62828;background:#FFF5F5}
+.f .full{grid-column:1/-1}
+.e{color:#C62828;font-size:.8rem;min-height:1em;margin:.2rem 0 0}
+.go{margin-top:1.2rem;width:100%;padding:.9rem;border:0;border-radius:11px;background:var(--ink);color:#fff;font:600 1rem var(--sans);cursor:pointer}
+.go:disabled{opacity:.5;cursor:not-allowed}
+.msg{margin-top:1rem;padding:.9rem 1rem;border-radius:10px;display:none}
+.msg.ok{display:block;background:#E8F5E9;color:#1B5E20}
+.msg.bad{display:block;background:#FFF3E0;color:#8A4B00}
+.summary dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:.5rem 1rem;font-size:.92rem}
+.summary dt{color:var(--mute)}
+.summary dd{margin:0;font-weight:600;text-align:right}
+.race{margin-top:1rem;font-size:.85rem;background:#FFF8E6;border:1px solid #F0DFB0;border-radius:10px;padding:.8rem}
+.race button{margin-top:.5rem;border:1px solid #C9A227;background:#fff;border-radius:8px;padding:.4rem .7rem;font:600 .82rem var(--sans);cursor:pointer}
+/* wp admin */
+.wpa{display:grid;grid-template-columns:160px 1fr;min-height:80vh;font:13px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:#3C434A;background:#F0F0F1}
+.wpa .side{background:var(--wpd);color:#F0F0F1}
+.wpa .side a{display:block;padding:.55rem .9rem;color:#F0F0F1;text-decoration:none;font-size:14px}
+.wpa .side a.cur{background:var(--wp)}
+.wpa .side .sub a{padding-left:1.6rem;font-size:13px;color:#C3C4C7;background:#2C3338}
+.wpa .side .sub a.cur2{color:#fff;font-weight:600}
+.wpa .main{padding:1.2rem 1.6rem}
+.wpa h1{font:400 23px/1.3 inherit;margin:0 0 .8rem;color:#1D2327}
+.wpa .notice{background:#fff;border-left:4px solid #00A32A;padding:.6rem .9rem;margin-bottom:1rem;box-shadow:0 1px 1px rgba(0,0,0,.04)}
+.subsubsub{margin:0 0 .6rem;padding:0;list-style:none;display:flex;gap:.4rem;color:#646970}
+.subsubsub a{color:var(--wp);cursor:pointer}
+.subsubsub a.current{color:#000;font-weight:600}
+table.wl{width:100%;border-collapse:collapse;background:#fff;border:1px solid #C3C4C7}
+.wl th,.wl td{text-align:left;padding:8px 10px;border-bottom:1px solid #F0F0F1;vertical-align:top}
+.wl th{font-weight:400;color:#2C3338;border-bottom:1px solid #C3C4C7}
+.wl tr:nth-child(odd) td{background:#F6F7F7}
+.wl .t{color:var(--wp);font-weight:600;font-size:14px}
+.wl .ra{visibility:hidden;font-size:12px;margin-top:.2rem}
+.wl tr:hover .ra,.wl tr:focus-within .ra{visibility:visible}
+.ra a{color:var(--wp);cursor:pointer;text-decoration:none}
+.ra a.del{color:#B32D2E}
+.st{display:inline-block;padding:1px 8px;border-radius:3px;font-size:12px}
+.st.p{background:#FCF9E8;color:#996800}.st.c{background:#EDFAEF;color:#007017}
+.wpsettings{background:#fff;border:1px solid #C3C4C7;padding:1rem 1.2rem;margin-top:1.5rem}
+.wpsettings h2{font:600 1.1rem inherit;margin:0 0 .6rem}
+.wpsettings table{border-collapse:collapse}
+.wpsettings th{text-align:left;width:220px;padding:10px 10px 10px 0;font-weight:600;color:#1D2327;vertical-align:top}
+.wpsettings td{padding:8px 0}
+.wpsettings input[type=time],.wpsettings input[type=number],.wpsettings select{border:1px solid #8C8F94;border-radius:4px;padding:3px 6px;font:inherit}
+.button-primary{background:var(--wp);border:1px solid var(--wp);color:#fff;border-radius:3px;padding:4px 12px;font:inherit;cursor:pointer;margin-top:.6rem}
+code{background:#F0F0F1;padding:1px 5px;border-radius:3px}
+@media (max-width:900px){.page{grid-template-columns:1fr}.wpa{grid-template-columns:1fr}.wpa .side{display:none}}
+@media (max-width:560px){.svc,.f{grid-template-columns:1fr}.wpsettings th{display:block;width:auto}}
+</style>
+</head>
+<body>
+<p class="demo">Interactive demo of <b>Slotwise Appointments</b>, a WordPress plugin by <a href="../../../">Tujummal Hussain</a>. Cedar Dental is fictional; nothing is sent · <a href="../slotwise.zip">Download plugin (.zip)</a> · <a href="https://github.com/tajamulh193/tajamulhussain/tree/main/projects/slotwise-booking-plugin">View source</a></p>
+<div class="switch" role="tablist" aria-label="Demo view"><button role="tab" aria-selected="true" aria-controls="v1" id="t1">Booking page (visitor)</button><button role="tab" aria-selected="false" aria-controls="v2" id="t2">WordPress admin</button></div>
+
+<section class="view on site" id="v1" role="tabpanel" aria-labelledby="t1">
+  <header><div class="in"><span class="brand"><i>✚</i>Cedar Dental</span><nav><span>Treatments</span><span>Our team</span><span>Book online</span></nav></div></header>
+  <div class="banner"><div class="in"><h1>Book an appointment</h1><p>Choose a treatment and a time that suits you. You'll get a confirmation by email straight away.</p></div></div>
+  <div class="page">
+    <form class="card" id="bf" novalidate>
+      <div class="stepper" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
+      <h2>1. Choose a treatment</h2>
+      <div class="svc" id="svc"></div>
+      <h2>2. Pick a date and time</h2>
+      <div class="calhead"><button type="button" id="prevM" aria-label="Previous month">‹</button><b id="mLabel"></b><button type="button" id="nextM" aria-label="Next month">›</button></div>
+      <div class="cal" id="cal"></div>
+      <p class="muted" style="margin:.8rem 0 .4rem" id="slotHint">Choose a date to see free times.</p>
+      <div class="slots" id="slots" role="radiogroup" aria-label="Available times" aria-live="polite"></div>
+      <h2>3. Your details</h2>
+      <div class="f">
+        <div><label for="nm">Name</label><input id="nm" autocomplete="name"><p class="e" id="e_nm"></p></div>
+        <div><label for="em">Email</label><input id="em" type="email" autocomplete="email"><p class="e" id="e_em"></p></div>
+        <div class="full"><label for="nt">Anything we should know? (optional)</label><textarea id="nt" rows="2"></textarea></div>
+      </div>
+      <button class="go" type="submit" id="go">Confirm booking</button>
+      <div class="msg" id="msg" role="status" tabindex="-1"></div>
+    </form>
+    <aside class="card summary"><h2 style="margin-top:0">Your booking</h2><dl id="sum"></dl>
+      <div class="race"><b>Try the double-booking guard.</b> Pick a time, then press the button below to simulate another patient booking it a moment before you submit.<br><button type="button" id="race">Someone else books my time</button></div></aside>
+  </div>
+</section>
+
+<section class="view" id="v2" role="tabpanel" aria-labelledby="t2">
+  <div class="wpa">
+    <nav class="side" aria-label="Admin menu"><a>Dashboard</a><a>Posts</a><a>Pages</a><a class="cur">Appointments</a><div class="sub"><a class="cur2">Bookings</a><a>Services</a><a>Settings</a></div><a>Appearance</a><a>Plugins</a><a>Settings</a></nav>
+    <div class="main">
+      <h1>Bookings</h1>
+      <div class="notice" id="notice" hidden></div>
+      <ul class="subsubsub" id="views"></ul>
+      <table class="wl"><thead><tr><th>Booking</th><th>When</th><th>Contact</th><th>Status</th></tr></thead><tbody id="wl"></tbody></table>
+      <div class="wpsettings"><h2>Appointment settings</h2>
+        <table role="presentation"><tr><th>Opening hours</th><td><input type="time" id="sOpen" value="09:00" aria-label="Opening time"> – <input type="time" id="sClose" value="17:00" aria-label="Closing time"></td></tr>
+          <tr><th><label for="sInt">Start times every</label></th><td><select id="sInt"><option>10</option><option selected>15</option><option>20</option><option>30</option></select> min</td></tr>
+          <tr><th><label for="sBuf">Buffer after each booking</label></th><td><input type="number" id="sBuf" value="10" min="0" max="60" style="width:70px"> min</td></tr>
+          <tr><th>Shortcode</th><td><code>[slotwise_booking]</code></td></tr></table>
+        <button class="button-primary" id="save">Save Changes</button> <span id="saved" style="color:#007017"></span></div>
+    </div>
+  </div>
+</section>
+
+<script>
+"use strict";
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const SV=[{id:1,n:"Check-up and clean",d:30,p:"PKR 4,000"},{id:2,n:"Teeth whitening",d:60,p:"PKR 18,000"},{id:3,n:"Filling",d:45,p:"PKR 7,500"},{id:4,n:"Children's visit",d:20,p:"PKR 2,500"}];
+const S={days:[1,2,3,4,5,6],open:"09:00",close:"17:00",interval:15,buffer:10,max:45};
+const toMin=hm=>{const[h,m]=hm.split(":").map(Number);return h*60+m},toHM=m=>String(Math.floor(m/60)).padStart(2,"0")+":"+String(m%60).padStart(2,"0");
+const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+// seeded existing bookings so the calendar looks real
+let seed=11;const r=()=>(seed=seed*16807%2147483647)/2147483647;
+const NAMES=["Ayesha K.","Bilal R.","Sana M.","Omar F.","Hira S.","Usman T.","Zara A.","Imran Q."];
+const B=[];{const t=new Date();t.setHours(0,0,0,0);for(let i=0;i<S.max;i++){const d=new Date(t);d.setDate(t.getDate()+i);if(!S.days.includes(d.getDay()||7))continue;const n=Math.floor(r()*(i<6?14:7));
+  for(let k=0;k<n;k++){const sv=SV[Math.floor(r()*SV.length)],st=toMin(S.open)+Math.floor(r()*28)*15;if(st+sv.d>toMin(S.close))continue;if(B.some(b=>b.date===iso(d)&&st<b.end+S.buffer&&b.start<st+sv.d+S.buffer))continue;
+    B.push({id:B.length+1,date:iso(d),start:st,end:st+sv.d,svc:sv.id,name:NAMES[Math.floor(r()*NAMES.length)],email:"patient"+(B.length+1)+"@example.com",status:r()>.35?"c":"p"})}}}
+function slots(date,dur){const d=new Date(date+"T00:00");const today=new Date();today.setHours(0,0,0,0);
+  if(d<today||!S.days.includes(d.getDay()||7))return[];let min=0;if(date===iso(new Date())){const n=new Date();min=n.getHours()*60+n.getMinutes()+60}
+  const busy=B.filter(b=>b.date===date).map(b=>[b.start,b.end+S.buffer]);const out=[];
+  for(let t=toMin(S.open);t+dur<=toMin(S.close);t+=S.interval){if(t<min)continue;if(!busy.some(([a,b])=>t<b&&a<t+dur))out.push(toHM(t))}return out}
+let svc=null,date=null,time=null,month=new Date();month.setDate(1);
+$("#svc").innerHTML=SV.map(s=>`<label><input type="radio" name="svc" value="${s.id}"><span><b>${s.n}</b><small>${s.d} min · ${s.p}</small></span></label>`).join("");
+$("#svc").onchange=e=>{svc=SV.find(s=>s.id===+e.target.value);time=null;cal();drawSlots();sum()};
+function cal(){const y=month.getFullYear(),m=month.getMonth(),first=(new Date(y,m,1).getDay()+6)%7,days=new Date(y,m+1,0).getDate(),t=new Date();t.setHours(0,0,0,0);const lim=new Date(t);lim.setDate(t.getDate()+S.max);
+  $("#mLabel").textContent=month.toLocaleDateString("en-GB",{month:"long",year:"numeric"});
+  let h=["Mo","Tu","We","Th","Fr","Sa","Su"].map(d=>`<span class="dow">${d}</span>`).join("")+"<span></span>".repeat(first);
+  for(let i=1;i<=days;i++){const d=new Date(y,m,i),k=iso(d),open=d>=t&&d<=lim&&S.days.includes(d.getDay()||7);const n=open&&svc?slots(k,svc.d).length:0;
+    const col=!open||!svc?"":n===0?"#C62828":n<6?"#E0A100":"#2E7D32";
+    h+=`<button type="button" data-d="${k}" ${open?"":"disabled"} aria-pressed="${k===date}" aria-label="${d.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})}${svc&&open?`, ${n} times free`:""}">${i}${col?`<span class="dot" style="background:${k===date?"#fff":col}"></span>`:""}</button>`}
+  $("#cal").innerHTML=h}
+$("#cal").onclick=e=>{const b=e.target.closest("[data-d]");if(!b)return;date=b.dataset.d;time=null;cal();drawSlots();sum();$(`[data-d="${date}"]`).focus()};
+$("#prevM").onclick=()=>{const n=new Date();n.setDate(1);n.setHours(0,0,0,0);if(month>n){month.setMonth(month.getMonth()-1);cal()}};
+$("#nextM").onclick=()=>{month.setMonth(month.getMonth()+1);cal()};
+function drawSlots(){const el=$("#slots");if(!svc||!date){el.innerHTML="";$("#slotHint").textContent=svc?"Choose a date to see free times.":"Choose a treatment first.";return}
+  const s=slots(date,svc.d);$("#slotHint").textContent=s.length?`${s.length} free times for a ${svc.d}-minute ${svc.n.toLowerCase()}:`:"No times left on this day. Please try another date.";
+  el.innerHTML=s.map((t,i)=>`<button type="button" role="radio" aria-checked="${t===time}" data-t="${t}" style="animation-delay:${i*15}ms">${t}</button>`).join("")}
+$("#slots").onclick=e=>{const b=e.target.closest("[data-t]");if(!b)return;time=b.dataset.t;$$("#slots button").forEach(x=>x.setAttribute("aria-checked",x===b));sum()};
+function sum(){const steps=[!!svc,!!(date&&time),false];$$(".stepper span").forEach((s,i)=>s.classList.toggle("on",i===0||steps[i-1]));
+  $("#sum").innerHTML=`<dt>Treatment</dt><dd>${svc?svc.n:"–"}</dd><dt>Length</dt><dd>${svc?svc.d+" min":"–"}</dd><dt>Date</dt><dd>${date?new Date(date+"T00:00").toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short"}):"–"}</dd><dt>Time</dt><dd>${time||"–"}</dd><dt>Price</dt><dd>${svc?svc.p:"–"}</dd>`}
+$("#race").onclick=()=>{if(!svc||!date||!time){msg("bad","Pick a treatment, date and time first, then try this.");return}
+  const st=toMin(time);B.push({id:B.length+1,date,start:st,end:st+svc.d,svc:svc.id,name:"Another patient",email:"other@example.com",status:"p"});
+  msg("bad",`Done: another patient has just taken ${time}. Now press <b>Confirm booking</b> and see what happens.`);drawAdmin()};
+function msg(k,h){const m=$("#msg");m.className="msg "+k;m.innerHTML=h;m.focus()}
+$("#bf").onsubmit=e=>{e.preventDefault();let bad=false;const f=(id,m)=>{$("#e_"+id).textContent=m;$("#"+id).setAttribute("aria-invalid",!!m);if(m&&!bad){bad=true;$("#"+id).focus()}};
+  if(!svc||!date||!time){msg("bad","Please choose a treatment, a date and a time.");return}
+  f("nm",$("#nm").value.trim().length<2?"Please enter your name.":"");f("em",/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test($("#em").value.trim())?"":"Please enter a valid email.");if(bad)return;
+  // server-side style re-check
+  if(!slots(date,svc.d).includes(time)){msg("bad","Sorry, that time has just been taken. We've refreshed the list so you can pick another.");time=null;drawSlots();sum();cal();return}
+  const st=toMin(time);B.push({id:B.length+1,date,start:st,end:st+svc.d,svc:svc.id,name:$("#nm").value.trim(),email:$("#em").value.trim(),status:"p",mine:1});
+  msg("ok",`<b>Booked.</b> ${esc(svc.n)} on ${new Date(date+"T00:00").toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})} at ${time}. A confirmation email would now be on its way. Switch to <b>WordPress admin</b> to see it arrive.`);
+  time=null;drawSlots();cal();sum();drawAdmin()};
+// admin
+let filter="all";
+function drawAdmin(){const all=[...B].sort((a,b)=>(a.date+toHM(a.start)).localeCompare(b.date+toHM(b.start))).filter(b=>b.date>=iso(new Date()));
+  const cnt={all:all.length,p:all.filter(b=>b.status==="p").length,c:all.filter(b=>b.status==="c").length};
+  $("#views").innerHTML=[["all","All"],["p","Awaiting confirmation"],["c","Confirmed"]].map(([k,l],i)=>`<li>${i?"| ":""}<a class="${filter===k?"current":""}" data-v="${k}" tabindex="0">${l} <span>(${cnt[k]})</span></a></li>`).join("");
+  const rows=all.filter(b=>filter==="all"||b.status===filter).slice(0,14);
+  $("#wl").innerHTML=rows.map(b=>{const s=SV.find(x=>x.id===b.svc);return `<tr${b.mine?' style="outline:2px solid #72AEE6"':""}><td><span class="t">${esc(b.name)} · ${s.n}</span><div class="ra">${b.status==="p"?`<a data-c="${b.id}" tabindex="0">Confirm</a> | `:""}<a>Edit</a> | <a class="del" data-x="${b.id}" tabindex="0">Trash</a></div></td>
+    <td>${b.date} ${toHM(b.start)}–${toHM(b.end)}</td><td><a href="mailto:${esc(b.email)}">${esc(b.email)}</a></td><td><span class="st ${b.status}">${b.status==="c"?"Confirmed":"Awaiting confirmation"}</span></td></tr>`}).join("")}
+$("#views").onclick=e=>{const a=e.target.closest("[data-v]");if(a){filter=a.dataset.v;drawAdmin()}};
+$("#wl").onclick=e=>{const c=e.target.closest("[data-c]"),x=e.target.closest("[data-x]");
+  if(c){B.find(b=>b.id===+c.dataset.c).status="c";note("Booking confirmed. The patient has been emailed.")}
+  if(x){B.splice(B.findIndex(b=>b.id===+x.dataset.x),1);note("1 booking moved to the Trash. The time is free again.");cal();drawSlots()}drawAdmin()};
+$("#wl").addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.matches("a[data-c],a[data-x]"))e.target.click()});
+function note(t){const n=$("#notice");n.hidden=false;n.textContent=t}
+$("#save").onclick=()=>{const o=$("#sOpen").value,c=$("#sClose").value;if(toMin(c)<=toMin(o)){$("#saved").style.color="#B32D2E";$("#saved").textContent="Closing time must be after opening time.";return}
+  S.open=o;S.close=c;S.interval=+$("#sInt").value;S.buffer=Math.max(0,Math.min(60,+$("#sBuf").value||0));$("#saved").style.color="#007017";$("#saved").textContent="Settings saved. The booking form now uses the new hours.";cal();drawSlots()};
+// tabs
+$$(".switch button").forEach(b=>b.onclick=()=>{$$(".switch button").forEach(x=>x.setAttribute("aria-selected",x===b));$$(".view").forEach(v=>v.classList.toggle("on",v.id===b.getAttribute("aria-controls")))});
+cal();sum();drawAdmin();
+</script>
+</body>
+</html>
